@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphics\Color.cs" />
+    <Compile Include="Graphics\IRenderer.cs" />
+    <Compile Include="Graphics\IRendererFactory.cs" />
     <Compile Include="GrasshopperApp.cs" />
     <Compile Include="Graphics\IAppWindow.cs" />
     <Compile Include="Graphics\IAppWindowFactory.cs" />

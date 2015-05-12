@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Grasshopper.Graphics;
 using SharpDX.Windows;
 
@@ -9,51 +8,60 @@ namespace Grasshopper.SharpDX.Graphics
 	{
 		private readonly RenderForm _form;
 		private bool _showBordersAndTitle;
+		private readonly RenderLoop _renderLoop;
 		private bool _resizable;
-		private RenderLoop _renderLoop;
 
 		public AppWindow()
 		{
 			_form = new RenderForm();
-			_renderLoop = new RenderLoop(_form);
+			_renderLoop = new RenderLoop(Form);
+
+			_form.SizeChanged += (sender, args) =>
+			{
+				var handler = SizeChanged;
+				if(handler != null)
+					handler(this);
+			};
 		}
+
+		public event AppWindowSimpleEventHandler SizeChanged;
 
 		public int Left
 		{
-			get { return _form.Left; }
-			set { _form.Left = value; }
+			get { return Form.Left; }
+			set { Form.Left = value; }
 		}
 
 		public int Top
 		{
-			get { return _form.Top; }
-			set { _form.Top = value; }
+			get { return Form.Top; }
+			set { Form.Top = value; }
 		}
 
 		public int Width
 		{
-			get { return _form.Width; }
-			set { _form.Width = value; }
+			get { return Form.Width; }
+			set { Form.Width = value; }
 		}
 
 		public int Height
 		{
-			get { return _form.Height; }
-			set { _form.Height = value; }
+			get { return Form.Height; }
+			set { Form.Height = value; }
 		}
 
-		public int ClientWidth { get { return _form.ClientSize.Width; } }
-		public int ClientHeight { get { return _form.ClientSize.Height; } }
+		public int ClientWidth { get { return Form.ClientSize.Width; } }
+		public int ClientHeight { get { return Form.ClientSize.Height; } }
 
 		public string Title
 		{
-			get { return _form.Text; }
-			set { _form.Text = value; }
+			get { return Form.Text; }
+			set { Form.Text = value; }
 		}
 
 		private void UpdateFormBorderStyle()
 		{
-			_form.FormBorderStyle = ShowBordersAndTitle
+			Form.FormBorderStyle = ShowBordersAndTitle
 				? Resizable ? FormBorderStyle.Sizable : FormBorderStyle.FixedDialog
 				: FormBorderStyle.None;
 		}
@@ -80,8 +88,13 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public bool Visible
 		{
-			get { return _form.Visible; }
-			set { _form.Visible = value; }
+			get { return Form.Visible; }
+			set { Form.Visible = value; }
+		}
+
+		public RenderForm Form
+		{
+			get { return _form; }
 		}
 
 		public void SetSize(int width, int height)
@@ -92,17 +105,17 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public void SetFullScreen(bool enabled = true, bool windowed = false)
 		{
-			
 		}
 
-		public bool NextFrame(NextFrameHandler run)
+		public bool NextFrame(AppWindowFrameExecutionHandler run)
 		{
 			return _renderLoop.NextFrame() && run(this);
 		}
 
 		public void Dispose()
 		{
-			_form.Dispose();
+			_renderLoop.Dispose();
+			Form.Dispose();
 		}
 	}
 }

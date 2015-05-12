@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+using Grasshopper.Graphics;
 using Grasshopper.SharpDX;
 
 namespace HelloWorld
@@ -10,20 +9,26 @@ namespace HelloWorld
 		static void Main(string[] args)
 		{
 			using(var app = SharpDXBootstrapper.CreateGrasshopperApp())
-			using(var mainWindow = app.Services.Windows.Create())
-			using(var otherWindow = app.Services.Windows.Create())
+			using(var main = app.Services.Renderers.CreateWindowed())
+			using(var other = app.Services.Renderers.CreateWindowed())
 			{
 				app.Run(() =>
 				{
-					return mainWindow.NextFrame(win =>
+					main.Window.Visible = true;
+					other.Window.Visible = true;
+
+					return main.Window.NextFrame(win =>
 					{
 						win.Title = "Hello, window #1! It's currently " + DateTime.UtcNow.ToString("F");
-						win.Visible = true;
+						main.Clear(Color.CornflowerBlue);
+						main.Present();
 						return true;
-					}) && otherWindow.NextFrame(win =>
+
+					}) && other.Window.NextFrame(win =>
 					{
 						win.Title = "Hello, window #2! It's currently " + DateTime.UtcNow.ToString("F");
-						win.Visible = true;
+						other.Clear(Color.Tomato);
+						other.Present();
 						return true;
 					});
 				});

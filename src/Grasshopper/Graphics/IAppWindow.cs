@@ -17,8 +17,10 @@ namespace Grasshopper.Graphics
 		void SetSize(int width, int height);
 		void SetFullScreen(bool enabled = true, bool windowed = false);
 
-		bool NextFrame(NextFrameHandler run);
+		event AppWindowSimpleEventHandler SizeChanged;
+		bool NextFrame(AppWindowFrameExecutionHandler run);
 	}
 
-	public delegate bool NextFrameHandler(IAppWindow win);
+	public delegate void AppWindowSimpleEventHandler(IAppWindow win);
+	public delegate bool AppWindowFrameExecutionHandler(IAppWindow win);
 }

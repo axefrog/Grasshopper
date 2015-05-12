@@ -17,6 +17,7 @@ namespace Grasshopper.SharpDX
 		{
 			var container = new UnityContainer();
 			services.Windows = new AppWindowFactory(container);
+			services.Renderers = new RendererFactory(container);
 		}
 	}
 }

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SharpDXDirectXVersion>DirectX11_2</SharpDXDirectXVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -68,6 +69,10 @@
   <ItemGroup>
     <Compile Include="Graphics\AppWindow.cs" />
     <Compile Include="Graphics\AppWindowFactory.cs" />
+    <Compile Include="Graphics\DeviceManager.cs" />
+    <Compile Include="Graphics\Renderer.cs" />
+    <Compile Include="Graphics\RendererFactory.cs" />
+    <Compile Include="Graphics\ViewportManager.cs" />
     <Compile Include="SharpDXBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
