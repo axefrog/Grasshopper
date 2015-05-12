@@ -3,8 +3,41 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grasshopper", "Grasshopper", "{F16366C7-5C78-4719-8DD9-4AA71818D4B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{8E9D8CFD-EA52-476B-AE5C-AA5911185FAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grasshopper.SharpDX", "src\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj", "{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "samples\HelloWorld\HelloWorld.csproj", "{C104D8AD-7941-4B5D-8C21-E84B6433858D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grasshopper", "src\Grasshopper\Grasshopper.csproj", "{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C104D8AD-7941-4B5D-8C21-E84B6433858D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C104D8AD-7941-4B5D-8C21-E84B6433858D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C104D8AD-7941-4B5D-8C21-E84B6433858D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C104D8AD-7941-4B5D-8C21-E84B6433858D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A} = {F16366C7-5C78-4719-8DD9-4AA71818D4B9}
+		{C104D8AD-7941-4B5D-8C21-E84B6433858D} = {8E9D8CFD-EA52-476B-AE5C-AA5911185FAF}
+		{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A} = {F16366C7-5C78-4719-8DD9-4AA71818D4B9}
 	EndGlobalSection
 EndGlobal
