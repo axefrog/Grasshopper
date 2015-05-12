@@ -107,9 +107,14 @@ namespace Grasshopper.SharpDX.Graphics
 		{
 		}
 
+		public bool NextFrame()
+		{
+			return _renderLoop.NextFrame();
+		}
+
 		public bool NextFrame(AppWindowFrameExecutionHandler run)
 		{
-			return _renderLoop.NextFrame() && run(this);
+			return NextFrame() && run(this);
 		}
 
 		public void Dispose()

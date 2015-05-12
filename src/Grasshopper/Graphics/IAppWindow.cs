@@ -19,6 +19,7 @@ namespace Grasshopper.Graphics
 
 		event AppWindowSimpleEventHandler SizeChanged;
 		bool NextFrame(AppWindowFrameExecutionHandler run);
+		bool NextFrame();
 	}
 
 	public delegate void AppWindowSimpleEventHandler(IAppWindow win);

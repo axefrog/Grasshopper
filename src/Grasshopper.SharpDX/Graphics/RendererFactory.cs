@@ -14,6 +14,9 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public IRenderer Create(IAppWindow window)
 		{
+			// todo: allow sharing of a device amongst multiple viewports so that resources can be shared easily:
+			// https://msdn.microsoft.com/en-us/library/windows/desktop/hh706347%28v=vs.85%29.aspx
+
 			var deviceManager = new DeviceManager();
 			deviceManager.Initialize();
 

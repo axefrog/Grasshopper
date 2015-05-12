@@ -17,18 +17,18 @@ namespace HelloWorld
 					main.Window.Visible = true;
 					other.Window.Visible = true;
 
-					return main.Window.NextFrame(win =>
+					return main.Next(context =>
 					{
-						win.Title = "Hello, window #1! It's currently " + DateTime.UtcNow.ToString("F");
-						main.Clear(Color.CornflowerBlue);
-						main.Present();
+						context.Window.Title = "Hello, window #1! It's currently " + DateTime.UtcNow.ToString("F");
+						context.Clear(Color.CornflowerBlue);
+						context.Present();
 						return true;
 
-					}) && other.Window.NextFrame(win =>
+					}) && other.Next(context =>
 					{
-						win.Title = "Hello, window #2! It's currently " + DateTime.UtcNow.ToString("F");
-						other.Clear(Color.Tomato);
-						other.Present();
+						context.Window.Title = "Hello, window #2! It's currently " + DateTime.UtcNow.ToString("F");
+						context.Clear(Color.Tomato);
+						context.Present();
 						return true;
 					});
 				});

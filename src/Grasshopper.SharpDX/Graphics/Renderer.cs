@@ -1,56 +1,39 @@
-﻿using System;
-using Grasshopper.Graphics;
-using SharpDX;
-using SharpDX.DXGI;
-using Color = Grasshopper.Graphics.Color;
+﻿using Grasshopper.Graphics;
 
 namespace Grasshopper.SharpDX.Graphics
 {
 	public class Renderer : IRenderer
 	{
-		private readonly DeviceManager _deviceManager;
 		private readonly ViewportManager _viewportManager;
-		private bool _isDisposed;
+		private RendererContext _context;
 
 		public Renderer(DeviceManager deviceManager, ViewportManager viewportManager)
 		{
-			_deviceManager = deviceManager;
 			_viewportManager = viewportManager;
+			_context = new RendererContext(deviceManager, viewportManager);
 		}
 
 		public IAppWindow Window { get { return _viewportManager.Window; } }
 
+		public bool Next(RenderFrameHandler run)
+		{
+			if(Window != null && !Window.NextFrame())
+				return false;
+			
+			_context.MakeActive();
+			
+			return run(_context);
+		}
+
 		public void Initialize()
 		{
-			
-		}
-
-		public void MakeActive()
-		{
-			_deviceManager.Context.OutputMerger.SetRenderTargets(_viewportManager.RenderTargetView);
-		}
-
-		public void Clear(Color color)
-		{
-			AssertNotDisposed();
-			_deviceManager.Context.ClearRenderTargetView(_viewportManager.RenderTargetView, new Color4(color.ToRgba()));
-		}
-
-		public void Present()
-		{
-			AssertNotDisposed();
-			_viewportManager.SwapChain.Present(1, PresentFlags.None);
-		}
-
-		private void AssertNotDisposed()
-		{
-			if(_isDisposed)
-				throw new ObjectDisposedException("Cannot call method; renderer has been disposed");
+			_context.Initialize();
 		}
 
 		public void Dispose()
 		{
-			_isDisposed = true;
+			_context.Dispose();
+			_context = null;
 		}
 	}
 }

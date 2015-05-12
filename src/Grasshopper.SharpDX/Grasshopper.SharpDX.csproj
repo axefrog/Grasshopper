@@ -71,6 +71,7 @@
     <Compile Include="Graphics\AppWindowFactory.cs" />
     <Compile Include="Graphics\DeviceManager.cs" />
     <Compile Include="Graphics\Renderer.cs" />
+    <Compile Include="Graphics\RendererContext.cs" />
     <Compile Include="Graphics\RendererFactory.cs" />
     <Compile Include="Graphics\ViewportManager.cs" />
     <Compile Include="SharpDXBootstrapper.cs" />
