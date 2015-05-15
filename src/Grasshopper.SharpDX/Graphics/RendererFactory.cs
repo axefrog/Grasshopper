@@ -1,4 +1,4 @@
-﻿using Grasshopper.Graphics;
+﻿using Grasshopper.Graphics.Rendering;
 
 namespace Grasshopper.SharpDX.Graphics
 {
@@ -15,7 +15,8 @@ namespace Grasshopper.SharpDX.Graphics
 		{
 			var window = new AppWindow();
 			var viewportManager = new ViewportManager(window, _graphicsContext.DeviceManager);
-			var renderer = new WindowRenderer(_graphicsContext, viewportManager);
+			var rendererContext = new WindowRendererContext(_graphicsContext, viewportManager);
+			var renderer = new WindowRenderer(_graphicsContext, viewportManager, rendererContext);
 			
 			viewportManager.Initialize();
 			renderer.Initialize();

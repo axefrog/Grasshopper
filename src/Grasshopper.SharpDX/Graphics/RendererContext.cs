@@ -1,6 +1,6 @@
-﻿using Grasshopper.Graphics;
+﻿using Grasshopper.Graphics.Rendering;
 using SharpDX;
-using SharpDX.DXGI;
+using SharpDX.Direct3D11;
 using Color = Grasshopper.Graphics.Color;
 
 namespace Grasshopper.SharpDX.Graphics
@@ -8,37 +8,29 @@ namespace Grasshopper.SharpDX.Graphics
 	public class RendererContext : IRendererContext
 	{
 		private readonly GraphicsContext _graphicsContext;
-		private readonly ViewportManager _viewportManager;
+		private readonly RenderTargetView _renderTargetView;
 		private bool _isDisposed;
 
-		public RendererContext(GraphicsContext graphicsContext, ViewportManager viewportManager)
+		public RendererContext(GraphicsContext graphicsContext, RenderTargetView renderTargetView)
 		{
 			_graphicsContext = graphicsContext;
-			_viewportManager = viewportManager;
+			_renderTargetView = renderTargetView;
 		}
-
-		public IAppWindow Window { get { return _viewportManager.Window; } }
 
 		public void Initialize()
 		{
-			
 		}
 
 		public void MakeActive()
 		{
 			var dc = _graphicsContext.DeviceManager.Context;
-			dc.OutputMerger.SetRenderTargets(_viewportManager.RenderTargetView);
+			dc.OutputMerger.SetRenderTargets(_renderTargetView);
 		}
 
 		public void Clear(Color color)
 		{
 			var dc = _graphicsContext.DeviceManager.Context;
-			dc.ClearRenderTargetView(_viewportManager.RenderTargetView, new Color4(color.ToRgba()));
-		}
-
-		public void Present()
-		{
-			_viewportManager.SwapChain.Present(1, PresentFlags.None);
+			dc.ClearRenderTargetView(_renderTargetView, new Color4(color.ToRgba()));
 		}
 
 		public void Dispose()

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using Grasshopper.Graphics;
+using Grasshopper.Graphics.Rendering;
 using SharpDX.Windows;
 
 namespace Grasshopper.SharpDX.Graphics

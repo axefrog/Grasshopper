@@ -1,6 +1,6 @@
 ﻿using Grasshopper.Assets;
 
-namespace Grasshopper.Graphics
+namespace Grasshopper.Graphics.Materials
 {
 	public class MaterialLibrary : AssetLibrary<Material>
 	{

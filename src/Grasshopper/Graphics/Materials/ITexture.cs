@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Grasshopper.Graphics
+namespace Grasshopper.Graphics.Materials
 {
 	public interface ITexture : IDisposable
 	{

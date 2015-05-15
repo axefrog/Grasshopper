@@ -1,4 +1,6 @@
 ﻿using System;
+using Grasshopper.Graphics.Materials;
+using Grasshopper.Graphics.Rendering;
 
 namespace Grasshopper.Graphics
 {

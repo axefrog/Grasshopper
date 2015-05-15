@@ -1,5 +1,5 @@
 ﻿using System;
-using Grasshopper.Graphics;
+using Grasshopper.Graphics.Rendering;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
 using Device2 = SharpDX.DXGI.Device2;

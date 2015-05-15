@@ -44,21 +44,26 @@
     <Compile Include="Graphics\Color.cs" />
     <Compile Include="Graphics\IGraphicsContext.cs" />
     <Compile Include="Graphics\IGraphicsContextFactory.cs" />
-    <Compile Include="Graphics\IRenderer.cs" />
-    <Compile Include="Graphics\IRendererFactory.cs" />
-    <Compile Include="Graphics\ITexture.cs" />
-    <Compile Include="Graphics\ITextureLoader.cs" />
-    <Compile Include="Graphics\Material.cs" />
-    <Compile Include="Graphics\MaterialLibrary.cs" />
-    <Compile Include="Graphics\TextureLibrary.cs" />
+    <Compile Include="Graphics\Rendering\IRenderer.cs" />
+    <Compile Include="Graphics\Rendering\IRendererContext.cs" />
+    <Compile Include="Graphics\Rendering\IRendererFactory.cs" />
+    <Compile Include="Graphics\Materials\ITexture.cs" />
+    <Compile Include="Graphics\Materials\ITextureLoader.cs" />
+    <Compile Include="Graphics\Materials\Material.cs" />
+    <Compile Include="Graphics\Materials\MaterialLibrary.cs" />
+    <Compile Include="Graphics\Materials\TextureLibrary.cs" />
+    <Compile Include="Graphics\Rendering\IWindowRenderer.cs" />
+    <Compile Include="Graphics\Rendering\IWindowRendererContext.cs" />
     <Compile Include="GrasshopperApp.cs" />
-    <Compile Include="Graphics\IAppWindow.cs" />
+    <Compile Include="Graphics\Rendering\IAppWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

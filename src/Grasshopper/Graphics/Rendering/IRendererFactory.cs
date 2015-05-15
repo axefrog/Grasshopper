@@ -1,4 +1,4 @@
-﻿namespace Grasshopper.Graphics
+﻿namespace Grasshopper.Graphics.Rendering
 {
 	public interface IRendererFactory
 	{

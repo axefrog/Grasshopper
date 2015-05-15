@@ -69,6 +69,7 @@
     <Compile Include="Graphics\TextureLoader.cs" />
     <Compile Include="Graphics\ViewportManager.cs" />
     <Compile Include="Graphics\WindowRenderer.cs" />
+    <Compile Include="Graphics\WindowRendererContext.cs" />
     <Compile Include="SharpDXBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,4 +1,6 @@
 ﻿using Grasshopper.Graphics;
+using Grasshopper.Graphics.Materials;
+using Grasshopper.Graphics.Rendering;
 
 namespace Grasshopper.SharpDX.Graphics
 {

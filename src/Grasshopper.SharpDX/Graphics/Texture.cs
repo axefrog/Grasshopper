@@ -1,4 +1,4 @@
-﻿using Grasshopper.Graphics;
+﻿using Grasshopper.Graphics.Materials;
 using SharpDX.Direct3D11;
 
 namespace Grasshopper.SharpDX.Graphics

@@ -19,6 +19,8 @@ namespace SimpleScene
 				renderer.Window.Visible = true;
 				renderer.Window.Title = "Grasshopper Samples / GridWorld / Simple Scene";
 
+				var texture = gfx.TextureLoader.Load("Textures/rabbit.jpg");
+
 				app.Run(renderer, context =>
 				{
 					context.Clear(Color.Black);

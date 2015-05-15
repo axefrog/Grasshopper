@@ -2,6 +2,7 @@
 using System.Threading;
 using Grasshopper.Assets;
 using Grasshopper.Graphics;
+using Grasshopper.Graphics.Rendering;
 
 namespace Grasshopper
 {
@@ -14,7 +15,8 @@ namespace Grasshopper
 		{
 		}
 
-		public void Run(IRenderer renderer, RenderFrameHandler main)
+		public void Run<TRendererContext>(IRenderer<TRendererContext> renderer, RenderFrameHandler<TRendererContext> main)
+			where TRendererContext : IRendererContext
 		{
 			using(var ev = new AutoResetEvent(false))
 				while(renderer.Render(main))
