@@ -1,41 +1,48 @@
-﻿using Grasshopper.Graphics.Rendering;
+﻿using System;
+using Grasshopper.Graphics.Rendering;
 using SharpDX;
 using SharpDX.Direct3D11;
 using Color = Grasshopper.Graphics.Color;
 
 namespace Grasshopper.SharpDX.Graphics
 {
-	public class RendererContext : IRendererContext
+	public abstract class RendererContext : IRendererContext
 	{
-		private readonly GraphicsContext _graphicsContext;
-		private readonly RenderTargetView _renderTargetView;
-		private bool _isDisposed;
+		private readonly DeviceManager _deviceManager;
+		private RenderTargetView _renderTargetView;
 
-		public RendererContext(GraphicsContext graphicsContext, RenderTargetView renderTargetView)
+		protected RendererContext(DeviceManager deviceManager)
 		{
-			_graphicsContext = graphicsContext;
-			_renderTargetView = renderTargetView;
+			_deviceManager = deviceManager;
 		}
 
-		public void Initialize()
+		protected void SetRenderTargetView(RenderTargetView renderTargetView)
 		{
+			_renderTargetView = renderTargetView;
 		}
 
 		public void MakeActive()
 		{
-			var dc = _graphicsContext.DeviceManager.Context;
+			var dc = _deviceManager.Context;
 			dc.OutputMerger.SetRenderTargets(_renderTargetView);
 		}
 
 		public void Clear(Color color)
 		{
-			var dc = _graphicsContext.DeviceManager.Context;
+			var dc = _deviceManager.Context;
 			dc.ClearRenderTargetView(_renderTargetView, new Color4(color.ToRgba()));
 		}
 
+		protected event Action Disposing;
+		protected bool IsDisposed { get; private set; }
+
 		public void Dispose()
 		{
-			_isDisposed = true;
+			var handler = Disposing;
+			if(handler != null)
+				handler();
+
+			IsDisposed = true;
 		}
 	}
 }

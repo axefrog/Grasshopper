@@ -14,13 +14,9 @@ namespace Grasshopper.SharpDX.Graphics
 		public IWindowRenderer CreateWindowed()
 		{
 			var window = new AppWindow();
-			var viewportManager = new ViewportManager(window, _graphicsContext.DeviceManager);
-			var rendererContext = new WindowRendererContext(_graphicsContext, viewportManager);
-			var renderer = new WindowRenderer(_graphicsContext, viewportManager, rendererContext);
-			
-			viewportManager.Initialize();
-			renderer.Initialize();
-		
+			var rendererContext = new WindowRendererContext(_graphicsContext.DeviceManager, window);
+			rendererContext.Initialize();
+			var renderer = new WindowRenderer(window, rendererContext);
 			return renderer;
 		}
 	}

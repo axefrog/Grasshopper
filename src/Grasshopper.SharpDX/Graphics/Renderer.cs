@@ -8,26 +8,16 @@ namespace Grasshopper.SharpDX.Graphics
 	{
 		private T _context;
 
-		public Renderer(GraphicsContext graphicsContext, ViewportManager viewportManager, T rendererContext)
+		public Renderer(T rendererContext)
 		{
-			ViewportManager = viewportManager;
-			GraphicsContext = graphicsContext;
 			_context = rendererContext;
 		}
-
-		public ViewportManager ViewportManager { get; private set; }
-		public GraphicsContext GraphicsContext { get; private set; }
 
 		public virtual bool Render(RenderFrameHandler<T> run)
 		{
 			_context.MakeActive();
 
 			return run(_context);
-		}
-
-		public void Initialize()
-		{
-			_context.Initialize();
 		}
 
 		protected event Action Disposing;
