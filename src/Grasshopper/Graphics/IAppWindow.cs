@@ -13,6 +13,7 @@ namespace Grasshopper.Graphics
 		string Title { get; set; }
 		bool Resizable { get; set; }
 		bool ShowBordersAndTitle { get; set; }
+		bool PreferWindowedFullScreen { get; set; }
 		bool Visible { get; set; }
 		void SetSize(int width, int height);
 		void SetFullScreen(bool enabled = true, bool windowed = false);

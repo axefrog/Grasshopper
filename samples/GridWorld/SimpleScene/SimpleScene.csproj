@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{DDB958B3-1EBF-4564-A555-25A20B2F2C5B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Grasshopper</RootNamespace>
-    <AssemblyName>Grasshopper.Core</AssemblyName>
+    <RootNamespace>SimpleScene</RootNamespace>
+    <AssemblyName>SimpleScene</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,12 +23,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SimpleScene.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -39,25 +44,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetLibrary.cs" />
-    <Compile Include="Assets\IAssetReader.cs" />
-    <Compile Include="Graphics\Color.cs" />
-    <Compile Include="Graphics\IGraphicsContextFactory.cs" />
-    <Compile Include="Graphics\IRenderer.cs" />
-    <Compile Include="Graphics\IRendererFactory.cs" />
-    <Compile Include="Graphics\ITexture.cs" />
-    <Compile Include="Graphics\ITextureLoader.cs" />
-    <Compile Include="Graphics\Material.cs" />
-    <Compile Include="Graphics\MaterialLibrary.cs" />
-    <Compile Include="Graphics\TextureLibrary.cs" />
-    <Compile Include="GrasshopperApp.cs" />
-    <Compile Include="Graphics\IAppWindow.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
+    <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Grasshopper.GridWorld\Grasshopper.GridWorld.csproj">
+      <Project>{8006A6CB-8F19-4EE1-B468-0C32FD77C8AF}</Project>
+      <Name>Grasshopper.GridWorld</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
+      <Project>{16d068bc-44cc-44d2-af94-b99c6db0ce0a}</Project>
+      <Name>Grasshopper.SharpDX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Grasshopper.WindowsFileSystem\Grasshopper.WindowsFileSystem.csproj">
+      <Project>{3ADEE464-3DFB-49F7-B8F5-D0B4CFB2A4D2}</Project>
+      <Name>Grasshopper.WindowsFileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Grasshopper\Grasshopper.csproj">
+      <Project>{58c365bd-0cb3-45c5-96d8-8ddfbffa3e0a}</Project>
+      <Name>Grasshopper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Textures\bricks.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\cracked-mud.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\grass.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\rabbit.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\water.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

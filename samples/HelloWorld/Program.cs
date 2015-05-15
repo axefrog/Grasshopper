@@ -1,4 +1,5 @@
 ﻿using System;
+using Grasshopper;
 using Grasshopper.Graphics;
 using Grasshopper.SharpDX;
 
@@ -8,29 +9,31 @@ namespace HelloWorld
 	{
 		static void Main(string[] args)
 		{
-			using(var app = SharpDXBootstrapper.CreateGrasshopperApp())
-			using(var main = app.Services.Renderers.CreateWindowed())
-			using(var other = app.Services.Renderers.CreateWindowed())
+			using(var app = new GrasshopperApp().UseSharpDX())
+			using(var gfx = app.GraphicsContextFactory.Create())
+			using(var main = gfx.RendererFactory.CreateWindowed())
+			using(var other = gfx.RendererFactory.CreateWindowed())
 			{
+				main.Window.Visible = true;
+				other.Window.Visible = true;
+
 				app.Run(() =>
 				{
-					main.Window.Visible = true;
-					other.Window.Visible = true;
-
-					return main.Next(context =>
+					return main.Render(context =>
 					{
 						context.Window.Title = "Hello, window #1! It's currently " + DateTime.UtcNow.ToString("F");
 						context.Clear(Color.CornflowerBlue);
 						context.Present();
 						return true;
-
-					}) && other.Next(context =>
+					})
+					&& other.Render(context =>
 					{
 						context.Window.Title = "Hello, window #2! It's currently " + DateTime.UtcNow.ToString("F");
 						context.Clear(Color.Tomato);
 						context.Present();
 						return true;
-					});
+					})
+					;
 				});
 			}
 		}

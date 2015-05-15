@@ -4,8 +4,12 @@ namespace Grasshopper.Graphics
 {
 	public interface IRenderer : IDisposable
 	{
-		bool Next(RenderFrameHandler run);
+		bool Render(RenderFrameHandler run);
 		void Initialize();
+	}
+
+	public interface IWindowRenderer : IRenderer
+	{
 		IAppWindow Window { get; }
 	}
 

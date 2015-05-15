@@ -7,6 +7,10 @@ using Resource = SharpDX.Direct3D11.Resource;
 
 namespace Grasshopper.SharpDX.Graphics
 {
+	/// <summary>
+	/// The viewport manager encapsulates functionality for the management of resources for a texture surface that
+	/// is intended to be rendered to. This will usually be a window backbuffer or a dynamically-written texture.
+	/// </summary>
 	public class ViewportManager : IDisposable
 	{
 		private readonly AppWindow _window;
@@ -22,8 +26,6 @@ namespace Grasshopper.SharpDX.Graphics
 			_deviceManager = deviceManager;
 
 			Window.SizeChanged += win => Initialize();
-
-			Initialize();
 		}
 
 		public SwapChain1 SwapChain { get; private set; }
@@ -38,10 +40,11 @@ namespace Grasshopper.SharpDX.Graphics
 		public void Initialize()
 		{
 			if(!_deviceManager.IsInitialized) throw new InvalidOperationException("Device manager is not initialized");
+			Console.WriteLine("Initializing Viewport");
 			
 			DestroyResources();
 
-			var description = new SwapChainDescription1
+			var swapChainDescription = new SwapChainDescription1
 			{
 				Width = Window.ClientWidth,
 				Height = Window.ClientHeight,
@@ -54,10 +57,19 @@ namespace Grasshopper.SharpDX.Graphics
 				SwapEffect = SwapEffect.Discard,
 				Flags = SwapChainFlags.AllowModeSwitch
 			};
+			var fullScreenDescription = new SwapChainFullScreenDescription
+			{
+				RefreshRate = new Rational(60, 1),
+				Scaling = DisplayModeScaling.Centered,
+				Windowed = true
+			};
+
 			using(var dxgiDevice2 = _deviceManager.Device.QueryInterface<Device2>())
 			using(var dxgiFactory2 = dxgiDevice2.Adapter.GetParent<Factory2>())
 			{
-				SwapChain = new SwapChain1(dxgiFactory2, _deviceManager.Device, Window.Form.Handle, ref description);
+				SwapChain = new SwapChain1(dxgiFactory2, _deviceManager.Device, Window.Form.Handle, ref swapChainDescription, fullScreenDescription);
+				if(_window != null)
+					dxgiFactory2.MakeWindowAssociation(_window.Form.Handle, WindowAssociationFlags.IgnoreAll);
 			}
 			BackBuffer = Resource.FromSwapChain<Texture2D>(SwapChain, 0);
 			RenderTargetView = new RenderTargetView(_deviceManager.Device, BackBuffer);

@@ -2,7 +2,6 @@
 {
 	public interface IRendererFactory
 	{
-		IRenderer Create(IAppWindow window);
-		IRenderer CreateWindowed();
+		IWindowRenderer CreateWindowed();
 	}
 }

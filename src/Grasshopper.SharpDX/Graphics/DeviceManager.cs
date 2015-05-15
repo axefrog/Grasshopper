@@ -8,11 +8,6 @@ namespace Grasshopper.SharpDX.Graphics
 {
 	public class DeviceManager : IDisposable
 	{
-		public DeviceManager()
-		{
-			Initialize();
-		}
-
 		public bool EnableDebugMode { get; set; }
 		
 		public Device1 Device { get; private set; }

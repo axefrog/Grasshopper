@@ -16,7 +16,7 @@ namespace Grasshopper.SharpDX.Graphics
 			_form = new RenderForm();
 			_renderLoop = new RenderLoop(Form);
 
-			_form.SizeChanged += (sender, args) =>
+			_form.ResizeEnd += (sender, args) =>
 			{
 				var handler = SizeChanged;
 				if(handler != null)
@@ -86,6 +86,9 @@ namespace Grasshopper.SharpDX.Graphics
 			}
 		}
 
+		// todo: implement fullscreen rendering (will require alt-enter handling)
+		public bool PreferWindowedFullScreen { get; set; }
+
 		public bool Visible
 		{
 			get { return Form.Visible; }
@@ -105,6 +108,7 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public void SetFullScreen(bool enabled = true, bool windowed = false)
 		{
+
 		}
 
 		public bool NextFrame()

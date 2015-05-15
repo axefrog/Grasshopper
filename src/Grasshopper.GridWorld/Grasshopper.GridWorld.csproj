@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}</ProjectGuid>
+    <ProjectGuid>{8006A6CB-8F19-4EE1-B468-0C32FD77C8AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Grasshopper</RootNamespace>
-    <AssemblyName>Grasshopper.Core</AssemblyName>
+    <RootNamespace>Grasshopper.GridWorld</RootNamespace>
+    <AssemblyName>Grasshopper.GridWorld</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,25 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetLibrary.cs" />
-    <Compile Include="Assets\IAssetReader.cs" />
-    <Compile Include="Graphics\Color.cs" />
-    <Compile Include="Graphics\IGraphicsContextFactory.cs" />
-    <Compile Include="Graphics\IRenderer.cs" />
-    <Compile Include="Graphics\IRendererFactory.cs" />
-    <Compile Include="Graphics\ITexture.cs" />
-    <Compile Include="Graphics\ITextureLoader.cs" />
-    <Compile Include="Graphics\Material.cs" />
-    <Compile Include="Graphics\MaterialLibrary.cs" />
-    <Compile Include="Graphics\TextureLibrary.cs" />
-    <Compile Include="GrasshopperApp.cs" />
-    <Compile Include="Graphics\IAppWindow.cs" />
+    <Compile Include="GridWorldGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

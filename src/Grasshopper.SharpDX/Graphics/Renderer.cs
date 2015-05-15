@@ -4,22 +4,20 @@ namespace Grasshopper.SharpDX.Graphics
 {
 	public class Renderer : IRenderer
 	{
-		private readonly ViewportManager _viewportManager;
 		private RendererContext _context;
 
-		public Renderer(DeviceManager deviceManager, ViewportManager viewportManager)
+		public Renderer(GraphicsContext graphicsContext, ViewportManager viewportManager)
 		{
-			_viewportManager = viewportManager;
-			_context = new RendererContext(deviceManager, viewportManager);
+			ViewportManager = viewportManager;
+			GraphicsContext = graphicsContext;
+			_context = new RendererContext(graphicsContext, viewportManager);
 		}
 
-		public IAppWindow Window { get { return _viewportManager.Window; } }
+		public ViewportManager ViewportManager { get; private set; }
+		public GraphicsContext GraphicsContext { get; private set; }
 
-		public bool Next(RenderFrameHandler run)
+		public virtual bool Render(RenderFrameHandler run)
 		{
-			if(Window != null && !Window.NextFrame())
-				return false;
-			
 			_context.MakeActive();
 			
 			return run(_context);
