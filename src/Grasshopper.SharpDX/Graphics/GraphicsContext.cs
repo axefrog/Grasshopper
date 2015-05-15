@@ -1,4 +1,5 @@
-﻿using Grasshopper.Graphics;
+﻿using Grasshopper.Assets;
+using Grasshopper.Graphics;
 using Grasshopper.Graphics.Materials;
 using Grasshopper.Graphics.Rendering;
 
@@ -6,10 +7,10 @@ namespace Grasshopper.SharpDX.Graphics
 {
 	public class GraphicsContext : IGraphicsContext
 	{
-		public GraphicsContext()
+		public GraphicsContext(IAssetResourceFactory assets)
 		{
 			DeviceManager = new DeviceManager();
-			TextureLoader = new TextureLoader(DeviceManager);
+			TextureLoader = new TextureLoader(DeviceManager, assets);
 			RendererFactory = new RendererFactory(this);
 		}
 

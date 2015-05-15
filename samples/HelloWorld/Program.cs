@@ -10,7 +10,7 @@ namespace HelloWorld
 		static void Main(string[] args)
 		{
 			using(var app = new GrasshopperApp().UseSharpDX())
-			using(var gfx = app.GraphicsContextFactory.Create())
+			using(var gfx = app.Graphics.Create())
 			using(var main = gfx.RendererFactory.CreateWindowed())
 			using(var other = gfx.RendererFactory.CreateWindowed())
 			{

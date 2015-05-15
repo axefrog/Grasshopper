@@ -8,12 +8,8 @@ namespace Grasshopper
 {
 	public class GrasshopperApp : IDisposable
 	{
-		public IAssetReader AssetReader { get; set; }
-		public IGraphicsContextFactory GraphicsContextFactory { get; set; }
-
-		public void Dispose()
-		{
-		}
+		public IAssetResourceFactory Assets { get; set; }
+		public IGraphicsContextFactory Graphics { get; set; }
 
 		public void Run<TRendererContext>(IRenderer<TRendererContext> renderer, RenderFrameHandler<TRendererContext> main)
 			where TRendererContext : IRendererContext
@@ -28,6 +24,10 @@ namespace Grasshopper
 			using(var ev = new AutoResetEvent(false))
 				while(main())
 					ev.WaitOne(1);
+		}
+
+		public void Dispose()
+		{
 		}
 	}
 }

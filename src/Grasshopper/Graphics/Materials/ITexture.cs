@@ -1,9 +1,10 @@
 ﻿using System;
+using Grasshopper.Assets;
 
 namespace Grasshopper.Graphics.Materials
 {
 	public interface ITexture : IDisposable
 	{
-		string Path { get; }
+		IAssetResource Asset { get; }
 	}
 }

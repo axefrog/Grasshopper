@@ -4,8 +4,8 @@
 	{
 		public static T UseWindowsFileSystem<T>(this T app) where T : GrasshopperApp
 		{
-			var assetReader = new AssetReader();
-			app.AssetReader = assetReader;
+			var assetReader = new AssetResourceFactory();
+			app.Assets = assetReader;
 			return app;
 		}
 	}

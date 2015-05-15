@@ -39,7 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetReader.cs" />
+    <Compile Include="AssetResource.cs" />
+    <Compile Include="AssetStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsFileSystemBootstrapper.cs" />
   </ItemGroup>

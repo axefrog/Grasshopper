@@ -1,19 +1,19 @@
-﻿using Grasshopper.Graphics.Materials;
+﻿using Grasshopper.Assets;
+using Grasshopper.Graphics.Materials;
 using SharpDX.Direct3D11;
 
 namespace Grasshopper.SharpDX.Graphics
 {
 	public class Texture : ITexture
 	{
+		public IAssetResource Asset { get; private set; }
 		public ShaderResourceView ShaderResourceView { get; private set; }
 
-		public Texture(string path, ShaderResourceView shaderResourceView)
+		public Texture(IAssetResource asset, ShaderResourceView shaderResourceView)
 		{
-			Path = path;
+			Asset = asset;
 			ShaderResourceView = shaderResourceView;
 		}
-
-		public string Path { get; private set; }
 
 		public void Dispose()
 		{
