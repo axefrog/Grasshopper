@@ -12,12 +12,13 @@ namespace Grasshopper.SharpDX.Graphics
 		private readonly AppWindow _window;
 		private readonly DeviceManager _deviceManager;
 
-		public WindowRendererContext(DeviceManager deviceManager, AppWindow window) : base(deviceManager)
+		public WindowRendererContext(DeviceManager deviceManager) : base(deviceManager)
 		{
 			_deviceManager = deviceManager;
-			_window = window;
+			_window = new AppWindow();
 
 			_window.SizeChanged += win => Initialize();
+			Disposing += DestroyResources;
 		}
 
 		public IAppWindow Window { get { return _window; } }
@@ -61,6 +62,8 @@ namespace Grasshopper.SharpDX.Graphics
 			}
 			BackBuffer = Resource.FromSwapChain<Texture2D>(SwapChain, 0);
 			RenderTargetView = new RenderTargetView(_deviceManager.Device, BackBuffer);
+			
+			SetRenderTargetView(RenderTargetView);
 		}
 
 		private void DestroyResources()

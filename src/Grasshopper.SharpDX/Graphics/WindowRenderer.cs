@@ -4,14 +4,18 @@ namespace Grasshopper.SharpDX.Graphics
 {
 	public class WindowRenderer : Renderer<IWindowRendererContext>, IWindowRenderer
 	{
-		private readonly IAppWindow _window;
+		private readonly WindowRendererContext _rendererContext;
 
-		public WindowRenderer(IAppWindow window, IWindowRendererContext rendererContext) : base(rendererContext)
+		public WindowRenderer(DeviceManager deviceManager) : this(new WindowRendererContext(deviceManager))
 		{
-			_window = window;
 		}
 
-		public IAppWindow Window { get { return _window; } }
+		private WindowRenderer(WindowRendererContext rendererContext) : base(rendererContext)
+		{
+			_rendererContext = rendererContext;
+		}
+
+		public IAppWindow Window { get { return _rendererContext.Window; } }
 
 		public override bool Render(RenderFrameHandler<IWindowRendererContext> run)
 		{
@@ -19,6 +23,11 @@ namespace Grasshopper.SharpDX.Graphics
 				return false;
 
 			return base.Render(run);
+		}
+
+		public void Initialize()
+		{
+			_rendererContext.Initialize();
 		}
 	}
 }

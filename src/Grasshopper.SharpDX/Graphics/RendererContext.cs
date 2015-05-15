@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using Grasshopper.Graphics.Rendering;
 using SharpDX;
 using SharpDX.Direct3D11;
@@ -23,6 +24,8 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public void MakeActive()
 		{
+			if(_renderTargetView == null)
+				throw new InvalidOperationException("You forgot to call SetRenderTargetView during initialization");
 			var dc = _deviceManager.Context;
 			dc.OutputMerger.SetRenderTargets(_renderTargetView);
 		}
