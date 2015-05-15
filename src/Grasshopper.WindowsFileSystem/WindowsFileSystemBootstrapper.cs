@@ -2,7 +2,7 @@
 {
 	public static class WindowsFileSystemBootstrapper
 	{
-		public static GrasshopperApp UseWindowsFileSystem(this GrasshopperApp app)
+		public static T UseWindowsFileSystem<T>(this T app) where T : GrasshopperApp
 		{
 			var assetReader = new AssetReader();
 			app.AssetReader = assetReader;

@@ -42,6 +42,7 @@
     <Compile Include="Assets\AssetLibrary.cs" />
     <Compile Include="Assets\IAssetReader.cs" />
     <Compile Include="Graphics\Color.cs" />
+    <Compile Include="Graphics\IGraphicsContext.cs" />
     <Compile Include="Graphics\IGraphicsContextFactory.cs" />
     <Compile Include="Graphics\IRenderer.cs" />
     <Compile Include="Graphics\IRendererFactory.cs" />

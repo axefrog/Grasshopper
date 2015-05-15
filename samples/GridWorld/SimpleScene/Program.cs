@@ -1,5 +1,4 @@
-﻿using Grasshopper;
-using Grasshopper.Graphics;
+﻿using Grasshopper.Graphics;
 using Grasshopper.GridWorld;
 using Grasshopper.SharpDX;
 using Grasshopper.WindowsFileSystem;
@@ -10,7 +9,7 @@ namespace SimpleScene
 	{
 		static void Main(string[] args)
 		{
-			using(var app = new GrasshopperApp()
+			using(var app = new GridWorldApp()
 				.UseSharpDX()
 				.UseWindowsFileSystem())
 
@@ -18,9 +17,7 @@ namespace SimpleScene
 			using(var renderer = gfx.RendererFactory.CreateWindowed())
 			{
 				renderer.Window.Visible = true;
-				renderer.Window.Title = "Grasshopper :: Simple Scene";
-
-				var game = new GridWorldGame();
+				renderer.Window.Title = "Grasshopper Samples / GridWorld / Simple Scene";
 
 				app.Run(renderer, context =>
 				{

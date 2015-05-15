@@ -2,7 +2,7 @@
 
 namespace Grasshopper.GridWorld
 {
-	public class GridWorldGame
+	public class GridWorldApp : GrasshopperApp
 	{
 		
 	}
