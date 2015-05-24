@@ -41,12 +41,15 @@ namespace Grasshopper.SharpDX.Graphics
 			if(!_vertexBuffers.TryGetValue(meshGroupId, out group))
 				throw new ArgumentOutOfRangeException("meshGroupId", "The specified mesh group was not found");
 
+			_activeGroup = group;
 			_deviceManager.Context.InputAssembler.SetVertexBuffers(0, group.VertexBufferBinding);
 			_deviceManager.Context.InputAssembler.SetIndexBuffer(group.IndexBuffer, Format.R32_UInt, 0);
 		}
 
 		public VertexBufferLocation GetMeshLocation(string id)
 		{
+			if(_activeGroup == null)
+				throw new InvalidOperationException("Cannot get mesh location; there is no active group. Did you forget to call SetActive?");
 			return _activeGroup[id];
 		}
 

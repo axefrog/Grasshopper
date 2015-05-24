@@ -36,12 +36,13 @@ namespace SimpleQuad
 				var meshGroup = new MeshGroup("default", mesh);
 				gfx.MeshGroupBufferManager.Initialize(meshGroup);
 				gfx.MeshGroupBufferManager.SetActive(meshGroup.Id);
-				var bufferLocation = gfx.MeshGroupBufferManager.GetMeshLocation(mesh.Id);
+
+				var location = gfx.MeshGroupBufferManager.GetMeshLocation(mesh.Id);
 
 				app.Run(renderHost, context =>
 				{
 					context.Clear(Color.CornflowerBlue);
-					context.Draw(bufferLocation);
+					context.Draw(location);
 					context.Present();
 				});
 			}
