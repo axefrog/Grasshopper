@@ -23,11 +23,7 @@ namespace SimpleQuad
 
 				var material = new MaterialSpec("simple");
 				material.PixelShader = new ShaderSpec(Resources.PixelShader);
-				material.VertexShader = new VertexShaderSpec(Resources.VertexShader, new[]
-				{
-					ShaderInputElementPurpose.Position.Spec(),
-					ShaderInputElementPurpose.Color.Spec(),
-				});
+				material.VertexShader = new VertexShaderSpec(Resources.VertexShader);
 				gfx.MaterialManager.Initialize(material);
 				gfx.MaterialManager.SetActive(material.Id);
 
