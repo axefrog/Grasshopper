@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Grasshopper.Graphics.Geometry.Primitives;
-using Grasshopper.Graphics.Materials;
-
-namespace Grasshopper.Graphics
+﻿namespace Grasshopper.Graphics
 {
 	public static class MaterialExtensions
 	{

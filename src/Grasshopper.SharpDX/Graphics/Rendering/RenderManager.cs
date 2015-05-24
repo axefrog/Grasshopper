@@ -1,7 +1,6 @@
-﻿using Grasshopper.Graphics.Materials;
-using Grasshopper.SharpDX.Graphics.Materials;
+﻿using Grasshopper.SharpDX.Graphics.Materials;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	public class RenderManager : Grasshopper.Graphics.Rendering.RenderManager
 	{

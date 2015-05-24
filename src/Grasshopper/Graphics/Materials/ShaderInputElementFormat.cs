@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace Grasshopper.Graphics.Materials
+﻿namespace Grasshopper.Graphics.Materials
 {
 	public enum ShaderInputElementFormat
 	{

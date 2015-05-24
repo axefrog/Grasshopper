@@ -21,6 +21,11 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 			return this;
 		}
 
+		public Mesh ToMesh(string id)
+		{
+			return new Mesh(id).FromTriangles(this);
+		}
+
 		public static Quad From(Vertex a, Vertex b, Vertex c, Vertex d)
 		{
 			return new Quad

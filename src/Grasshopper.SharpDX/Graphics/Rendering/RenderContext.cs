@@ -4,7 +4,7 @@ using SharpDX;
 using SharpDX.Direct3D11;
 using Color = Grasshopper.Graphics.Color;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	public abstract class RenderContext : IRenderContext
 	{
@@ -40,6 +40,11 @@ namespace Grasshopper.SharpDX.Graphics
 		{
 			var dc = _deviceManager.Context;
 			dc.ClearRenderTargetView(_renderTargetView, new Color4(color.ToRgba()));
+		}
+
+		public void Draw(VertexBufferLocation loc, DrawType drawType = DrawType.Triangles)
+		{
+			_deviceManager.Context.DrawIndexed(loc.IndexCount, loc.IndexBufferOffset, loc.VertexBufferOffset);
 		}
 
 		protected event Action Disposing;

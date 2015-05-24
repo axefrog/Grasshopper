@@ -1,6 +1,6 @@
 ﻿using Grasshopper.Graphics.Rendering;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	public class RenderHostFactory : IRenderHostFactory
 	{

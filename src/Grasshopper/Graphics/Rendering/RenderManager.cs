@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Grasshopper.Assets;
+using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Materials;
 
 namespace Grasshopper.Graphics.Rendering

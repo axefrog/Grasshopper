@@ -7,26 +7,36 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 	public struct Vertex
 	{
 		public Vector4 Position;
-		public TextureCoordinate TextureCoordinate;
 		public Color Color;
+		public TextureCoordinate TextureCoordinate;
 
 		public void SetColor(Color color)
 		{
 			Color = color;
 		}
 
-		public static Vertex From(Vector4 pos, TextureCoordinate coord)
+		public static Vertex From(Vector4 pos)
 		{
-			return From(pos, coord, Color.White);
+			return From(pos, Color.White);
 		}
 
-		public static Vertex From(Vector4 pos, TextureCoordinate coord, Color color)
+		public static Vertex From(Vector4 pos, TextureCoordinate coord)
+		{
+			return From(pos, Color.White, coord);
+		}
+
+		public static Vertex From(Vector4 pos, Color color)
+		{
+			return From(pos, color, TextureCoordinate.From(0.0f, 0.0f));
+		}
+
+		public static Vertex From(Vector4 pos, Color color, TextureCoordinate coord)
 		{
 			return new Vertex
 			{
 				Position = pos,
+				Color = color,
 				TextureCoordinate = coord,
-				Color = color
 			};
 		}
 

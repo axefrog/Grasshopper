@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Grasshopper.Graphics;
+using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Geometry.Primitives;
 
 namespace Grasshopper.Procedural.Graphics.Primitives

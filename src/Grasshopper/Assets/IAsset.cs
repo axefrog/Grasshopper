@@ -17,7 +17,14 @@ namespace Grasshopper.Assets
 
 	public abstract class Asset : IAsset
 	{
-		public string Id { get; private set; }
+		private string _id;
+
+		public string Id
+		{
+			get { return _id ?? (_id = Guid.NewGuid().ToString()); }
+			private set { _id = value; }
+		}
+
 		void IAsset.SetId(string id)
 		{
 			if(Id != null)

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Geometry.Primitives;
 
 namespace Grasshopper.GridWorld

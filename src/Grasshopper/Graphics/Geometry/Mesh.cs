@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using Grasshopper.Assets;
-using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Geometry.Primitives;
 
-namespace Grasshopper.Graphics
+namespace Grasshopper.Graphics.Geometry
 {
 	public class Mesh : Asset
 	{
 		public Vertex[] Vertices { get; set; }
 		public int[] Indices { get; set; }
+
+		public Mesh()
+		{
+		}
+
+		public Mesh(string id)
+		{
+			((IAsset)this).SetId(id);
+		}
 
 		public Mesh FromTriangles(IEnumerable<Triangle> triangles)
 		{
@@ -37,11 +45,6 @@ namespace Grasshopper.Graphics
 
 			return this;
 		}
-	}
-
-	public interface IRendererFactory
-	{
-		MeshRenderer CreateMeshRenderer(Mesh mesh);
 	}
 
 	public abstract class MeshRenderer : IDisposable

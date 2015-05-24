@@ -2,7 +2,7 @@
 using Grasshopper.Graphics.Materials;
 using SharpDX.Direct3D11;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Materials
 {
 	public class TextureLoader : ITextureLoader
 	{

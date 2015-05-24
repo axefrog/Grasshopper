@@ -5,7 +5,7 @@ using SharpDX.DXGI;
 using Device2 = SharpDX.DXGI.Device2;
 using Resource = SharpDX.Direct3D11.Resource;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	public class WindowRenderContext : RenderContext, IWindowRenderContext
 	{

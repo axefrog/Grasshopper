@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Grasshopper.Assets;
 
 namespace Grasshopper.Graphics.Materials
 {
 	public class MaterialSpec : Asset
 	{
-		public MaterialSpec() : this(Guid.NewGuid().ToString())
+		public MaterialSpec()
 		{
 		}
 

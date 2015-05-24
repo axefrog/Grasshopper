@@ -12,10 +12,10 @@ namespace Grasshopper.SharpDX.Graphics
 		public GraphicsContext(IAssetStore assets)
 		{
 			DeviceManager = new DeviceManager();
+			RenderHostFactory = new RenderHostFactory(this);
 			TextureLoader = new TextureLoader(DeviceManager, assets);
 			MaterialManager = new MaterialManager(DeviceManager);
-			RenderHostFactory = new RenderHostFactory(this);
-			RendererFactory = new RendererFactory(DeviceManager);
+			MeshGroupBufferManager = new MeshGroupBufferManager(DeviceManager);
 
 			MeshLibrary = new MeshLibrary();
 			TextureLibrary = new TextureLibrary(TextureLoader);
@@ -24,9 +24,9 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public DeviceManager DeviceManager { get; private set; }
 		public IRenderHostFactory RenderHostFactory { get; private set; }
-		public IRendererFactory RendererFactory { get; private set; }
 		public ITextureLoader TextureLoader { get; private set; }
 		public IMaterialManager MaterialManager { get; private set; }
+		public IMeshGroupBufferManager MeshGroupBufferManager { get; private set; }
 		public MeshLibrary MeshLibrary { get; private set; }
 		public MaterialLibrary MaterialLibrary { get; private set; }
 		public TextureLibrary TextureLibrary { get; private set; }

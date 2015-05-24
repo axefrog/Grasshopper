@@ -1,7 +1,7 @@
 ﻿using System;
 using Grasshopper.Graphics.Rendering;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	public class RenderHost<T> : IRenderHost<T>
 		where T : class, IRenderContext
