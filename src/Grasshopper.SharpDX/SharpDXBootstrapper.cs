@@ -8,7 +8,7 @@ namespace Grasshopper.SharpDX
 	{
 		public static T UseSharpDX<T>(this T app) where T : GrasshopperApp
 		{
-			var factory = new GraphicsContextFactory(new Lazy<IAssetResourceFactory>(() => app.Assets));
+			var factory = new GraphicsContextFactory(new Lazy<IAssetStore>(() => app.Assets));
 			app.Graphics = factory;
 			return app;
 		}

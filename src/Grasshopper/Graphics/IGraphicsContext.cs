@@ -12,7 +12,10 @@ namespace Grasshopper.Graphics
 	public interface IGraphicsContext : IDisposable
 	{
 		void Initialize();
-		IRendererFactory RendererFactory { get; }
+		IRenderHostFactory RenderHostFactory { get; }
 		ITextureLoader TextureLoader { get; }
+		MeshLibrary MeshLibrary { get; }
+		MaterialLibrary MaterialLibrary { get; }
+		TextureLibrary TextureLibrary { get; }
 	}
 }

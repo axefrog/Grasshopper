@@ -36,6 +36,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(SharpDXPackageBinDir)\SharpDX.dll</HintPath>
     </Reference>
+    <Reference Include="SharpDX.D3DCompiler, Version=2.6.3.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(SharpDXPackageBinDir)\SharpDX.D3DCompiler.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX.Direct3D11, Version=2.6.3.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(SharpDXPackageBinDir)\SharpDX.Direct3D11.dll</HintPath>
@@ -59,16 +63,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graphics\AppWindow.cs" />
+    <Compile Include="Graphics\Materials\CompiledMaterial.cs" />
+    <Compile Include="Graphics\RenderManager.cs" />
     <Compile Include="Graphics\GraphicsContext.cs" />
     <Compile Include="Graphics\DeviceManager.cs" />
     <Compile Include="Graphics\GraphicsContextFactory.cs" />
-    <Compile Include="Graphics\Renderer.cs" />
-    <Compile Include="Graphics\RendererContext.cs" />
-    <Compile Include="Graphics\RendererFactory.cs" />
+    <Compile Include="Graphics\Materials\ShaderManager.cs" />
+    <Compile Include="Graphics\RenderHost.cs" />
+    <Compile Include="Graphics\RenderContext.cs" />
+    <Compile Include="Graphics\RenderHostFactory.cs" />
+    <Compile Include="Graphics\Rendering\MeshRenderer.cs" />
     <Compile Include="Graphics\Texture.cs" />
     <Compile Include="Graphics\TextureLoader.cs" />
-    <Compile Include="Graphics\WindowRenderer.cs" />
-    <Compile Include="Graphics\WindowRendererContext.cs" />
+    <Compile Include="Graphics\WindowRenderHost.cs" />
+    <Compile Include="Graphics\WindowRenderContext.cs" />
     <Compile Include="SharpDXBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +88,9 @@
       <Project>{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}</Project>
       <Name>Grasshopper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

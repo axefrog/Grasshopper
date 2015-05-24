@@ -6,14 +6,14 @@ namespace Grasshopper.SharpDX.Graphics
 {
 	class GraphicsContextFactory : IGraphicsContextFactory
 	{
-		private readonly Lazy<IAssetResourceFactory> _assets;
+		private readonly Lazy<IAssetStore> _assets;
 
-		public GraphicsContextFactory(Lazy<IAssetResourceFactory> assets)
+		public GraphicsContextFactory(Lazy<IAssetStore> assets)
 		{
 			_assets = assets;
 		}
 
-		public IGraphicsContext Create()
+		public IGraphicsContext CreateContext()
 		{
 			var gfx = new GraphicsContext(_assets.Value);
 			gfx.Initialize();

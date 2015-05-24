@@ -35,6 +35,9 @@
     <StartupObject>SimpleScene.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="artemis">
+      <HintPath>..\..\..\packages\Artemis.1.3.1\lib\net40\artemis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,11 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Grasshopper.GridWorld\Grasshopper.GridWorld.csproj">
       <Project>{8006A6CB-8F19-4EE1-B468-0C32FD77C8AF}</Project>
       <Name>Grasshopper.GridWorld</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Grasshopper.Procedural\Grasshopper.Procedural.csproj">
+      <Project>{52EF737E-AEFB-485F-97DD-97E3FA4B9BA7}</Project>
+      <Name>Grasshopper.Procedural</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\src\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
       <Project>{16d068bc-44cc-44d2-af94-b99c6db0ce0a}</Project>
@@ -72,7 +80,7 @@
     <Content Include="Textures\bricks.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\cracked-mud.jpg">
+    <Content Include="Textures\drymud.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\grass.jpg">

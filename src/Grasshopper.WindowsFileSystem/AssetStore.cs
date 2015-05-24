@@ -2,11 +2,11 @@
 
 namespace Grasshopper.WindowsFileSystem
 {
-	public class AssetResourceFactory : IAssetResourceFactory
+	public class AssetStore : IAssetStore
 	{
-		public IAssetResource Create(string path)
+		public IAssetSource GetFile(string path)
 		{
-			return new AssetResource(path);
+			return new AssetSource(path);
 		}
 	}
 }

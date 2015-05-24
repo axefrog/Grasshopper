@@ -2,6 +2,6 @@
 {
 	public interface IGraphicsContextFactory
 	{
-		IGraphicsContext Create();
+		IGraphicsContext CreateContext();
 	}
 }

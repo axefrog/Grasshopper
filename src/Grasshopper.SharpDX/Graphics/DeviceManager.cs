@@ -1,6 +1,8 @@
 ﻿using System;
+using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
+using Buffer = SharpDX.Direct3D11.Buffer;
 using Device = SharpDX.Direct3D11.Device;
 using Device1 = SharpDX.Direct3D11.Device1;
 
@@ -34,6 +36,21 @@ namespace Grasshopper.SharpDX.Graphics
 			}
 
 			IsInitialized = true;
+		}
+
+		public Buffer CreateAndPopulateBuffer<T>(BindFlags bindFlags, params T[] items)
+			where T : struct
+		{
+			var len = Utilities.SizeOf(items);
+			using(var stream = new DataStream(len, true, true))
+			{
+				foreach(var item in items)
+					stream.Write(item);
+				stream.Position = 0;
+				var buffer = new Buffer(Device, stream, len, ResourceUsage.Default,
+					bindFlags, CpuAccessFlags.None, ResourceOptionFlags.None, 0);
+				return buffer;
+			}
 		}
 
 		private void DestroyResources()

@@ -3,8 +3,8 @@ using Grasshopper.Assets;
 
 namespace Grasshopper.Graphics.Materials
 {
-	public interface ITexture : IDisposable
+	public interface ITexture : IAsset, IDisposable
 	{
-		IAssetResource Asset { get; }
+		IAssetSource AssetSource { get; }
 	}
 }

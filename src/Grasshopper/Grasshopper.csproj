@@ -30,8 +30,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="artemis">
+      <HintPath>..\..\packages\Artemis.1.3.1\lib\net40\artemis.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog">
+      <HintPath>..\..\packages\Serilog.1.5.5\lib\net45\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.FullNetFx">
+      <HintPath>..\..\packages\Serilog.1.5.5\lib\net45\Serilog.FullNetFx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.0.0\lib\portable-net45+win8+wpa81\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,32 +63,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetLibrary.cs" />
-    <Compile Include="Assets\IAssetReader.cs" />
-    <Compile Include="Assets\IAssetResource.cs" />
+    <Compile Include="Assets\AssetGroup.cs" />
+    <Compile Include="Assets\IAsset.cs" />
+    <Compile Include="Assets\IAssetStore.cs" />
+    <Compile Include="Assets\IAssetSource.cs" />
+    <Compile Include="Core\RateLimiter.cs" />
+    <Compile Include="Core\TickCounter.cs" />
     <Compile Include="Graphics\Color.cs" />
+    <Compile Include="Graphics\Geometry\Primitives\Quad.cs" />
+    <Compile Include="Graphics\Geometry\Primitives\TextureCoordinate.cs" />
+    <Compile Include="Graphics\Geometry\Primitives\Triangle.cs" />
+    <Compile Include="Graphics\Geometry\Primitives\Vertex.cs" />
     <Compile Include="Graphics\IGraphicsContext.cs" />
     <Compile Include="Graphics\IGraphicsContextFactory.cs" />
-    <Compile Include="Graphics\Rendering\IRenderer.cs" />
-    <Compile Include="Graphics\Rendering\IRendererContext.cs" />
-    <Compile Include="Graphics\Rendering\IRendererFactory.cs" />
+    <Compile Include="Graphics\IMeshGroup.cs" />
+    <Compile Include="Graphics\Materials\ShaderSpec.cs" />
+    <Compile Include="Graphics\Materials\VertexShaderSpec.cs" />
+    <Compile Include="Graphics\Rendering\RenderManager.cs" />
+    <Compile Include="Graphics\MeshInstance.cs" />
+    <Compile Include="Graphics\Materials\ShaderInputElementFormat.cs" />
+    <Compile Include="Graphics\Materials\ShaderInputElementPurpose.cs" />
+    <Compile Include="Graphics\Materials\ShaderInputElementSpec.cs" />
+    <Compile Include="Math\Transformation.cs" />
+    <Compile Include="Graphics\MeshLibrary.cs" />
+    <Compile Include="Graphics\ModelLibrary.cs" />
+    <Compile Include="Graphics\Rendering\IRenderHost.cs" />
+    <Compile Include="Graphics\Rendering\IRenderContext.cs" />
+    <Compile Include="Graphics\Rendering\IRenderHostFactory.cs" />
     <Compile Include="Graphics\Materials\ITexture.cs" />
     <Compile Include="Graphics\Materials\ITextureLoader.cs" />
-    <Compile Include="Graphics\Materials\Material.cs" />
+    <Compile Include="Graphics\Materials\MaterialSpec.cs" />
     <Compile Include="Graphics\Materials\MaterialLibrary.cs" />
     <Compile Include="Graphics\Materials\TextureLibrary.cs" />
-    <Compile Include="Graphics\Rendering\IWindowRenderer.cs" />
-    <Compile Include="Graphics\Rendering\IWindowRendererContext.cs" />
+    <Compile Include="Graphics\Rendering\IWindowRenderHost.cs" />
+    <Compile Include="Graphics\Rendering\IWindowRenderContext.cs" />
+    <Compile Include="Graphics\Model.cs" />
+    <Compile Include="Graphics\Mesh.cs" />
     <Compile Include="GrasshopperApp.cs" />
     <Compile Include="Graphics\Rendering\IAppWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateManagement\IGameEvent.cs" />
+    <Compile Include="StateManagement\InstanceOfModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Grasshopper.nuspec" />
+    <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
+    <Content Include="LICENSE.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
