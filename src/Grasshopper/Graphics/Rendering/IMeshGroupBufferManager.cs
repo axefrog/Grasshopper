@@ -5,8 +5,8 @@ namespace Grasshopper.Graphics.Rendering
 {
 	public interface IMeshGroupBufferManager : IDisposable
 	{
-		void Initialize(MeshGroup meshes);
-		void Uninitialize(string id);
+		void Add(MeshGroup meshes);
+		void Remove(string id);
 		void SetActive(string meshGroupId);
 		VertexBufferLocation GetMeshLocation(string id);
 	}

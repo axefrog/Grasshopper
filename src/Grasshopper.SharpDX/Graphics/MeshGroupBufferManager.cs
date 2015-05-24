@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Grasshopper.Graphics;
 using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Rendering;
 using SharpDX.DXGI;
@@ -18,14 +17,14 @@ namespace Grasshopper.SharpDX.Graphics
 			_deviceManager = deviceManager;
 		}
 
-		public void Initialize(MeshGroup meshes)
+		public void Add(MeshGroup meshes)
 		{
 			var resource = new MeshGroupBuffer(meshes);
 			resource.Initialize(_deviceManager);
 			_vertexBuffers.Add(meshes.Id, resource);
 		}
 
-		public void Uninitialize(string id)
+		public void Remove(string id)
 		{
 			MeshGroupBuffer resource;
 			if(_vertexBuffers.TryGetValue(id, out resource))

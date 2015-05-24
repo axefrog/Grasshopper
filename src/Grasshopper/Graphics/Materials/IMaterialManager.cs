@@ -4,9 +4,9 @@ namespace Grasshopper.Graphics.Materials
 {
 	public interface IMaterialManager : IDisposable
 	{
-		void Initialize(MaterialSpec material);
+		void Add(MaterialSpec material);
 		void SetActive(string id);
-		void Uninitialize(string id);
-		bool IsInitialized(string id);
+		void Remove(string id);
+		bool Exists(string id);
 	}
 }

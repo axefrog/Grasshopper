@@ -22,15 +22,15 @@ namespace SimpleQuad
 				renderHost.Window.Resizable = true;
 
 				var material = new MaterialSpec("simple");
-				material.PixelShader = new ShaderSpec(Resources.PixelShader);
 				material.VertexShader = new VertexShaderSpec(Resources.VertexShader);
-				gfx.MaterialManager.Initialize(material);
+				material.PixelShader = new ShaderSpec(Resources.PixelShader);
+				gfx.MaterialManager.Add(material);
 				gfx.MaterialManager.SetActive(material.Id);
 
 				var quad = Quad.Homogeneous().SetColors(Color.Red, Color.Green, Color.Blue, Color.Yellow);
 				var mesh = quad.ToMesh("quad");
 				var meshGroup = new MeshGroup("default", mesh);
-				gfx.MeshGroupBufferManager.Initialize(meshGroup);
+				gfx.MeshGroupBufferManager.Add(meshGroup);
 				gfx.MeshGroupBufferManager.SetActive(meshGroup.Id);
 
 				var location = gfx.MeshGroupBufferManager.GetMeshLocation(mesh.Id);

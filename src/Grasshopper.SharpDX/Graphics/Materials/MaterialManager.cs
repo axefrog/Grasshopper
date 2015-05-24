@@ -17,12 +17,12 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 			_deviceManager = deviceManager;
 		}
 
-		public bool IsInitialized(string id)
+		public bool Exists(string id)
 		{
 			return _materials.ContainsKey(id);
 		}
 
-		public void Initialize(MaterialSpec spec)
+		public void Add(MaterialSpec spec)
 		{
 			var material = new CompiledMaterial();
 			PrepareVertexShader(spec.VertexShader, material);
@@ -40,7 +40,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 			_deviceManager.Context.PixelShader.Set(material.PixelShader);
 		}
 
-		public void Uninitialize(string id)
+		public void Remove(string id)
 		{
 			CompiledMaterial material;
 			if(_materials.TryGetValue(id, out material))

@@ -41,6 +41,8 @@ namespace Grasshopper.SharpDX.Graphics
 		{
 			if(_disposed) return;
 			DeviceManager.Dispose();
+			MaterialManager.Dispose();
+			MeshGroupBufferManager.Dispose();
 			_disposed = true;
 		}
 	}
