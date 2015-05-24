@@ -18,7 +18,7 @@ namespace Grasshopper.SharpDX.Graphics
 		{
 			if(_shaders.Exists(material.Id))
 				_shaders.Remove(material.Id);
-			_shaders.Add(material);
+			_shaders.Add(material); 
 		}
 
 		public override void SetMaterial(MaterialSpec material)
