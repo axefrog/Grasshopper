@@ -22,9 +22,17 @@ namespace Grasshopper.SharpDX.Graphics
 				if(handler != null)
 					handler(this);
 			};
+
+			_form.Closed += (sender, args) =>
+			{
+				var handler = Closed;
+				if(handler != null)
+					handler(this);
+			};
 		}
 
 		public event AppWindowSimpleEventHandler SizeChanged;
+		public event AppWindowSimpleEventHandler Closed;
 
 		public int Left
 		{

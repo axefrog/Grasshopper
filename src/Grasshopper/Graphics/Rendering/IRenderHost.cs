@@ -5,9 +5,10 @@ namespace Grasshopper.Graphics.Rendering
 	public interface IRenderHost<T> : IDisposable
 		where T : IRenderContext
 	{
-		bool Render(RenderFrameHandler<T> run);
+		void Render(RenderFrameHandler<T> frame);
+		bool ExitRequested { get; }
 	}
 
-	public delegate bool RenderFrameHandler<T>(T context)
+	public delegate void RenderFrameHandler<T>(T context)
 		where T : IRenderContext;
 }

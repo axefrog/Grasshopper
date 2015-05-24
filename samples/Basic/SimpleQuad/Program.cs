@@ -1,0 +1,43 @@
+﻿using Grasshopper;
+using Grasshopper.Graphics;
+using Grasshopper.Graphics.Geometry.Primitives;
+using Grasshopper.Graphics.Materials;
+using Grasshopper.SharpDX;
+using SimpleQuad.Properties;
+
+namespace SimpleQuad
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			using(var app = new GrasshopperApp().UseSharpDX())
+			using(var gfx = app.Graphics.CreateContext())
+			using(var renderHost = gfx.RenderHostFactory.CreateWindowed())
+			{
+				renderHost.Window.Title = "Simple Cube";
+				renderHost.Window.ShowBordersAndTitle = true;
+				renderHost.Window.Visible = true;
+				renderHost.Window.Resizable = true;
+
+				var quad = Quad.Homogeneous().SetColors(Color.Red, Color.Green, Color.Blue, Color.Yellow);
+
+				var material = new MaterialSpec("simple");
+				material.PixelShader = new ShaderSpec(Resources.PixelShader);
+				material.VertexShader = new VertexShaderSpec(Resources.VertexShader, new[]
+				{
+					ShaderInputElementPurpose.Position.Spec(),
+					ShaderInputElementPurpose.Color.Spec(),
+				});
+				gfx.MaterialManager.Initialize(material);
+				gfx.MaterialManager.SetActive(material.Id);
+
+				app.Run(renderHost, context =>
+				{
+					context.Clear(Color.CornflowerBlue);
+					context.Present();
+				});
+			}
+		}
+	}
+}

@@ -25,21 +25,21 @@ namespace HelloWorld
 					if(!fpsLimiter.Ready())
 						return true;
 
-					return main.Render(context =>
+					main.Render(context =>
 					{
 						context.Window.Title = "Hello, window #1! Current ticks per second: " + app.TickCounter.TicksPerSecond.ToString("0");
 						context.Clear(Color.CornflowerBlue);
 						context.Present();
-						return true;
-					})
-					&& other.Render(context =>
+					});
+					
+					other.Render(context =>
 					{
 						context.Window.Title = "Hello, window #2! It's currently " + DateTime.UtcNow.ToString("F");
 						context.Clear(Color.Tomato);
 						context.Present();
-						return true;
-					})
-					;
+					});
+
+					return !(main.ExitRequested && other.ExitRequested);
 				});
 			}
 		}

@@ -10,6 +10,17 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 		public Triangle A { get; set; }
 		public Triangle B { get; set; }
 
+		public Quad SetColors(Color a, Color b, Color c, Color d)
+		{
+			A.A.SetColor(a);
+			A.B.SetColor(b);
+			A.C.SetColor(c);
+			B.A.SetColor(a);
+			B.B.SetColor(c);
+			B.C.SetColor(d);
+			return this;
+		}
+
 		public static Quad From(Vertex a, Vertex b, Vertex c, Vertex d)
 		{
 			return new Quad

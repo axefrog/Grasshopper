@@ -6,15 +6,27 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Vertex
 	{
-		public Vector4 Position { get; set; }
-		public TextureCoordinate TextureCoordinate { get; set; }
+		public Vector4 Position;
+		public TextureCoordinate TextureCoordinate;
+		public Color Color;
+
+		public void SetColor(Color color)
+		{
+			Color = color;
+		}
 
 		public static Vertex From(Vector4 pos, TextureCoordinate coord)
+		{
+			return From(pos, coord, Color.White);
+		}
+
+		public static Vertex From(Vector4 pos, TextureCoordinate coord, Color color)
 		{
 			return new Vertex
 			{
 				Position = pos,
-				TextureCoordinate = coord
+				TextureCoordinate = coord,
+				Color = color
 			};
 		}
 

@@ -18,6 +18,7 @@ namespace Grasshopper.SharpDX.Graphics
 			_window = new AppWindow();
 
 			_window.SizeChanged += win => Initialize();
+			_window.Closed += win => Exit();
 			Disposing += DestroyResources;
 		}
 

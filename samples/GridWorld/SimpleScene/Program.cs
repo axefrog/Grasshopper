@@ -82,7 +82,6 @@ namespace SimpleScene
 				{
 					context.Clear(Color.Black);
 					context.Present();
-					return true;
 				});
 			}
 		}

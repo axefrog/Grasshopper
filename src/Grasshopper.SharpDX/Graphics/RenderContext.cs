@@ -29,6 +29,13 @@ namespace Grasshopper.SharpDX.Graphics
 			dc.OutputMerger.SetRenderTargets(_renderTargetView);
 		}
 
+		public void Exit()
+		{
+			ExitRequested = true;
+		}
+
+		public bool ExitRequested { get; private set; }
+
 		public void Clear(Color color)
 		{
 			var dc = _deviceManager.Context;

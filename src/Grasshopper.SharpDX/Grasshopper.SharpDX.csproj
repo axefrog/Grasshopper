@@ -68,7 +68,7 @@
     <Compile Include="Graphics\GraphicsContext.cs" />
     <Compile Include="Graphics\DeviceManager.cs" />
     <Compile Include="Graphics\GraphicsContextFactory.cs" />
-    <Compile Include="Graphics\Materials\ShaderManager.cs" />
+    <Compile Include="Graphics\Materials\MaterialManager.cs" />
     <Compile Include="Graphics\RenderHost.cs" />
     <Compile Include="Graphics\RenderContext.cs" />
     <Compile Include="Graphics\RenderHostFactory.cs" />

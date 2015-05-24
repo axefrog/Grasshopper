@@ -17,12 +17,15 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public IAppWindow Window { get { return _renderContext.Window; } }
 
-		public override bool Render(RenderFrameHandler<IWindowRenderContext> run)
+		public override void Render(RenderFrameHandler<IWindowRenderContext> run)
 		{
 			if(Window != null && !Window.NextFrame())
-				return false;
+			{
+				ExitRequested = true;
+				return;
+			}
 
-			return base.Render(run);
+			base.Render(run);
 		}
 
 		public void Initialize()

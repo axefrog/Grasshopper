@@ -26,15 +26,15 @@ namespace SimpleCube
 					context.Present();
 
 					var cubeMesh = Cube.Unit();
-					gfx.MeshLibrary.Add("cube", Cube.Unit());
-					gfx.MaterialLibrary.Add("white", new MaterialSpec());
+					gfx.MeshLibrary.Add("cube", Cube.Unit(Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Cyan, Color.Magenta, Color.White, Color.Black));
+
+					var material = new MaterialSpec("none");
+					//material.VertexShader = new VertexShaderSpec();
 
 					var instance = new MeshInstance("cube", "white");
 					var world = new EntityWorld();
 					var cube = world.CreateEntity();
 					//cube.AddComponent<>();
-
-					return true;
 				});
 			}
 		}

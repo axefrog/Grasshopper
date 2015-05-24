@@ -30,9 +30,6 @@ namespace Grasshopper.Graphics.Rendering
 			
 		}
 
-		public abstract void PrepareMaterial(MaterialSpec material);
-		public abstract void SetMaterial(MaterialSpec material);
-
 		/// <summary>
 		/// Update buffer/shader data (and associated quick-access index for internal use) in GPU memory from asset libraries.
 		/// </summary>

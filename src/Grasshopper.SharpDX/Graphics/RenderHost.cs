@@ -7,17 +7,20 @@ namespace Grasshopper.SharpDX.Graphics
 		where T : class, IRenderContext
 	{
 		private T _context;
+		
+		public bool ExitRequested { get; protected set; }
 
 		public RenderHost(T renderContext)
 		{
 			_context = renderContext;
 		}
 
-		public virtual bool Render(RenderFrameHandler<T> run)
+		public virtual void Render(RenderFrameHandler<T> frame)
 		{
 			_context.MakeActive();
-
-			return run(_context);
+			frame(_context);
+			if(_context.ExitRequested)
+				ExitRequested = true;
 		}
 
 		protected event Action Disposing;

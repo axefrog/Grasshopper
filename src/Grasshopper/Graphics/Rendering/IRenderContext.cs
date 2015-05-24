@@ -6,5 +6,7 @@ namespace Grasshopper.Graphics.Rendering
 	{
 		void Clear(Color color);
 		void MakeActive();
+		void Exit();
+		bool ExitRequested { get; }
 	}
 }

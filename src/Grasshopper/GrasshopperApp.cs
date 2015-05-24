@@ -29,8 +29,11 @@ namespace Grasshopper
 			where TRendererContext : IRenderContext
 		{
 			using(var ev = new AutoResetEvent(false))
-				while(renderHost.Render(main))
+				while(!renderHost.ExitRequested)
+				{
+					renderHost.Render(main);
 					ev.WaitOne(1);
+				}
 		}
 
 		public void Run(Func<bool> main)

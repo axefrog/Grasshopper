@@ -41,7 +41,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics.Vectors">
+    <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\System.Numerics.Vectors.4.0.0\lib\portable-net45+win8+wpa81\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Core">
@@ -77,6 +78,8 @@
     <Compile Include="Graphics\IGraphicsContext.cs" />
     <Compile Include="Graphics\IGraphicsContextFactory.cs" />
     <Compile Include="Graphics\IMeshGroup.cs" />
+    <Compile Include="Graphics\Materials\IMaterialManager.cs" />
+    <Compile Include="Graphics\Materials\IMaterialManagerFactory.cs" />
     <Compile Include="Graphics\Materials\ShaderSpec.cs" />
     <Compile Include="Graphics\Materials\VertexShaderSpec.cs" />
     <Compile Include="Graphics\Rendering\RenderManager.cs" />

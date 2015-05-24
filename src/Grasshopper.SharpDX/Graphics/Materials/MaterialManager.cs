@@ -7,37 +7,27 @@ using SharpDX.DXGI;
 
 namespace Grasshopper.SharpDX.Graphics.Materials
 {
-	public class ShaderManager : IDisposable
+	public class MaterialManager : IMaterialManager
 	{
 		private readonly DeviceManager _deviceManager;
 		private readonly Dictionary<string, CompiledMaterial> _materials = new Dictionary<string, CompiledMaterial>();
 
-		public ShaderManager(DeviceManager deviceManager)
+		public MaterialManager(DeviceManager deviceManager)
 		{
 			_deviceManager = deviceManager;
 		}
 
-		public bool Exists(string id)
+		public bool IsInitialized(string id)
 		{
 			return _materials.ContainsKey(id);
 		}
 
-		public void Add(MaterialSpec spec)
+		public void Initialize(MaterialSpec spec)
 		{
 			var material = new CompiledMaterial();
 			PrepareVertexShader(spec.VertexShader, material);
 			PreparePixelShader(spec.PixelShader, material);
 			_materials.Add(spec.Id, material);
-		}
-
-		public void Remove(string id)
-		{
-			CompiledMaterial material;
-			if(_materials.TryGetValue(id, out material))
-			{
-				material.Dispose();
-				_materials.Remove(id);
-			}
 		}
 
 		public void SetActive(string id)
@@ -48,6 +38,16 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 			_deviceManager.Context.InputAssembler.InputLayout = material.InputLayout;
 			_deviceManager.Context.VertexShader.Set(material.VertexShader);
 			_deviceManager.Context.PixelShader.Set(material.PixelShader);
+		}
+
+		public void Uninitialize(string id)
+		{
+			CompiledMaterial material;
+			if(_materials.TryGetValue(id, out material))
+			{
+				material.Dispose();
+				_materials.Remove(id);
+			}
 		}
 
 		private void PrepareVertexShader(VertexShaderSpec spec, CompiledMaterial material)
@@ -64,7 +64,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 
 		private void PreparePixelShader(ShaderSpec spec, CompiledMaterial material)
 		{
-			using(var bytecode = ShaderBytecode.Compile(spec.Source, "VSMain", "vs_5_0"))
+			using(var bytecode = ShaderBytecode.Compile(spec.Source, "PSMain", "ps_5_0"))
 				material.PixelShader = new PixelShader(_deviceManager.Device, bytecode);
 		}
 
