@@ -48,7 +48,7 @@ namespace SimpleInstancing
 				var location = gfx.MeshGroupBufferManager.GetMeshLocation(mesh.Id);
 
 				// Prepare an array of instances of the mesh that we'd like to draw, with each instance being a simple transform matrix to set its position on screen
-				var scaled = (Matrix4x4.Identity * 0.8f);
+				var scaled = (Matrix4x4.Identity * 0.3f);
 				scaled.M44 = 1.0f;
 				const float dist = .4f;
 				var instance1 = scaled * Matrix4x4.CreateTranslation(-dist, dist, 0);

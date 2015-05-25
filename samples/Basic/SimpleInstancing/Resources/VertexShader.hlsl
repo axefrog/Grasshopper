@@ -16,9 +16,7 @@ struct VIn
 VOut VSMain(VIn input)
 {
 	VOut output;
-	float4 pos = float4(input.position.x / 4, input.position.y / 4, 0, 1.0);
-	pos = mul(input.translation, pos);
-	output.position = pos;
+	output.position = mul(input.translation, input.position);
 	output.color = input.color;
 	return output;
 }
