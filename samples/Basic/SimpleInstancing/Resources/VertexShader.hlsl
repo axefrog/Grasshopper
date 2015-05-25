@@ -6,10 +6,13 @@ struct VOut
 
 struct VIn
 {
-	float4 position: POSITION0;
-	float4 color: COLOR0;
-	float2 texcoord: TEXCOORD0;
+	// standard vertex elements
+	float4 position: POSITION;
+	float4 color: COLOR;
+	float2 texcoord: TEXCOORD;
 	float2 pad: PADDING0;
+
+	// instance elements
 	float4x4 translation: CUSTOM0;
 };
 
