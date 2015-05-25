@@ -10,17 +10,6 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 		public Triangle A { get; set; }
 		public Triangle B { get; set; }
 
-		public Quad SetColors(Color a, Color b, Color c, Color d)
-		{
-			A.A.SetColor(a);
-			A.B.SetColor(b);
-			A.C.SetColor(c);
-			B.A.SetColor(a);
-			B.B.SetColor(c);
-			B.C.SetColor(d);
-			return this;
-		}
-
 		public Mesh ToMesh(string id)
 		{
 			return new Mesh(id).FromTriangles(this);
@@ -37,34 +26,34 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 
 		public static Quad Homogeneous()
 		{
-			return SquareXY(-1.0f, 1.0f, -1.0f, 1.0f);
+			return XY(-1.0f, 1.0f, -1.0f, 1.0f);
 		}
 
-		public static Quad SquareXY(float x0 = -0.5f, float x1 = 0.5f, float y0 = -0.5f, float y1 = 0.5f, float zPosition = 0.0f)
+		public static Quad XY(float x0 = -0.5f, float x1 = 0.5f, float y0 = -0.5f, float y1 = 0.5f, float zPosition = 0.0f, Color color1 = default(Color), Color color2 = default(Color), Color color3 = default(Color), Color color4 = default(Color))
 		{
 			return From(
-				Vertex.From(x0, y1, zPosition, 0.0f, 0.0f),
-				Vertex.From(x1, y1, zPosition, 1.0f, 0.0f),
-				Vertex.From(x1, y0, zPosition, 1.0f, 1.0f),
-				Vertex.From(x0, y0, zPosition, 0.0f, 1.0f));
+				Vertex.From(x0, y1, zPosition, 0.0f, 0.0f, color1),
+				Vertex.From(x1, y1, zPosition, 1.0f, 0.0f, color2),
+				Vertex.From(x1, y0, zPosition, 1.0f, 1.0f, color3),
+				Vertex.From(x0, y0, zPosition, 0.0f, 1.0f, color4));
 		}
 
-		public static Quad SquareXZ(float x0 = -0.5f, float x1 = 0.5f, float z0 = -0.5f, float z1 = 0.5f, float yPosition = 0.0f)
+		public static Quad XZ(float x0 = -0.5f, float x1 = 0.5f, float z0 = -0.5f, float z1 = 0.5f, float yPosition = 0.0f, Color color1 = default(Color), Color color2 = default(Color), Color color3 = default(Color), Color color4 = default(Color))
 		{
 			return From(
-				Vertex.From(x0, z1, yPosition, 0.0f, 0.0f),
-				Vertex.From(x1, z1, yPosition, 1.0f, 0.0f),
-				Vertex.From(x1, z0, yPosition, 1.0f, 1.0f),
-				Vertex.From(x0, z0, yPosition, 0.0f, 1.0f));
+				Vertex.From(x0, z1, yPosition, 0.0f, 0.0f, color1),
+				Vertex.From(x1, z1, yPosition, 1.0f, 0.0f, color2),
+				Vertex.From(x1, z0, yPosition, 1.0f, 1.0f, color3),
+				Vertex.From(x0, z0, yPosition, 0.0f, 1.0f, color4));
 		}
 
-		public static Quad SquareYZ(float y0 = -0.5f, float y1 = 0.5f, float z0 = -0.5f, float z1 = 0.5f, float xPosition = 0.0f)
+		public static Quad YZ(float y0 = -0.5f, float y1 = 0.5f, float z0 = -0.5f, float z1 = 0.5f, float xPosition = 0.0f, Color color1 = default(Color), Color color2 = default(Color), Color color3 = default(Color), Color color4 = default(Color))
 		{
 			return From(
-				Vertex.From(y1, z1, xPosition, 0.0f, 0.0f),
-				Vertex.From(y1, z0, xPosition, 1.0f, 0.0f),
-				Vertex.From(y0, z0, xPosition, 1.0f, 1.0f),
-				Vertex.From(y0, z1, xPosition, 0.0f, 1.0f));
+				Vertex.From(y1, z1, xPosition, 0.0f, 0.0f, color1),
+				Vertex.From(y1, z0, xPosition, 1.0f, 0.0f, color2),
+				Vertex.From(y0, z0, xPosition, 1.0f, 1.0f, color3),
+				Vertex.From(y0, z1, xPosition, 0.0f, 1.0f, color4));
 		}
 
 		public IEnumerator<Triangle> GetEnumerator()

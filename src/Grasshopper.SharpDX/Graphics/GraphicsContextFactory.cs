@@ -13,9 +13,9 @@ namespace Grasshopper.SharpDX.Graphics
 			_assets = assets;
 		}
 
-		public IGraphicsContext CreateContext()
+		public IGraphicsContext CreateContext(bool enableDebugMode = false)
 		{
-			var gfx = new GraphicsContext(_assets.Value);
+			var gfx = new GraphicsContext(_assets.Value, enableDebugMode);
 			gfx.Initialize();
 			return gfx;
 		}

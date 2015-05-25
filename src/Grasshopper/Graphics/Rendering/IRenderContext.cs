@@ -7,8 +7,10 @@ namespace Grasshopper.Graphics.Rendering
 		void MakeActive();
 		void Exit();
 		bool ExitRequested { get; }
+		RasterizerSettings RasterizerSettings { get; }
 
 		void Clear(Color color);
-		void Draw(VertexBufferLocation bufferLocation, DrawType drawType = DrawType.Triangles);
+		void Draw(VertexBufferLocation bufferLocation);
+		void SetDrawType(DrawType drawType);
 	}
 }

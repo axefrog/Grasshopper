@@ -9,9 +9,9 @@ namespace Grasshopper.SharpDX.Graphics
 {
 	public class GraphicsContext : IGraphicsContext
 	{
-		public GraphicsContext(IAssetStore assets)
+		public GraphicsContext(IAssetStore assets, bool enableDebugMode = false)
 		{
-			DeviceManager = new DeviceManager();
+			DeviceManager = new DeviceManager(enableDebugMode);
 			RenderHostFactory = new RenderHostFactory(this);
 			TextureLoader = new TextureLoader(DeviceManager, assets);
 			MaterialManager = new MaterialManager(DeviceManager);

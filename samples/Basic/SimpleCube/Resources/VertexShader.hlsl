@@ -10,7 +10,7 @@ struct VIn
 	float4 color: COLOR;
 };
 
-VOut VShader(VIn input)
+VOut VSMain(VIn input)
 {
 	VOut output;
 	output.position = input.position;

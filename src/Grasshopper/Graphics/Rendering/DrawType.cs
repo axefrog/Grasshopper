@@ -6,7 +6,8 @@
 	public enum DrawType
 	{
 		Points,
-		Lines,
+		LineStrip,
+		LineList,
 		Triangles,
 		TriangleStrip
 	}

@@ -134,12 +134,12 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 				
 				for(var i = 0; i < elementCount; i++)
 				{
-					var element = new InputElement(semantic + n, i, format, offset, slot, classification, stepRate);
+					var element = new InputElement(semantic, i + n, format, offset, slot, classification, stepRate);
 					list.Add(element);
 					offset += elementSize;
 				}
 
-				typeCount[spec.Purpose] = ++n;
+				typeCount[spec.Purpose] = n + elementCount;
 			}
 
 			return list;

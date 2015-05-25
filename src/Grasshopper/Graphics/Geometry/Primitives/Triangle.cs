@@ -7,13 +7,20 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Triangle : IEnumerable<Vertex>
 	{
-		public Vertex A { get; set; }
-		public Vertex B { get; set; }
-		public Vertex C { get; set; }
+		public readonly Vertex A;
+		public readonly Vertex B;
+		public readonly Vertex C;
+
+		public Triangle(Vertex a, Vertex b, Vertex c)
+		{
+			A = a;
+			B = b;
+			C = c;
+		}
 
 		public static Triangle From(Vertex a, Vertex b, Vertex c)
 		{
-			return new Triangle { A = a, B = b, C = c };
+			return new Triangle(a, b, c);
 		}
 
 		public IEnumerator<Vertex> GetEnumerator()

@@ -27,7 +27,7 @@ namespace Grasshopper.Assets
 
 		void IAsset.SetId(string id)
 		{
-			if(Id != null)
+			if(_id != null)
 				throw new InvalidOperationException("Id is immutable and cannot be changed");
 			Id = id;
 		}

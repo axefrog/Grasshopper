@@ -1,8 +1,6 @@
 ﻿using System;
-using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
-using Buffer = SharpDX.Direct3D11.Buffer;
 using Device = SharpDX.Direct3D11.Device;
 using Device1 = SharpDX.Direct3D11.Device1;
 
@@ -10,18 +8,24 @@ namespace Grasshopper.SharpDX.Graphics
 {
 	public class DeviceManager : IDisposable
 	{
-		public bool EnableDebugMode { get; set; }
-		
+		public DeviceManager(bool enableDebugMode)
+		{
+			EnableDebugMode = enableDebugMode;
+		}
+
+		public bool EnableDebugMode { get; private set; }
 		public Device1 Device { get; private set; }
 		public DeviceContext1 Context { get; private set; }
 		public bool IsInitialized { get; private set; }
+
+		public event Action Initialized;
 
 		public void Initialize()
 		{
 			DestroyResources();
 
 			var flags = DeviceCreationFlags.BgraSupport;
-			if(EnableDebugMode) flags &= DeviceCreationFlags.Debug;
+			if(EnableDebugMode) flags |= DeviceCreationFlags.Debug;
 
 			var featureLevels = new[]
 			{
@@ -36,6 +40,11 @@ namespace Grasshopper.SharpDX.Graphics
 			}
 
 			IsInitialized = true;
+
+			// todo: Reinitialize all dependent resources by having them hook this event
+			var handler = Initialized;
+			if(handler != null)
+				handler();
 		}
 
 		private void DestroyResources()

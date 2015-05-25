@@ -1,8 +1,8 @@
 namespace Grasshopper.Graphics.Materials
 {
-	public class ShaderSpec
+	public abstract class ShaderSpec
 	{
-		public ShaderSpec(string source)
+		protected ShaderSpec(string source)
 		{
 			Source = source;
 		}

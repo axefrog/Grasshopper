@@ -71,6 +71,11 @@
     <Compile Include="Core\RateLimiter.cs" />
     <Compile Include="Core\TickCounter.cs" />
     <Compile Include="Graphics\Color.cs" />
+    <Compile Include="Graphics\Color4.cs" />
+    <Compile Include="Graphics\Materials\PixelShaderSpec.cs" />
+    <Compile Include="Graphics\Materials\TextureFiltering.cs" />
+    <Compile Include="Graphics\Materials\TextureSamplerSettings.cs" />
+    <Compile Include="Graphics\Materials\TextureWrapping.cs" />
     <Compile Include="Graphics\Rendering\DrawType.cs" />
     <Compile Include="Graphics\Geometry\Primitives\Quad.cs" />
     <Compile Include="Graphics\Geometry\Primitives\TextureCoordinate.cs" />
@@ -78,6 +83,7 @@
     <Compile Include="Graphics\Geometry\Primitives\Vertex.cs" />
     <Compile Include="Graphics\Geometry\MeshGroup.cs" />
     <Compile Include="Graphics\Rendering\IMeshGroupBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\RasterizerSettings.cs" />
     <Compile Include="Graphics\Rendering\VertexBufferLocation.cs" />
     <Compile Include="Graphics\IGraphicsContext.cs" />
     <Compile Include="Graphics\IGraphicsContextFactory.cs" />

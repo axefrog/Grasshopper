@@ -1609,5 +1609,16 @@ namespace Grasshopper.Graphics
 		{
 			return value < 0 ? (byte)0 : (value > (int)byte.MaxValue ? byte.MaxValue : (byte)value);
 		}
+
+		public Color4 ToColor4()
+		{
+			return new Color4
+			{
+				Red = R/255.0f,
+				Green = G/255.0f,
+				Blue = B/255.0f,
+				Alpha = A/255.0f,
+			};
+		}
 	}
 }

@@ -6,11 +6,12 @@ struct VOut
 
 struct VIn
 {
-	float4 position: POSITION;
-	float4 color: COLOR;
+	float4 position: POSITION0;
+	float4 color: COLOR0;
+	float2 texcoord: TEXCOORD0;
 };
 
-VOut VShader(VIn input)
+VOut VSMain(VIn input)
 {
 	VOut output;
 	output.position = input.position;

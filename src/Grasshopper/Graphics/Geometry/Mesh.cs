@@ -8,7 +8,7 @@ namespace Grasshopper.Graphics.Geometry
 	public class Mesh : Asset
 	{
 		public Vertex[] Vertices { get; set; }
-		public int[] Indices { get; set; }
+		public uint[] Indices { get; set; }
 
 		public Mesh()
 		{
@@ -21,18 +21,18 @@ namespace Grasshopper.Graphics.Geometry
 
 		public Mesh FromTriangles(IEnumerable<Triangle> triangles)
 		{
-			var map = new Dictionary<Vertex, int>();
+			var map = new Dictionary<Vertex, uint>();
 			var vertices = new List<Vertex>();
-			var indices = new List<int>();
+			var indices = new List<uint>();
 
 			foreach(var triangle in triangles)
 			{
 				foreach(var vertex in triangle)
 				{
-					int index;
+					uint index;
 					if(!map.TryGetValue(vertex, out index))
 					{
-						index = vertices.Count;
+						index = (uint)vertices.Count;
 						map.Add(vertex, index);
 						vertices.Add(vertex);
 					}

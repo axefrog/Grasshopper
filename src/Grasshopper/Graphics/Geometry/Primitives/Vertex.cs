@@ -6,23 +6,25 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Vertex
 	{
-		public Vector4 Position;
-		public Color Color;
-		public TextureCoordinate TextureCoordinate;
+		public readonly Vector4 Position;
+		public readonly Color4 Color;
+		public readonly TextureCoordinate TextureCoordinate;
 
-		public void SetColor(Color color)
+		public Vertex(Vector4 position, Color color, TextureCoordinate textureCoordinate)
 		{
-			Color = color;
+			Position = position;
+			Color = color.ToColor4();
+			TextureCoordinate = textureCoordinate;
 		}
 
 		public static Vertex From(Vector4 pos)
 		{
-			return From(pos, Color.White);
+			return From(pos, Graphics.Color.White);
 		}
 
 		public static Vertex From(Vector4 pos, TextureCoordinate coord)
 		{
-			return From(pos, Color.White, coord);
+			return From(pos, Graphics.Color.White, coord);
 		}
 
 		public static Vertex From(Vector4 pos, Color color)
@@ -32,17 +34,12 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 
 		public static Vertex From(Vector4 pos, Color color, TextureCoordinate coord)
 		{
-			return new Vertex
-			{
-				Position = pos,
-				Color = color,
-				TextureCoordinate = coord,
-			};
+			return new Vertex(pos, color, coord);
 		}
 
-		public static Vertex From(float x, float y, float z, float u, float v)
+		public static Vertex From(float x, float y, float z, float u, float v, Color color = default(Color))
 		{
-			return From(new Vector4(x, y, z, 0.0f), TextureCoordinate.From(u, v));
+			return From(new Vector4(x, y, z, 1.0f), color, TextureCoordinate.From(u, v));
 		}
 
 		public bool Equals(Vertex other)

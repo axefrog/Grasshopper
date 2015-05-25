@@ -13,7 +13,7 @@ namespace SimpleQuad
 		static void Main(string[] args)
 		{
 			using(var app = new GrasshopperApp().UseSharpDX())
-			using(var gfx = app.Graphics.CreateContext())
+			using(var gfx = app.Graphics.CreateContext(true))
 			using(var renderHost = gfx.RenderHostFactory.CreateWindowed())
 			{
 				renderHost.Window.Title = "Simple Quad";
@@ -23,11 +23,15 @@ namespace SimpleQuad
 
 				var material = new MaterialSpec("simple");
 				material.VertexShader = new VertexShaderSpec(Resources.VertexShader);
-				material.PixelShader = new ShaderSpec(Resources.PixelShader);
+				material.PixelShader = new PixelShaderSpec(Resources.PixelShader);
 				gfx.MaterialManager.Add(material);
 				gfx.MaterialManager.SetActive(material.Id);
 
-				var quad = Quad.Homogeneous().SetColors(Color.Red, Color.Green, Color.Blue, Color.Yellow);
+				var quad = Quad.XY(
+					color1: Color.Red,
+					color2: Color.Green,
+					color3: Color.Blue,
+					color4: Color.Yellow);
 				var mesh = quad.ToMesh("quad");
 				var meshGroup = new MeshGroup("default", mesh);
 				gfx.MeshGroupBufferManager.Add(meshGroup);

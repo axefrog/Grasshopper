@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Geometry.Primitives;
 using Grasshopper.Graphics.Rendering;
@@ -27,8 +28,10 @@ namespace Grasshopper.SharpDX.Graphics
 
 		public void Initialize(DeviceManager deviceManager)
 		{
-			using(var vertexBufferStream = new DataStream(_sizeofVertex * _meshes.Count, true, true))
-			using(var indexBufferStream = new DataStream(_sizeofIndex * _meshes.Count, true, true))
+			var vertexCount = _meshes.SelectMany(m => m.Vertices).Count();
+			var indexCount = _meshes.SelectMany(m => m.Indices).Count();
+			using(var vertexBufferStream = new DataStream(_sizeofVertex * vertexCount, true, true))
+			using(var indexBufferStream = new DataStream(_sizeofIndex * indexCount, true, true))
 			{
 				int vbOffset = 0, ibOffset = 0;
 				foreach(var mesh in _meshes)
@@ -42,6 +45,7 @@ namespace Grasshopper.SharpDX.Graphics
 					ibOffset += mesh.Indices.Length;
 				}
 				vertexBufferStream.Position = 0;
+				indexBufferStream.Position = 0;
 				VertexBuffer = new Buffer(deviceManager.Device, vertexBufferStream, (int)vertexBufferStream.Length,
 					ResourceUsage.Default, BindFlags.VertexBuffer, CpuAccessFlags.None, ResourceOptionFlags.None, _sizeofVertex);
 				IndexBuffer = new Buffer(deviceManager.Device, indexBufferStream, (int)indexBufferStream.Length,
