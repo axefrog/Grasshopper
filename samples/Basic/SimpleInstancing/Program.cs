@@ -18,7 +18,7 @@ namespace SimpleInstancing
 			using(var renderHost = gfx.RenderHostFactory.CreateWindowed())
 			using(var instanceBufferManager = gfx.MeshInstanceBufferManagerFactory.Create<Matrix4x4>())
 			{
-				renderHost.Window.Title = "Simple Quad";
+				renderHost.Window.Title = "Instanced Quads";
 				renderHost.Window.ShowBordersAndTitle = true;
 				renderHost.Window.Visible = true;
 				renderHost.Window.Resizable = true;
