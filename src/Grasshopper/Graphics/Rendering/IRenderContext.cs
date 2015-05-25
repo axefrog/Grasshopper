@@ -10,7 +10,8 @@ namespace Grasshopper.Graphics.Rendering
 		RasterizerSettings RasterizerSettings { get; }
 
 		void Clear(Color color);
-		void Draw(VertexBufferLocation bufferLocation);
 		void SetDrawType(DrawType drawType);
+		void Draw(VertexBufferLocation bufferLocation);
+		void DrawInstances(VertexBufferLocation bufferLocation, int instanceCount);
 	}
 }

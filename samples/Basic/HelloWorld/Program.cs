@@ -11,7 +11,7 @@ namespace HelloWorld
 		static void Main(string[] args)
 		{
 			using(var app = new GrasshopperApp().UseSharpDX())
-			using(var gfx = app.Graphics.CreateContext())
+			using(var gfx = app.Graphics.CreateContext(enableDebugMode: true))
 			using(var main = gfx.RenderHostFactory.CreateWindowed())
 			using(var other = gfx.RenderHostFactory.CreateWindowed())
 			{

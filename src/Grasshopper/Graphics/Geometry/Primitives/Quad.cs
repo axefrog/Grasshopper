@@ -24,9 +24,9 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 			};
 		}
 
-		public static Quad Homogeneous()
+		public static Quad Homogeneous(Color color1 = default(Color), Color color2 = default(Color), Color color3 = default(Color), Color color4 = default(Color))
 		{
-			return XY(-1.0f, 1.0f, -1.0f, 1.0f);
+			return XY(-1.0f, 1.0f, -1.0f, 1.0f, 0.0f, color1, color2, color3, color4);
 		}
 
 		public static Quad XY(float x0 = -0.5f, float x1 = 0.5f, float y0 = -0.5f, float y1 = 0.5f, float zPosition = 0.0f, Color color1 = default(Color), Color color2 = default(Color), Color color3 = default(Color), Color color4 = default(Color))

@@ -8,6 +8,7 @@ namespace Grasshopper.Graphics.Materials
 		Color,
 		TextureCoordinate,
 		Normal,
+		Padding,
 		Custom
 	}
 

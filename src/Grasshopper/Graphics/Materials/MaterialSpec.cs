@@ -18,7 +18,7 @@ namespace Grasshopper.Graphics.Materials
 		public bool IsTranslucent { get; set; }
 		public List<string> Textures { get; private set; }
 		public VertexShaderSpec VertexShader { get; set; }
-		public ShaderSpec PixelShader { get; set; }
+		public PixelShaderSpec PixelShader { get; set; }
 		
 		public MaterialSpec WithTexture(params string[] textureId)
 		{

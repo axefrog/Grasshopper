@@ -29,15 +29,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basic", "Basic", "{E51B7083
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. HelloWorld", "samples\Basic\HelloWorld\01. HelloWorld.csproj", "{C104D8AD-7941-4B5D-8C21-E84B6433858D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. SimpleCube", "samples\Basic\SimpleCube\03. SimpleCube.csproj", "{3235093C-5DA8-4413-A2C1-75739CA9FCB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. SimpleCube", "samples\Basic\SimpleCube\04. SimpleCube.csproj", "{3235093C-5DA8-4413-A2C1-75739CA9FCB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. ManyCubes", "samples\Basic\ManyCubes\04. ManyCubes.csproj", "{604D18F4-D81C-4760-8A29-23EF44BB58D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. ManyCubes", "samples\Basic\ManyCubes\05. ManyCubes.csproj", "{604D18F4-D81C-4760-8A29-23EF44BB58D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grasshopper.ReflectionExtensions", "src\Grasshopper.ReflectionExtensions\Grasshopper.ReflectionExtensions.csproj", "{0BEF01FC-FD77-4488-AB00-1EFF3AEC0BDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grasshopper.Procedural", "src\Grasshopper.Procedural\Grasshopper.Procedural.csproj", "{52EF737E-AEFB-485F-97DD-97E3FA4B9BA7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. SimpleQuad", "samples\Basic\SimpleQuad\02. SimpleQuad.csproj", "{0989878D-44D6-4227-B808-58CC07E8C901}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. SimpleInstancing", "samples\Basic\SimpleInstancing\03. SimpleInstancing.csproj", "{5E8B2618-FC62-491C-9C43-8BBB630172A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{0989878D-44D6-4227-B808-58CC07E8C901}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0989878D-44D6-4227-B808-58CC07E8C901}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0989878D-44D6-4227-B808-58CC07E8C901}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8B2618-FC62-491C-9C43-8BBB630172A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8B2618-FC62-491C-9C43-8BBB630172A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8B2618-FC62-491C-9C43-8BBB630172A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8B2618-FC62-491C-9C43-8BBB630172A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,5 +113,6 @@ Global
 		{0BEF01FC-FD77-4488-AB00-1EFF3AEC0BDA} = {F16366C7-5C78-4719-8DD9-4AA71818D4B9}
 		{52EF737E-AEFB-485F-97DD-97E3FA4B9BA7} = {F16366C7-5C78-4719-8DD9-4AA71818D4B9}
 		{0989878D-44D6-4227-B808-58CC07E8C901} = {E51B7083-5435-4AB8-9485-1B94DACB680F}
+		{5E8B2618-FC62-491C-9C43-8BBB630172A0} = {E51B7083-5435-4AB8-9485-1B94DACB680F}
 	EndGlobalSection
 EndGlobal

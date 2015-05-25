@@ -66,9 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graphics\AppWindow.cs" />
-    <Compile Include="Graphics\MeshGroupBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\MeshGroupBufferManager.cs" />
     <Compile Include="Graphics\Materials\CompiledMaterial.cs" />
-    <Compile Include="Graphics\MeshGroupBuffer.cs" />
+    <Compile Include="Graphics\Rendering\MeshGroupBuffer.cs" />
+    <Compile Include="Graphics\Rendering\MeshInstanceBuffer.cs" />
+    <Compile Include="Graphics\Rendering\MeshInstanceBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\MeshInstanceBufferManagerFactory.cs" />
     <Compile Include="Graphics\Rendering\RenderManager.cs" />
     <Compile Include="Graphics\GraphicsContext.cs" />
     <Compile Include="Graphics\DeviceManager.cs" />

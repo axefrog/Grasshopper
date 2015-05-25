@@ -8,7 +8,7 @@ using SharpDX;
 using SharpDX.Direct3D11;
 using Buffer = SharpDX.Direct3D11.Buffer;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	class MeshGroupBuffer : IDisposable
 	{

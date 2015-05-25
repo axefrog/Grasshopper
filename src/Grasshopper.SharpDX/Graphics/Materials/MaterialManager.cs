@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Grasshopper.Graphics.Materials;
 using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
@@ -62,7 +63,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 			material.InputLayout = new InputLayout(_deviceManager.Device, signature, elements);
 		}
 
-		private void PreparePixelShader(ShaderSpec spec, CompiledMaterial material)
+		private void PreparePixelShader(PixelShaderSpec spec, CompiledMaterial material)
 		{
 			using(var bytecode = ShaderBytecode.Compile(spec.Source, "PSMain", "ps_5_0"))
 				material.PixelShader = new PixelShader(_deviceManager.Device, bytecode);
@@ -74,6 +75,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 			{ ShaderInputElementPurpose.Color, "COLOR" },
 			{ ShaderInputElementPurpose.TextureCoordinate, "TEXCOORD" },
 			{ ShaderInputElementPurpose.Normal, "NORMAL" },
+			{ ShaderInputElementPurpose.Padding, "PADDING" },
 			{ ShaderInputElementPurpose.Custom, "CUSTOM" },
 		};
 
@@ -108,8 +110,8 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 		{
 			var list = new List<InputElement>();
 			var typeCount = new Dictionary<ShaderInputElementPurpose, int>();
-			list.AddRange(InputElementsFromSpec(spec.PerVertexElements, typeCount, false));
-			list.AddRange(InputElementsFromSpec(spec.PerInstanceElements, typeCount, false));
+			list.AddRange(InputElementsFromSpec(VertexShaderSpec.DefaultPerVertexElements, typeCount, false));
+			list.AddRange(InputElementsFromSpec(spec.PerInstanceElements, typeCount, true));
 			return list.ToArray();
 		}
 
@@ -135,6 +137,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 				for(var i = 0; i < elementCount; i++)
 				{
 					var element = new InputElement(semantic, i + n, format, offset, slot, classification, stepRate);
+					// Debug.WriteLine("new InputElement(\"{0}\", {1}, {2}, {3}, {4}, {5}, {6})", semantic, i + n, format, offset, slot, classification, stepRate);
 					list.Add(element);
 					offset += elementSize;
 				}

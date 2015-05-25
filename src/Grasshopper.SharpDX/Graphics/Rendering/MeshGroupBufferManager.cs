@@ -4,7 +4,7 @@ using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Rendering;
 using SharpDX.DXGI;
 
-namespace Grasshopper.SharpDX.Graphics
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	class MeshGroupBufferManager : IMeshGroupBufferManager
 	{
@@ -55,8 +55,8 @@ namespace Grasshopper.SharpDX.Graphics
 		public void Dispose()
 		{
 			_activeGroup = null;
-			foreach(var material in _vertexBuffers.Values)
-				material.Dispose();
+			foreach(var buffer in _vertexBuffers.Values)
+				buffer.Dispose();
 			_vertexBuffers.Clear();
 		}
 	}

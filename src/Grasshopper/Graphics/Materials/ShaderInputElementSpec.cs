@@ -10,5 +10,11 @@
 			Format = format;
 			Purpose = purpose;
 		}
+
+		public ShaderInputElementSpec(ShaderInputElementFormat format)
+		{
+			Format = format;
+			Purpose = ShaderInputElementPurpose.Custom;
+		}
 	}
 }
