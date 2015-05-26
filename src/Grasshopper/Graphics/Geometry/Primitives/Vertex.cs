@@ -11,10 +11,20 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 		public readonly TextureCoordinate TextureCoordinate;
 
 		public Vertex(Vector4 position, Color color, TextureCoordinate textureCoordinate)
+			: this(position, color.ToColor4(), textureCoordinate)
+		{
+		}
+
+		public Vertex(Vector4 position, Color4 color, TextureCoordinate textureCoordinate)
 		{
 			Position = position;
-			Color = color.ToColor4();
+			Color = color;
 			TextureCoordinate = textureCoordinate;
+		}
+
+		public Vertex Scale(float scale)
+		{
+			return new Vertex(Position*scale, Color, TextureCoordinate);
 		}
 
 		public static Vertex From(Vector4 pos)

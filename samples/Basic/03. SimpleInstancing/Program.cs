@@ -83,7 +83,7 @@ namespace SimpleInstancing
 					app.Run(renderHost, context =>
 					{
 						context.Clear(Color.CornflowerBlue);
-						context.DrawInstances(location, instances.Length);
+						context.DrawInstanced(location, instances.Length);
 						context.Present();
 					});
 				}

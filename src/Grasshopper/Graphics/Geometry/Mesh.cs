@@ -19,6 +19,16 @@ namespace Grasshopper.Graphics.Geometry
 			((IAsset)this).SetId(id);
 		}
 
+		public Mesh Scale(float scale)
+		{
+			for(int i = 0; i < Vertices.Length; i++)
+			{
+				var vertex = Vertices[i];
+				Vertices[i] = vertex.Scale(scale);
+			}
+			return this;
+		}
+
 		public Mesh FromTriangles(IEnumerable<Triangle> triangles)
 		{
 			var map = new Dictionary<Vertex, uint>();

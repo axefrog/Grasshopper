@@ -15,7 +15,7 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 			_deviceManager = deviceManager;
 		}
 
-		public void Add(string id, T data)
+		public void Add(string id, T data = default(T))
 		{
 			var resource = new ConstantBuffer<T>(_deviceManager, data);
 			resource.Initialize();

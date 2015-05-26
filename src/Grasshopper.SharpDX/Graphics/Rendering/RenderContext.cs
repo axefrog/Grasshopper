@@ -120,7 +120,7 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 			_deviceManager.Context.DrawIndexed(loc.IndexCount, loc.IndexBufferOffset, loc.VertexBufferOffset);
 		}
 
-		public void DrawInstances(VertexBufferLocation loc, int instanceCount)
+		public void DrawInstanced(VertexBufferLocation loc, int instanceCount)
 		{
 			_deviceManager.Context.DrawIndexedInstanced(loc.IndexCount, instanceCount, loc.IndexBufferOffset, loc.VertexBufferOffset, 0);
 		}
