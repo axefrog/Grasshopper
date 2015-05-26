@@ -17,8 +17,8 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 
 		public void Add(string id, T[] instances)
 		{
-			var resource = new MeshInstanceBuffer<T>(instances);
-			resource.Initialize(_deviceManager);
+			var resource = new MeshInstanceBuffer<T>(_deviceManager, instances);
+			resource.Initialize();
 			_buffers.Add(id, resource);
 		}
 
@@ -45,8 +45,8 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 		public void Dispose()
 		{
 			_activeBuffer = null;
-			foreach(var material in _buffers.Values)
-				material.Dispose();
+			foreach(var buffer in _buffers.Values)
+				buffer.Dispose();
 			_buffers.Clear();
 		}
 	}

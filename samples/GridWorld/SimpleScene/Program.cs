@@ -39,7 +39,7 @@ namespace SimpleScene
 				materials.Add("grass" ).WithTexture("tiles/grass");
 				materials.Add("water" ).WithTexture("tiles/water");
 
-				meshes.Add("cube", Cube.Unit());
+				meshes.Add("cube", Cube.Unit("cube"));
 				
 				models.Add("cubes/rabbit").WithMesh("cube").WithMaterial("rabbit");
 				models.Add("cubes/bricks").WithMesh("cube").WithMaterial("bricks");

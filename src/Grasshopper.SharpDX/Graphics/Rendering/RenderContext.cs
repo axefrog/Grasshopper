@@ -44,7 +44,7 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 			UpdateRasterizerState();
 		}
 
-		private void UpdateRasterizerState()
+		public void UpdateRasterizerState()
 		{
 			if(!RasterizerSettings.IsDirty) return;
 

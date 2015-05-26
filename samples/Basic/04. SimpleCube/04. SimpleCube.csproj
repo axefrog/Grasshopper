@@ -35,10 +35,6 @@
     <StartupObject>SimpleCube.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="artemis">
-      <HintPath>..\..\..\packages\Artemis.1.3.1\lib\net40\artemis.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

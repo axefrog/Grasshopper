@@ -13,5 +13,6 @@ namespace Grasshopper.Graphics.Rendering
 		void SetDrawType(DrawType drawType);
 		void Draw(VertexBufferLocation bufferLocation);
 		void DrawInstances(VertexBufferLocation bufferLocation, int instanceCount);
+		void UpdateRasterizerState();
 	}
 }

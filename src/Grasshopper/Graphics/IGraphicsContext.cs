@@ -17,6 +17,7 @@ namespace Grasshopper.Graphics
 		IMaterialManager MaterialManager { get; }
 		IMeshGroupBufferManager MeshGroupBufferManager { get; }
 		IMeshInstanceBufferManagerFactory MeshInstanceBufferManagerFactory { get; }
+		IConstantBufferManagerFactory ConstantBufferManagerFactory { get; }
 		MeshLibrary MeshLibrary { get; }
 		MaterialLibrary MaterialLibrary { get; }
 		TextureLibrary TextureLibrary { get; }

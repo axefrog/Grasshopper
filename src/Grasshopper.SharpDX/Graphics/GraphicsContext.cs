@@ -17,6 +17,7 @@ namespace Grasshopper.SharpDX.Graphics
 			MaterialManager = new MaterialManager(DeviceManager);
 			MeshGroupBufferManager = new MeshGroupBufferManager(DeviceManager);
 			MeshInstanceBufferManagerFactory = new MeshInstanceBufferManagerFactory(DeviceManager);
+			ConstantBufferManagerFactory = new ConstantBufferManagerFactory(DeviceManager);
 
 			MeshLibrary = new MeshLibrary();
 			TextureLibrary = new TextureLibrary(TextureLoader);
@@ -29,6 +30,7 @@ namespace Grasshopper.SharpDX.Graphics
 		public IMaterialManager MaterialManager { get; private set; }
 		public IMeshGroupBufferManager MeshGroupBufferManager { get; private set; }
 		public IMeshInstanceBufferManagerFactory MeshInstanceBufferManagerFactory { get; private set; }
+		public IConstantBufferManagerFactory ConstantBufferManagerFactory { get; private set; }
 		public MeshLibrary MeshLibrary { get; private set; }
 		public MaterialLibrary MaterialLibrary { get; private set; }
 		public TextureLibrary TextureLibrary { get; private set; }

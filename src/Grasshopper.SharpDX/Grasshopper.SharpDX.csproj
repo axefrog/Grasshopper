@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graphics\AppWindow.cs" />
+    <Compile Include="Graphics\Rendering\ConstantBuffer.cs" />
+    <Compile Include="Graphics\Rendering\ConstantBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\ConstantBufferManagerFactory.cs" />
     <Compile Include="Graphics\Rendering\MeshGroupBufferManager.cs" />
     <Compile Include="Graphics\Materials\CompiledMaterial.cs" />
     <Compile Include="Graphics\Rendering\MeshGroupBuffer.cs" />

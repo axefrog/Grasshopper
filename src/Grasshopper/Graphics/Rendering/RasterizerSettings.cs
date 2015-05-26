@@ -21,17 +21,6 @@
 			}
 		}
 
-		public bool EnableDepthTest
-		{
-			get { return _enableDepthTest; }
-			set
-			{
-				if(value != _enableDepthTest)
-					IsDirty = true;
-				_enableDepthTest = value;
-			}
-		}
-
 		public bool RenderWireframe
 		{
 			get { return _renderWireframe; }
@@ -40,6 +29,17 @@
 				if(value != _renderWireframe)
 					IsDirty = true;
 				_renderWireframe = value;
+			}
+		}
+
+		public bool EnableDepthTest
+		{
+			get { return _enableDepthTest; }
+			set
+			{
+				if(value != _enableDepthTest)
+					IsDirty = true;
+				_enableDepthTest = value;
 			}
 		}
 
@@ -69,8 +69,7 @@
 		{
 			return new RasterizerSettings
 			{
-				WindingOrder = WindingOrder.Clockwise,
-				EnableDepthTest = true,
+				WindingOrder = WindingOrder.Counterclockwise,
 				Antialiasing = Antialiasing.Multisample,
 				RenderWireframe = false,
 				TriangleCulling = TriangleCulling.DrawFrontFacing,

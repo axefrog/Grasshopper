@@ -82,6 +82,8 @@
     <Compile Include="Graphics\Geometry\Primitives\Triangle.cs" />
     <Compile Include="Graphics\Geometry\Primitives\Vertex.cs" />
     <Compile Include="Graphics\Geometry\MeshGroup.cs" />
+    <Compile Include="Graphics\Rendering\IConstantBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\IConstantBufferManagerFactory.cs" />
     <Compile Include="Graphics\Rendering\IMeshGroupBufferManager.cs" />
     <Compile Include="Graphics\Rendering\IMeshInstanceBufferManager.cs" />
     <Compile Include="Graphics\Rendering\IMeshInstanceBufferManagerFactory.cs" />
