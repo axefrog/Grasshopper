@@ -1,5 +1,7 @@
 # Grasshopper :: Game Engine
 
+**THIS IS A WORK IN PROGRESS. SERIOUSLY. PRE-PRE-PRE-ALPHA.**
+
 Grasshopper is a C# and .Net-based game engine I'm developing to support my own
 game development. It provides a lower-level core game engine that can be used
 for various different types of games and handles general scenarios common to
