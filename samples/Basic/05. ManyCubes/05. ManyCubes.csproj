@@ -72,15 +72,15 @@
     <EmbeddedResource Include="Resources\VertexShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Grasshopper.Procedural\Grasshopper.Procedural.csproj">
+    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper.Procedural\Grasshopper.Procedural.csproj">
       <Project>{52EF737E-AEFB-485F-97DD-97E3FA4B9BA7}</Project>
       <Name>Grasshopper.Procedural</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\src\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
+    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
       <Project>{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}</Project>
       <Name>Grasshopper.SharpDX</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\src\Grasshopper\Grasshopper.csproj">
+    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper\Grasshopper.csproj">
       <Project>{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}</Project>
       <Name>Grasshopper</Name>
     </ProjectReference>

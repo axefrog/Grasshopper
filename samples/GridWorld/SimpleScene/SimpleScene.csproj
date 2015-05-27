@@ -59,28 +59,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Grasshopper.GridWorld\Grasshopper.GridWorld.csproj">
-      <Project>{8006A6CB-8F19-4EE1-B468-0C32FD77C8AF}</Project>
-      <Name>Grasshopper.GridWorld</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\Grasshopper.Procedural\Grasshopper.Procedural.csproj">
-      <Project>{52EF737E-AEFB-485F-97DD-97E3FA4B9BA7}</Project>
-      <Name>Grasshopper.Procedural</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
-      <Project>{16d068bc-44cc-44d2-af94-b99c6db0ce0a}</Project>
-      <Name>Grasshopper.SharpDX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\Grasshopper.WindowsFileSystem\Grasshopper.WindowsFileSystem.csproj">
-      <Project>{3ADEE464-3DFB-49F7-B8F5-D0B4CFB2A4D2}</Project>
-      <Name>Grasshopper.WindowsFileSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\Grasshopper\Grasshopper.csproj">
-      <Project>{58c365bd-0cb3-45c5-96d8-8ddfbffa3e0a}</Project>
-      <Name>Grasshopper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Textures\bricks.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -96,6 +74,28 @@
     <Content Include="Textures\water.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper.Procedural\Grasshopper.Procedural.csproj">
+      <Project>{52EF737E-AEFB-485F-97DD-97E3FA4B9BA7}</Project>
+      <Name>Grasshopper.Procedural</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
+      <Project>{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}</Project>
+      <Name>Grasshopper.SharpDX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper.WindowsFileSystem\Grasshopper.WindowsFileSystem.csproj">
+      <Project>{3ADEE464-3DFB-49F7-B8F5-D0B4CFB2A4D2}</Project>
+      <Name>Grasshopper.WindowsFileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper\Grasshopper.csproj">
+      <Project>{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}</Project>
+      <Name>Grasshopper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\game-engines\Grasshopper.GridWorld\Grasshopper.GridWorld.csproj">
+      <Project>{8006A6CB-8F19-4EE1-B468-0C32FD77C8AF}</Project>
+      <Name>Grasshopper.GridWorld</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

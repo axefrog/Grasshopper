@@ -16,7 +16,7 @@ namespace Grasshopper.SharpDX.Graphics
 			_form = new RenderForm();
 			_renderLoop = new RenderLoop(Form);
 
-			_form.ResizeEnd += (sender, args) =>
+			_form.Resize += (sender, args) =>
 			{
 				var handler = SizeChanged;
 				if(handler != null)

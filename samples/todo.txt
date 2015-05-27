@@ -1,7 +1,10 @@
-## Basic Demos
+## Ideas for basic demos
 
-02. Simple Cube - Simple rainbow cube spinning in place, viewed from camera using perspective projection
-03. ManyCubes -
+- textured cube
+- multiple textures in cube cloud
+- input
 
 
-## GridWorld Demos
+## Ideas for GridWorld demos
+
+- simple room scene with 
