@@ -19,17 +19,16 @@ namespace Grasshopper.Procedural.Graphics.Primitives
 
 		public static Mesh Unit(string id, Color a, Color b, Color c, Color d, Color e, Color f, Color g, Color h)
 		{
-			var front  = Quad.XY(-0.5f,  0.5f, -0.5f,  0.5f, -0.5f, a, b, c, d);
-			var back   = Quad.XY( 0.5f, -0.5f, -0.5f,  0.5f,  0.5f, e, f, g, h);
+			var front  = Quad.XY(-0.5f,  0.5f, -0.5f,  0.5f,  0.5f, a, b, c, d);
+			var back   = Quad.XY( 0.5f, -0.5f, -0.5f,  0.5f, -0.5f, e, f, g, h);
 
-			var left   = Quad.YZ(-0.5f,  0.5f,  0.5f, -0.5f, -0.5f, f, a, d, g);
-			var right  = Quad.YZ(-0.5f,  0.5f, -0.5f,  0.5f,  0.5f, b, e, h, c);
+			var left   = Quad.YZ(-0.5f,  0.5f, -0.5f,  0.5f, -0.5f, f, a, d, g);
+			var right  = Quad.YZ(-0.5f,  0.5f,  0.5f, -0.5f,  0.5f, b, e, h, c);
 			
 			var top    = Quad.XZ(-0.5f,  0.5f,  0.5f, -0.5f,  0.5f, f, e, b, a);
 			var bottom = Quad.XZ(-0.5f,  0.5f, -0.5f,  0.5f, -0.5f, d, c, e, f);
-			
-			//return new Mesh(id).FromTriangles(new[] { front, back, left, right }.SelectMany(m => m));
-			return new Mesh(id).FromTriangles(new[] { front, back, left, right, top, bottom }.SelectMany(m => m));
+
+			return new Mesh(id, new[] { front, back, left, right, top, bottom }.SelectMany(m => m));
 		}
 	}
 }

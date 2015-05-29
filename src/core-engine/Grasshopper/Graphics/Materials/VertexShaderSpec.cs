@@ -14,8 +14,14 @@ namespace Grasshopper.Graphics.Materials
 
 		// todo: allow alternate vertex configurations, rather than just the built-in vertex type i'm already using
 		// todo: allow input elements to be declared via custom attributes on the associated instance struct, and then have that automatically generate the perInstanceElements collection below
-		public VertexShaderSpec(string source,
-			IEnumerable<ShaderInputElementSpec> perInstanceElements = null) : base(source)
+		public VertexShaderSpec(string id, string source, IEnumerable<ShaderInputElementSpec> perInstanceElements)
+			: base(id, source)
+		{
+			PerInstanceElements = perInstanceElements;
+		}
+
+		public VertexShaderSpec(string source, IEnumerable<ShaderInputElementSpec> perInstanceElements = null)
+			: base(source)
 		{
 			PerInstanceElements = perInstanceElements ?? new ShaderInputElementSpec[0];
 		}

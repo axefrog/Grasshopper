@@ -1,6 +1,5 @@
 ﻿using Grasshopper;
 using Grasshopper.Graphics;
-using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Geometry.Primitives;
 using Grasshopper.Graphics.Materials;
 using Grasshopper.SharpDX;
@@ -33,26 +32,16 @@ namespace SimpleQuad
 				// mesh group which we then pass to the buffer manager for initialization and activation. Mesh buffers
 				// are uniform blocks of mesh vertex data packed together so we can avoid switching buffers too often,
 				// but in our case we only pack one mesh into the buffer.
-				var quad = Quad.Homogeneous(
-					color1: Color.Red,
-					color2: Color.Green,
-					color3: Color.Blue,
-					color4: Color.Yellow);
+				var quad = Quad.Homogeneous(Color.Red, Color.Green, Color.Blue, Color.Yellow);
 				var mesh = quad.ToMesh("quad");
-				var meshGroup = new MeshGroup("default", mesh);
-				gfx.MeshGroupBufferManager.Add(meshGroup);
-				gfx.MeshGroupBufferManager.SetActive(meshGroup.Id);
-
-				// As mesh buffers can hold many meshes, we have to identify which of the active buffer's meshes to draw next.
-				// We only have one mesh in the buffer, but we still need to get an object representing its location, as we'll
-				// use that to indicate what to draw.
-				var location = gfx.MeshGroupBufferManager.GetMeshLocation(mesh.Id);
+				var meshes = gfx.MeshGroupBufferManager.Create("default", mesh);
+				meshes.Activate();
 
 				// Our quad is already defined using homogeneous coordinates, so we'll just draw it as is.
 				app.Run(renderHost, context =>
 				{
 					context.Clear(Color.CornflowerBlue);
-					context.Draw(location);
+					meshes.Draw(mesh.Id);
 					context.Present();
 				});
 			}

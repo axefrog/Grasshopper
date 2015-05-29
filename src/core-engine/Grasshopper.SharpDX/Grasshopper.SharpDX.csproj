@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <SharpDXDirectXVersion>DirectX11_2</SharpDXDirectXVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,7 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphics\ActivatableD3DResource.cs" />
     <Compile Include="Graphics\AppWindow.cs" />
+    <Compile Include="Graphics\IndexActivatableD3DResource.cs" />
+    <Compile Include="Graphics\Materials\TextureSampler.cs" />
+    <Compile Include="Graphics\Materials\TextureSamplerManager.cs" />
     <Compile Include="Graphics\Rendering\ConstantBuffer.cs" />
     <Compile Include="Graphics\Rendering\ConstantBufferManager.cs" />
     <Compile Include="Graphics\Rendering\ConstantBufferManagerFactory.cs" />
@@ -68,6 +73,7 @@
     <Compile Include="Graphics\Rendering\MeshInstanceBuffer.cs" />
     <Compile Include="Graphics\Rendering\MeshInstanceBufferManager.cs" />
     <Compile Include="Graphics\Rendering\MeshInstanceBufferManagerFactory.cs" />
+    <Compile Include="Graphics\Rendering\MeshLocation.cs" />
     <Compile Include="Graphics\Rendering\RenderManager.cs" />
     <Compile Include="Graphics\GraphicsContext.cs" />
     <Compile Include="Graphics\DeviceManager.cs" />
@@ -76,8 +82,8 @@
     <Compile Include="Graphics\Rendering\RenderHost.cs" />
     <Compile Include="Graphics\Rendering\RenderContext.cs" />
     <Compile Include="Graphics\Rendering\RenderHostFactory.cs" />
-    <Compile Include="Graphics\Materials\Texture.cs" />
-    <Compile Include="Graphics\Materials\TextureLoader.cs" />
+    <Compile Include="Graphics\Materials\TextureResource.cs" />
+    <Compile Include="Graphics\Materials\TextureResourceManager.cs" />
     <Compile Include="Graphics\Rendering\WindowRenderHost.cs" />
     <Compile Include="Graphics\Rendering\WindowRenderContext.cs" />
     <Compile Include="SharpDXBootstrapper.cs" />

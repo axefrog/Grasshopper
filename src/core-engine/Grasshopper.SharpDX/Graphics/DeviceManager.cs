@@ -10,10 +10,10 @@ namespace Grasshopper.SharpDX.Graphics
 	{
 		public DeviceManager(bool enableDebugMode)
 		{
-			EnableDebugMode = enableDebugMode;
+			DebugModeEnabled = enableDebugMode;
 		}
 
-		public bool EnableDebugMode { get; private set; }
+		public bool DebugModeEnabled { get; private set; }
 		public Device1 Device { get; private set; }
 		public DeviceContext1 Context { get; private set; }
 		public bool IsInitialized { get; private set; }
@@ -25,7 +25,7 @@ namespace Grasshopper.SharpDX.Graphics
 			DestroyResources();
 
 			var flags = DeviceCreationFlags.BgraSupport;
-			if(EnableDebugMode) flags |= DeviceCreationFlags.Debug;
+			if(DebugModeEnabled) flags |= DeviceCreationFlags.Debug;
 
 			var featureLevels = new[]
 			{

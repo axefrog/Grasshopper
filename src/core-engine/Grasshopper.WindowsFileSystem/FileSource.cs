@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
-using Grasshopper.Assets;
+using Grasshopper.Platform;
 
 namespace Grasshopper.WindowsFileSystem
 {
-	public class AssetSource : IAssetSource
+	public class FileSource : IFileSource
 	{
 		private readonly FileInfo _location;
 
-		public AssetSource(string path)
+		public FileSource(string path)
 		{
 			_location = new FileInfo(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path));
 			Path = path;

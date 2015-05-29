@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using Grasshopper.Assets;
 using Grasshopper.Graphics.Geometry.Primitives;
 
 namespace Grasshopper.Graphics.Geometry
 {
-	public class Mesh : Asset
+	public class Mesh
 	{
-		public Vertex[] Vertices { get; set; }
-		public uint[] Indices { get; set; }
+		public string Id { get; private set; }
+		public Vertex[] Vertices { get; private set; }
+		public uint[] Indices { get; private set; }
 
-		public Mesh()
+		public Mesh(IEnumerable<Triangle> triangles)
+			: this(Guid.NewGuid().ToString(), triangles)
 		{
 		}
 
-		public Mesh(string id)
+		public Mesh(string id, IEnumerable<Triangle> triangles)
 		{
-			((IAsset)this).SetId(id);
+			Id = id;
+			ReadTriangles(triangles);
 		}
 
 		public Mesh Scale(float scale)
@@ -29,7 +31,7 @@ namespace Grasshopper.Graphics.Geometry
 			return this;
 		}
 
-		public Mesh FromTriangles(IEnumerable<Triangle> triangles)
+		private Mesh ReadTriangles(IEnumerable<Triangle> triangles)
 		{
 			var map = new Dictionary<Vertex, uint>();
 			var vertices = new List<Vertex>();
@@ -54,61 +56,6 @@ namespace Grasshopper.Graphics.Geometry
 			Indices = indices.ToArray();
 
 			return this;
-		}
-	}
-
-	public abstract class MeshRenderer : IDisposable
-	{
-		protected MeshRenderer(Mesh mesh)
-		{
-			Mesh = mesh;
-		}
-
-		public Mesh Mesh { get; private set; }
-		public bool Initialized { get; private set; }
-
-		/// <summary>
-		/// Load data into video memory, ready for use
-		/// </summary>
-		public void Initialize()
-		{
-			Uninitialize();
-			InitializeResources();
-			Initialized = true;
-		}
-
-		protected abstract void InitializeResources();
-
-		/// <summary>
-		/// Remove data from video memory
-		/// </summary>
-		public void Uninitialize()
-		{
-			Initialized = false;
-			DestroyResources();
-		}
-
-		protected abstract void DestroyResources();
-
-		/// <summary>
-		/// Render the mesh
-		/// </summary>
-		public void Render()
-		{
-			if(!Initialized) return;
-			PerformRender();
-		}
-
-		protected abstract void PerformRender();
-
-		protected event Action Disposing;
-		public void Dispose()
-		{
-			var handler = Disposing;
-			if(handler != null)
-				handler();
-
-			DestroyResources();
 		}
 	}
 }

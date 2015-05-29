@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
-namespace Grasshopper.Assets
+namespace Grasshopper.Platform
 {
-	public interface IAssetSource
+	public interface IFileSource
 	{
 		Stream OpenRead();
 		string Path { get; }

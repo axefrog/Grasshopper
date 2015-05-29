@@ -1,11 +1,11 @@
-﻿namespace Grasshopper.Graphics.Rendering
+﻿namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	/// <summary>
 	/// Represents location information required to draw a specific mesh stored within a packed vertex buffer
 	/// </summary>
-	public class VertexBufferLocation
+	public class MeshLocation
 	{
-		public VertexBufferLocation(int indexCount, int vertexBufferOffset, int indexBufferOffset)
+		public MeshLocation(int indexCount, int vertexBufferOffset, int indexBufferOffset)
 		{
 			IndexCount = indexCount;
 			VertexBufferOffset = vertexBufferOffset;

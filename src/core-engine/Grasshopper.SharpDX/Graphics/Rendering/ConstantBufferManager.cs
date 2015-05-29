@@ -1,64 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Platform;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	public class ConstantBufferManager<T> : IConstantBufferManager<T>
-		where T : struct
+	class ConstantBufferManager<T> : IndexActivatablePlatformResourceManager<IConstantBufferResource<T>>, IConstantBufferManager<T> where T : struct
 	{
 		private readonly DeviceManager _deviceManager;
-		private readonly Dictionary<string, ConstantBuffer<T>> _buffers = new Dictionary<string, ConstantBuffer<T>>();
 
 		public ConstantBufferManager(DeviceManager deviceManager)
 		{
 			_deviceManager = deviceManager;
 		}
 
-		public void Add(string id, T data = default(T))
+		protected override IConstantBufferResource<T> CreateResource(string id)
 		{
-			var resource = new ConstantBuffer<T>(_deviceManager, data);
+			return new ConstantBufferResource<T>(_deviceManager, id);
+		}
+
+		public IConstantBufferResource<T> Create(string id)
+		{
+			return CreateAndAdd(id, resource => resource.Initialize());
+		}
+
+		public IConstantBufferResource<T> Create(string id, ref T data)
+		{
+			var resource = CreateAndAttachEventHandlers(id);
+			resource.Update(ref data);
 			resource.Initialize();
-			_buffers.Add(id, resource);
+			AddAndNotifySubscribers(resource);
+			return resource;
 		}
 
-		public void Update(string id, T data)
+		public void Update(string id, ref T data)
 		{
-			ConstantBuffer<T> resource;
-			if(!_buffers.TryGetValue(id, out resource))
-				throw new ArgumentOutOfRangeException("id", string.Format("The specified constant buffer \"{0}\" was not found", id));
-			resource.Update(data);
+			this[id].Update(ref data);
 		}
 
-		public void Remove(string id)
+		protected override void Activate(int firstIndex, IEnumerable<IConstantBufferResource<T>> resources)
 		{
-			ConstantBuffer<T> resource;
-			if(_buffers.TryGetValue(id, out resource))
+			_deviceManager.Context.VertexShader.SetConstantBuffers(firstIndex, resources.Select((r, i) =>
 			{
-				resource.Dispose();
-				_buffers.Remove(id);
-			}
-		}
-
-		public void SetActive(string id, int slot = 0)
-		{
-			ConstantBuffer<T> resource;
-			if(!_buffers.TryGetValue(id, out resource))
-				throw new ArgumentOutOfRangeException("id", string.Format("The specified constant buffer \"{0}\" was not found", id));
-			_deviceManager.Context.VertexShader.SetConstantBuffers(slot, resource.Buffer);
-		}
-
-		public void SetActive(params string[] ids)
-		{
-			for(var slot = 0; slot < ids.Length; slot++)
-				SetActive(ids[slot], slot);
-		}
-
-		public void Dispose()
-		{
-			foreach(var buffer in _buffers.Values)
-				buffer.Dispose();
-			_buffers.Clear();
+				var resource = (ConstantBufferResource<T>)r;
+				resource.SetActivatedExternally(firstIndex + i);
+				return resource.Buffer;
+			}).ToArray());
 		}
 	}
+
 }

@@ -40,14 +40,8 @@ namespace SimpleCube
 				// the buffer.
 				var cube = Cube.Unit("cube", Color.Red, Color.LimeGreen, Color.Yellow, Color.Orange,
 					Color.Blue, Color.Magenta, Color.White, Color.Cyan);
-				var meshGroup = new MeshGroup("default", cube);
-				gfx.MeshGroupBufferManager.Add(meshGroup);
-				gfx.MeshGroupBufferManager.SetActive(meshGroup.Id);
-
-				// As mesh buffers can hold many meshes, we have to identify which of the active buffer's
-				// meshes to draw next. We only have one mesh in the buffer, but we still need to get an
-				// object representing its location, as we'll use that to indicate what to draw.
-				var meshLocationInBuffer = gfx.MeshGroupBufferManager.GetMeshLocation("cube");
+				var meshes = gfx.MeshGroupBufferManager.Create("default", cube);
+				meshes.Activate();
 
 				// There are many possible configurations of constant buffer and we define ours by
 				// specifying the struct type that will represent it. Ours buffer holds a matrix, so we'll
@@ -58,7 +52,7 @@ namespace SimpleCube
 					// Create our initial world, view and projection matrices that will represent the cube
 					// and camera location and orientation
 					var world = Matrix4x4.Identity;
-					var view = Matrix4x4.CreateLookAt(new Vector3(0, 1.25f, -3f), new Vector3(0, 0, 0), Vector3.UnitY);
+					var view = Matrix4x4.CreateLookAt(new Vector3(0, 1.25f, 3f), new Vector3(0, 0, 0), Vector3.UnitY);
 					var proj = CreateProjectionMatrix(renderer.Window);
 					var viewproj = view * proj;
 
@@ -68,8 +62,8 @@ namespace SimpleCube
 
 					// We can now create and activate our constant buffer which will hold the final world-
 					// view-projection matrix for use by the vertex shader
-					constantBufferManager.Add("worldviewproj", world);
-					constantBufferManager.SetActive("worldviewproj");
+					constantBufferManager.Create("worldviewproj", ref world);
+					constantBufferManager.Activate(0, "worldviewproj");
 
 					// Let's define an arbitrary rotation speed for the cube
 					const float rotationsPerSecond = .04f;
@@ -83,10 +77,10 @@ namespace SimpleCube
 						world = Matrix4x4.CreateRotationY(app.ElapsedSeconds * rotationsPerSecond * twoPI);
 						var wvp = world * viewproj;
 						wvp = Matrix4x4.Transpose(wvp);
-						constantBufferManager.Update("worldviewproj", wvp);
+						constantBufferManager.Update("worldviewproj", ref wvp);
 
 						context.Clear(Color.CornflowerBlue);
-						context.Draw(meshLocationInBuffer);
+						meshes.Draw(cube.Id);
 						context.Present();
 					});
 				}

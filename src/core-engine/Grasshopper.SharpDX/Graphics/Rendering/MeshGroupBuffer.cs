@@ -1,42 +1,78 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Geometry.Primitives;
-using Grasshopper.Graphics.Rendering;
 using SharpDX;
 using SharpDX.Direct3D11;
+using SharpDX.DXGI;
 using Buffer = SharpDX.Direct3D11.Buffer;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	class MeshGroupBuffer : IDisposable
+	class MeshGroupBuffer : ActivatableD3DResource, IMeshGroup
 	{
-		private readonly MeshGroup _meshes;
-		private readonly Dictionary<string, VertexBufferLocation> _locations = new Dictionary<string, VertexBufferLocation>();
+		private readonly List<Mesh> _meshes = new List<Mesh>();
+		private readonly Dictionary<string, MeshLocation> _locations = new Dictionary<string, MeshLocation>();
 		private static readonly int _sizeofVertex = Utilities.SizeOf<Vertex>();
 		private static readonly int _sizeofIndex = Utilities.SizeOf<int>();
 
-		public MeshGroupBuffer(MeshGroup meshes)
+		public MeshGroupBuffer(DeviceManager deviceManager, string id) : base(deviceManager, id)
 		{
-			_meshes = meshes;
 		}
 
 		public VertexBufferBinding VertexBufferBinding { get; private set; }
 		public Buffer VertexBuffer { get; private set; }
 		public Buffer IndexBuffer { get; private set; }
 
-		public void Initialize(DeviceManager deviceManager)
+		public int Count { get { return _meshes.Count; } }
+
+		private void AssertIsUninitialized()
 		{
-			var vertexCount = _meshes.SelectMany(m => m.Vertices).Count();
-			var indexCount = _meshes.SelectMany(m => m.Indices).Count();
+			if(IsInitialized)
+				throw new InvalidOperationException("This mesh group's resources are currently initialized. Call Uninitialize() first, make changes, then call Initialize() again.");
+		}
+
+		public void Add(Mesh mesh)
+		{
+			AssertIsUninitialized();
+			_meshes.Add(mesh);
+		}
+
+		public void AddRange(IEnumerable<Mesh> meshes)
+		{
+			AssertIsUninitialized();
+			_meshes.AddRange(meshes);
+		}
+
+		public void Remove(Mesh mesh)
+		{
+			AssertIsUninitialized();
+			_meshes.Remove(mesh);
+		}
+
+		public IEnumerator<Mesh> GetEnumerator()
+		{
+			return _meshes.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
+
+		protected override void InitializeInternal()
+		{
+			var vertexCount = this.SelectMany(m => m.Vertices).Count();
+			var indexCount = this.SelectMany(m => m.Indices).Count();
 			using(var vertexBufferStream = new DataStream(_sizeofVertex * vertexCount, true, true))
 			using(var indexBufferStream = new DataStream(_sizeofIndex * indexCount, true, true))
 			{
 				int vbOffset = 0, ibOffset = 0;
-				foreach(var mesh in _meshes)
+				foreach(var mesh in this)
 				{
-					_locations.Add(mesh.Id, new VertexBufferLocation(mesh.Indices.Length, vbOffset, ibOffset));
+					_locations.Add(mesh.Id, new MeshLocation(mesh.Indices.Length, vbOffset, ibOffset));
 					foreach(var vertex in mesh.Vertices)
 						vertexBufferStream.Write(vertex);
 					foreach(var index in mesh.Indices)
@@ -46,16 +82,15 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 				}
 				vertexBufferStream.Position = 0;
 				indexBufferStream.Position = 0;
-				VertexBuffer = new Buffer(deviceManager.Device, vertexBufferStream, (int)vertexBufferStream.Length,
+				VertexBuffer = new Buffer(DeviceManager.Device, vertexBufferStream, (int)vertexBufferStream.Length,
 					ResourceUsage.Default, BindFlags.VertexBuffer, CpuAccessFlags.None, ResourceOptionFlags.None, _sizeofVertex);
-				IndexBuffer = new Buffer(deviceManager.Device, indexBufferStream, (int)indexBufferStream.Length,
+				IndexBuffer = new Buffer(DeviceManager.Device, indexBufferStream, (int)indexBufferStream.Length,
 					ResourceUsage.Default, BindFlags.IndexBuffer, CpuAccessFlags.None, ResourceOptionFlags.None, _sizeofIndex);
 				VertexBufferBinding = new VertexBufferBinding(VertexBuffer, _sizeofVertex, 0);
 			}
-			Initialized = true;
 		}
 
-		public void Uninitialize()
+		protected override void UninitializeInternal()
 		{
 			if(VertexBuffer != null)
 			{
@@ -69,30 +104,35 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 			}
 			VertexBufferBinding = default(VertexBufferBinding);
 			_locations.Clear();
-			Initialized = false;
 		}
 
-		public bool Initialized { get; private set; }
-
-		public bool Contains(string id)
-		{
-			return _locations.ContainsKey(id);
-		}
-
-		public VertexBufferLocation this[string id]
+		public MeshLocation this[string id]
 		{
 			get
 			{
-				VertexBufferLocation loc;
+				MeshLocation loc;
 				if(!_locations.TryGetValue(id, out loc))
 					throw new ArgumentOutOfRangeException("id", "The specified mesh does not exist in this buffer");
 				return loc;
 			}
 		}
 
-		public void Dispose()
+		protected override void SetActive()
 		{
-			Uninitialize();
+			DeviceManager.Context.InputAssembler.SetVertexBuffers(0, VertexBufferBinding);
+			DeviceManager.Context.InputAssembler.SetIndexBuffer(IndexBuffer, Format.R32_UInt, 0);
+		}
+
+		public void Draw(string id)
+		{
+			var loc = this[id];
+			DeviceManager.Context.DrawIndexed(loc.IndexCount, loc.IndexBufferOffset, loc.VertexBufferOffset);
+		}
+
+		public void DrawInstanced(string id, int count)
+		{
+			var loc = this[id];
+			DeviceManager.Context.DrawIndexedInstanced(loc.IndexCount, count, loc.IndexBufferOffset, loc.VertexBufferOffset, 0);
 		}
 	}
 }

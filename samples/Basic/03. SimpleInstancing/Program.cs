@@ -1,7 +1,7 @@
-﻿using System.Numerics;
+﻿using System.Collections.Generic;
+using System.Numerics;
 using Grasshopper;
 using Grasshopper.Graphics;
-using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Geometry.Primitives;
 using Grasshopper.Graphics.Materials;
 using Grasshopper.SharpDX;
@@ -40,20 +40,10 @@ namespace SimpleInstancing
 				// mesh group which we then pass to the buffer manager for initialization and activation. Mesh buffers
 				// are uniform blocks of mesh vertex data packed together so we can avoid switching buffers too often,
 				// but in our case we only pack one mesh into the buffer.
-				var quad = Quad.Homogeneous(
-					color1: Color.Red,
-					color2: Color.LimeGreen,
-					color3: Color.Blue,
-					color4: Color.Yellow);
+				var quad = Quad.Homogeneous(Color.Red, Color.Green, Color.Blue, Color.Yellow);
 				var mesh = quad.ToMesh("quad");
-				var meshGroup = new MeshGroup("default", mesh);
-				gfx.MeshGroupBufferManager.Add(meshGroup);
-				gfx.MeshGroupBufferManager.SetActive(meshGroup.Id);
-
-				// As mesh buffers can hold many meshes, we have to identify which of the active buffer's meshes to draw next.
-				// We only have one mesh in the buffer, but we still need to get an object representing its location, as we'll
-				// use that to indicate what to draw.
-				var location = gfx.MeshGroupBufferManager.GetMeshLocation(mesh.Id);
+				var meshes = gfx.MeshGroupBufferManager.Create("default", mesh);
+				meshes.Activate();
 
 				// We want to draw the same mesh multiple times, with slightly different data for each instance, so we'll define
 				// an array of four transformation matrices that will be provide the data for each of four instances we'll draw.
@@ -64,7 +54,7 @@ namespace SimpleInstancing
 				var instance2 = scaled * Matrix4x4.CreateTranslation(dist, dist, 0);
 				var instance3 = scaled * Matrix4x4.CreateTranslation(-dist, -dist, 0);
 				var instance4 = scaled * Matrix4x4.CreateTranslation(dist, -dist, 0);
-				var instances = new[] { instance1, instance2, instance3, instance4 };
+				var instances = new List<Matrix4x4> { instance1, instance2, instance3, instance4 };
 
 				// Unlike regular mesh buffers, which just hold the base vertex information, we have to manually
 				// define the shape of our instance buffer and get a manager object which can create and manage
@@ -77,13 +67,14 @@ namespace SimpleInstancing
 					// configuration of data for each instance of what is drawn. In our case, we're just using it
 					// for drawing instances of our quad mesh, so we'll create and activate a buffer containing
 					// that information.
-					instanceBufferManager.Add("quads", instances);
-					instanceBufferManager.SetActive("quads");
+					instanceBufferManager
+						.Create("quads", instances)
+						.Activate();
 
 					app.Run(renderHost, context =>
 					{
 						context.Clear(Color.CornflowerBlue);
-						context.DrawInstanced(location, instances.Length);
+						meshes.DrawInstanced(mesh.Id, instances.Count);
 						context.Present();
 					});
 				}

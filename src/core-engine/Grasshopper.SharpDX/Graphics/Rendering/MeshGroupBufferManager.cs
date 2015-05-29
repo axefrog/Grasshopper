@@ -1,63 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Rendering;
-using SharpDX.DXGI;
+using Grasshopper.Platform;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	class MeshGroupBufferManager : IMeshGroupBufferManager
+	class MeshGroupBufferManager : ActivatablePlatformResourceManager<IMeshGroup>, IMeshGroupBufferManager
 	{
 		private readonly DeviceManager _deviceManager;
-		private readonly Dictionary<string, MeshGroupBuffer> _vertexBuffers = new Dictionary<string, MeshGroupBuffer>();
-		private MeshGroupBuffer _activeGroup;
 
 		public MeshGroupBufferManager(DeviceManager deviceManager)
 		{
 			_deviceManager = deviceManager;
 		}
 
-		public void Add(MeshGroup meshes)
+		protected override IMeshGroup CreateResource(string id)
 		{
-			var resource = new MeshGroupBuffer(meshes);
-			resource.Initialize(_deviceManager);
-			_vertexBuffers.Add(meshes.Id, resource);
+			var resource = new MeshGroupBuffer(_deviceManager, id);
+			return resource;
 		}
 
-		public void Remove(string id)
+		public IMeshGroup Create(string id, IEnumerable<Mesh> meshes)
 		{
-			MeshGroupBuffer resource;
-			if(_vertexBuffers.TryGetValue(id, out resource))
+			return CreateAndAdd(id, buffer =>
 			{
-				resource.Dispose();
-				_vertexBuffers.Remove(id);
-			}
+				buffer.AddRange(meshes);
+				buffer.Initialize();
+			});
 		}
 
-		public void SetActive(string meshGroupId)
+		public IMeshGroup Create(string id, params Mesh[] mesh)
 		{
-			MeshGroupBuffer group;
-			if(!_vertexBuffers.TryGetValue(meshGroupId, out group))
-				throw new ArgumentOutOfRangeException("meshGroupId", "The specified mesh group was not found");
-
-			_activeGroup = group;
-			_deviceManager.Context.InputAssembler.SetVertexBuffers(0, group.VertexBufferBinding);
-			_deviceManager.Context.InputAssembler.SetIndexBuffer(group.IndexBuffer, Format.R32_UInt, 0);
-		}
-
-		public VertexBufferLocation GetMeshLocation(string id)
-		{
-			if(_activeGroup == null)
-				throw new InvalidOperationException("Cannot get mesh location; there is no active group. Did you forget to call SetActive?");
-			return _activeGroup[id];
-		}
-
-		public void Dispose()
-		{
-			_activeGroup = null;
-			foreach(var buffer in _vertexBuffers.Values)
-				buffer.Dispose();
-			_vertexBuffers.Clear();
+			return Create(id, (IEnumerable<Mesh>)mesh);
 		}
 	}
 }

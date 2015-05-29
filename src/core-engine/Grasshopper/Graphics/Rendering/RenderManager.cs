@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Grasshopper.Assets;
 using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Materials;
 
@@ -9,26 +8,13 @@ namespace Grasshopper.Graphics.Rendering
 	public abstract class RenderManager
 	{
 		private readonly IGraphicsContext _graphics;
-		private readonly List<AssetChangeEvent<MaterialSpec>> _materialChanges = new List<AssetChangeEvent<MaterialSpec>>();
-		private readonly List<AssetChangeEvent<Mesh>> _meshChanges = new List<AssetChangeEvent<Mesh>>();
 
 		protected RenderManager(IGraphicsContext graphics)
 		{
 			_graphics = graphics;
-			_graphics.MaterialLibrary.AssetChange += OnMaterialLibraryAssetChange;
-			_graphics.MeshLibrary.AssetChange += OnMeshLibraryAssetChange;
 			// todo: subscribe to changes to asset libraries and build a dirty list for each library which will be processed on the next call to UpdateAssets. also observe changes to group dormancy.
-		}
-
-		private void OnMaterialLibraryAssetChange(AssetChangeEvent<MaterialSpec> change)
-		{
-		}
-
-		private void OnMeshLibraryAssetChange(AssetChangeEvent<Mesh> change)
-		{
 			// 1. if a mesh has been removed, check the asset group and if it's empty, destroy the buffer. ignore removed meshes; we'll leave them in place for performance reasons.
 			// 2. if a mesh has been added or updated, rebuild the buffer for now. later we may be able to optimise to do in-place buffer updates if it's an issue, but it probably won't be.
-			
 		}
 
 		/// <summary>

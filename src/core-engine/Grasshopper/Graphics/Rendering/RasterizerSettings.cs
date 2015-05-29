@@ -69,7 +69,7 @@
 		{
 			return new RasterizerSettings
 			{
-				WindingOrder = WindingOrder.Counterclockwise,
+				WindingOrder = WindingOrder.Clockwise,
 				Antialiasing = Antialiasing.Multisample,
 				RenderWireframe = false,
 				TriangleCulling = TriangleCulling.DrawFrontFacing,

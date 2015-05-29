@@ -49,14 +49,8 @@ namespace ManyCubes
 				var cube = Cube.Unit("cube", Color.Red, Color.LimeGreen, Color.Yellow, Color.Orange,
 					Color.Blue, Color.Magenta, Color.White, Color.Cyan);
 				cube.Scale(0.25f); // make the cube a bit smaller (there are gonna be a lot on screen!)
-				var meshGroup = new MeshGroup("default", cube);
-				gfx.MeshGroupBufferManager.Add(meshGroup);
-				gfx.MeshGroupBufferManager.SetActive(meshGroup.Id);
-
-				// As mesh buffers can hold many meshes, we have to identify which of the active buffer's
-				// meshes to draw next. We only have one mesh in the buffer, but we still need to get an
-				// object representing its location, as we'll use that to indicate what to draw.
-				var meshLocationInBuffer = gfx.MeshGroupBufferManager.GetMeshLocation("cube");
+				var meshes = gfx.MeshGroupBufferManager.Create("default", cube);
+				meshes.Activate();
 
 				// There are many possible configurations of constant buffer and we define ours by
 				// specifying the struct type that will represent it. Ours buffer holds our scene data, so
@@ -77,8 +71,7 @@ namespace ManyCubes
 					// buffer as active for the next draw calls.
 					var rand = new Random();
 					const int instanceCount = 100000;
-					instanceBufferManager.Add("cubes",
-						Enumerable.Range(0, instanceCount)
+					instanceBufferManager.Create("cubes", Enumerable.Range(0, instanceCount)
 						.Select(i =>
 						{
 							// rotation on each axis
@@ -100,8 +93,8 @@ namespace ManyCubes
 								Scale = new Vector4(scale, scale, scale, 1)
 							};
 						})
-						.ToArray());
-					instanceBufferManager.SetActive("cubes");
+						.ToList())
+						.Activate();
 
 					// Create our initial view matrix defining the camera location and orientation and
 					// populate our SceneData structure with it.
@@ -115,8 +108,8 @@ namespace ManyCubes
 
 					// We can now create and activate our constant buffer which will hold the scene data
 					// for use by the vertex shader
-					constantBufferManager.Add("scene");
-					constantBufferManager.SetActive("scene");
+					constantBufferManager.Create("scene");
+					constantBufferManager.Activate(0, "scene");
 
 					// Let the looping begin!
 					app.Run(renderer, context =>
@@ -130,10 +123,10 @@ namespace ManyCubes
 							data.Projection = Matrix4x4.Transpose(CreateProjectionMatrix(context.Window));
 						}
 						data.SecondsElapsed = app.ElapsedSeconds;
-						constantBufferManager.Update("scene", data);
+						constantBufferManager.Update("scene", ref data);
 
 						context.Clear(Color.CornflowerBlue);
-						context.DrawInstanced(meshLocationInBuffer, instanceCount);
+						meshes.DrawInstanced(cube.Id, instanceCount);
 						context.Present();
 					});
 				}

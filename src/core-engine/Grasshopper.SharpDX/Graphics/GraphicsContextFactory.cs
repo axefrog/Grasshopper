@@ -1,14 +1,14 @@
 ﻿using System;
-using Grasshopper.Assets;
 using Grasshopper.Graphics;
+using Grasshopper.Platform;
 
 namespace Grasshopper.SharpDX.Graphics
 {
 	class GraphicsContextFactory : IGraphicsContextFactory
 	{
-		private readonly Lazy<IAssetStore> _assets;
+		private readonly Lazy<IFileStore> _assets;
 
-		public GraphicsContextFactory(Lazy<IAssetStore> assets)
+		public GraphicsContextFactory(Lazy<IFileStore> assets)
 		{
 			_assets = assets;
 		}

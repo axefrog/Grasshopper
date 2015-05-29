@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Grasshopper.Platform;
 
 namespace Grasshopper.Graphics.Rendering
 {
 // ReSharper disable once TypeParameterCanBeVariant
-	public interface IMeshInstanceBufferManager<T> : IDisposable
-		 where T : struct
+
+	public interface IMeshInstanceBufferManager<T> : IActivatablePlatformResourceManager<IMeshInstanceCollection<T>>
+		where T : struct
 	{
-		void Add(string id, T[] instances);
-		void Remove(string id);
-		void SetActive(string id);
+		IMeshInstanceCollection<T> Create(string id, List<T> instances);
+		void SetData(string id, List<T> instances);
 	}
 }

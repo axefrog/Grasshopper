@@ -1,52 +1,51 @@
-﻿using System;
+﻿using Grasshopper.Graphics.Rendering;
 using SharpDX;
 using SharpDX.Direct3D11;
 using Buffer = SharpDX.Direct3D11.Buffer;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	public class ConstantBuffer<T> : IDisposable
+	class ConstantBufferResource<T> : IndexActivatableD3DResource, IConstantBufferResource<T>
 		where T : struct
 	{
 		private readonly DeviceManager _deviceManager;
-		private T _data;
 		private static readonly int _sizeofT = Utilities.SizeOf<T>();
+		private T _data;
 
-		public ConstantBuffer(DeviceManager deviceManager, T data)
+		public ConstantBufferResource(DeviceManager deviceManager, string id)
+			: base(deviceManager, id)
 		{
 			_deviceManager = deviceManager;
-			_data = data;
 		}
 
 		public Buffer Buffer { get; private set; }
-		public bool Initialized { get; private set; }
 
-		public void Initialize()
+		protected override void InitializeInternal()
 		{
 			Buffer = new Buffer(_deviceManager.Device, _sizeofT, ResourceUsage.Default, BindFlags.ConstantBuffer,
 				CpuAccessFlags.None, ResourceOptionFlags.None, _sizeofT);
 			_deviceManager.Context.UpdateSubresource(ref _data, Buffer);
 		}
 
-		public void Update(T newData)
-		{
-			_data = newData;
-			_deviceManager.Context.UpdateSubresource(ref _data, Buffer);
-		}
-
-		public void Uninitialize()
+		protected override void UninitializeInternal()
 		{
 			if(Buffer != null)
 			{
 				Buffer.Dispose();
 				Buffer = null;
 			}
-			Initialized = false;
 		}
 
-		public void Dispose()
+		protected override void ActivateAtIndex(int index)
 		{
-			Uninitialize();
+			_deviceManager.Context.VertexShader.SetConstantBuffer(index, Buffer);
+		}
+
+		public void Update(ref T newData)
+		{
+			_data = newData;
+			if(IsInitialized)
+				DeviceManager.Context.UpdateSubresource(ref _data, Buffer);
 		}
 	}
 }

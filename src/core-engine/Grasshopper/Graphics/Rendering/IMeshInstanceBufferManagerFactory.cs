@@ -1,4 +1,6 @@
-﻿namespace Grasshopper.Graphics.Rendering
+﻿using Grasshopper.Platform;
+
+namespace Grasshopper.Graphics.Rendering
 {
 	public interface IMeshInstanceBufferManagerFactory
 	{

@@ -29,5 +29,30 @@ namespace Grasshopper.Graphics.Materials
 				Filter = TextureFiltering.MinMagMipLinear
 			};
 		}
+
+		protected bool Equals(TextureSamplerSettings other)
+		{
+			return WrapU == other.WrapU && WrapV == other.WrapV && WrapW == other.WrapW && Filter == other.Filter;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if(ReferenceEquals(null, obj)) return false;
+			if(ReferenceEquals(this, obj)) return true;
+			if(obj.GetType() != this.GetType()) return false;
+			return Equals((TextureSamplerSettings)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				int hashCode = (int)WrapU;
+				hashCode = (hashCode * 397) ^ (int)WrapV;
+				hashCode = (hashCode * 397) ^ (int)WrapW;
+				hashCode = (hashCode * 397) ^ (int)Filter;
+				return hashCode;
+			}
+		}
 	}
 }

@@ -13,13 +13,11 @@ namespace Grasshopper.Graphics
 	{
 		void Initialize();
 		IRenderHostFactory RenderHostFactory { get; }
-		ITextureLoader TextureLoader { get; }
+		ITextureResourceManager TextureResourceManager { get; }
+		ITextureSamplerManager TextureSamplerManager { get; }
 		IMaterialManager MaterialManager { get; }
 		IMeshGroupBufferManager MeshGroupBufferManager { get; }
 		IMeshInstanceBufferManagerFactory MeshInstanceBufferManagerFactory { get; }
 		IConstantBufferManagerFactory ConstantBufferManagerFactory { get; }
-		MeshLibrary MeshLibrary { get; }
-		MaterialLibrary MaterialLibrary { get; }
-		TextureLibrary TextureLibrary { get; }
 	}
 }

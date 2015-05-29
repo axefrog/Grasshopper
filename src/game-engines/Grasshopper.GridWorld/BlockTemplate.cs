@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Grasshopper.Assets;
 
 namespace Grasshopper.GridWorld
 {
-	public class BlockTemplate : Asset
+	public class BlockTemplate
 	{
 		public BlockTemplate()
 		{

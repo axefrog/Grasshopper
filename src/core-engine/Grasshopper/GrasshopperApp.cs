@@ -2,10 +2,10 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
-using Grasshopper.Assets;
 using Grasshopper.Core;
 using Grasshopper.Graphics;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Platform;
 using Grasshopper.StateManagement;
 
 namespace Grasshopper
@@ -21,7 +21,7 @@ namespace Grasshopper
 			GameEvents = _gameEvents.AsObservable();
 		}
 
-		public IAssetStore Assets { get; set; }
+		public IFileStore Files { get; set; }
 		public IGraphicsContextFactory Graphics { get; set; }
 		public TickCounter TickCounter { get; private set; }
 		public IObservable<IGameEvent> GameEvents { get; private set; }

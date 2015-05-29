@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Grasshopper.Assets;
 using Grasshopper.Math;
 
 namespace Grasshopper.Graphics
 {
-	public class Model : Asset, IEnumerable<ModelMeshInstance>
+	public class Model : IEnumerable<ModelMeshInstance>
 	{
 		public Model()
 		{

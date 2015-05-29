@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Grasshopper.Platform;
 
 namespace Grasshopper.Graphics.Rendering
 {
-// ReSharper disable once TypeParameterCanBeVariant
-	public interface IConstantBufferManager<T> : IDisposable
+	public interface IConstantBufferManager<T> : IIndexActivatablePlatformResourceManager<IConstantBufferResource<T>>
 		where T : struct
 	{
-		void Add(string id, T data = default(T));
-		void Update(string id, T data);
-		void Remove(string id);
-		void SetActive(string id, int slot = 0);
-		void SetActive(params string[] id);
+		IConstantBufferResource<T> Create(string id);
+		IConstantBufferResource<T> Create(string id, ref T data);
+		void Update(string id, ref T data);
 	}
 }

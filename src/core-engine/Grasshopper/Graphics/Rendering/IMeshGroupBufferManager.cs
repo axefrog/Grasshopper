@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using Grasshopper.Graphics.Geometry;
+using Grasshopper.Platform;
 
 namespace Grasshopper.Graphics.Rendering
 {
-	public interface IMeshGroupBufferManager : IDisposable
+	public interface IMeshGroupBufferManager : IActivatablePlatformResourceManager<IMeshGroup>
 	{
-		void Add(MeshGroup meshes);
-		void Remove(string id);
-		void SetActive(string meshGroupId);
-		VertexBufferLocation GetMeshLocation(string id);
+		IMeshGroup Create(string id, IEnumerable<Mesh> meshes);
+		IMeshGroup Create(string id, params Mesh[] mesh);
 	}
 }

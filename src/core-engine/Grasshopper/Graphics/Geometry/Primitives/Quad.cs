@@ -12,7 +12,7 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 
 		public Mesh ToMesh(string id)
 		{
-			return new Mesh(id).FromTriangles(this);
+			return new Mesh(id, this);
 		}
 
 		public static Quad From(Vertex a, Vertex b, Vertex c, Vertex d)
@@ -41,10 +41,10 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 		public static Quad XZ(float x0 = -0.5f, float x1 = 0.5f, float z0 = -0.5f, float z1 = 0.5f, float yPosition = 0.0f, Color color1 = default(Color), Color color2 = default(Color), Color color3 = default(Color), Color color4 = default(Color))
 		{
 			return From(
-				Vertex.From(x0, yPosition, z0, 0.0f, 0.0f, color1),
-				Vertex.From(x1, yPosition, z0, 1.0f, 0.0f, color2),
-				Vertex.From(x1, yPosition, z1, 1.0f, 1.0f, color3),
-				Vertex.From(x0, yPosition, z1, 0.0f, 1.0f, color4));
+				Vertex.From(x0, yPosition, z1, 0.0f, 0.0f, color1),
+				Vertex.From(x1, yPosition, z1, 1.0f, 0.0f, color2),
+				Vertex.From(x1, yPosition, z0, 1.0f, 1.0f, color3),
+				Vertex.From(x0, yPosition, z0, 0.0f, 1.0f, color4));
 		}
 
 		public static Quad YZ(float y0 = -0.5f, float y1 = 0.5f, float z0 = -0.5f, float z1 = 0.5f, float xPosition = 0.0f, Color color1 = default(Color), Color color2 = default(Color), Color color3 = default(Color), Color color4 = default(Color))

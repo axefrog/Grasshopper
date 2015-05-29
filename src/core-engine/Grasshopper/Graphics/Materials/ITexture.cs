@@ -1,10 +1,16 @@
 ﻿using System;
-using Grasshopper.Assets;
+using System.Collections.Generic;
 
 namespace Grasshopper.Graphics.Materials
 {
-	public interface ITexture : IAsset, IDisposable
+	public class TextureSpec
 	{
-		IAssetSource AssetSource { get; }
+		public TextureSpec()
+		{
+		}
+
+		public TextureSpec(string id)
+		{
+		}
 	}
 }

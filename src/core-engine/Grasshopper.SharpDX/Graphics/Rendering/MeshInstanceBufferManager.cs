@@ -1,53 +1,36 @@
-using System;
 using System.Collections.Generic;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Platform;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	public class MeshInstanceBufferManager<T> : IMeshInstanceBufferManager<T> where T : struct
+	class MeshInstanceBufferManager<T> : ActivatablePlatformResourceManager<IMeshInstanceCollection<T>>, IMeshInstanceBufferManager<T>
+		where T : struct
 	{
 		private readonly DeviceManager _deviceManager;
-		private readonly Dictionary<string, MeshInstanceBuffer<T>> _buffers = new Dictionary<string, MeshInstanceBuffer<T>>();
-		private MeshInstanceBuffer<T> _activeBuffer;
 
 		public MeshInstanceBufferManager(DeviceManager deviceManager)
 		{
 			_deviceManager = deviceManager;
 		}
 
-		public void Add(string id, T[] instances)
+		protected override IMeshInstanceCollection<T> CreateResource(string id)
 		{
-			var resource = new MeshInstanceBuffer<T>(_deviceManager, instances);
-			resource.Initialize();
-			_buffers.Add(id, resource);
+			return new MeshInstanceBuffer<T>(_deviceManager, id);
 		}
 
-		public void Remove(string id)
+		public IMeshInstanceCollection<T> Create(string id, List<T> instances)
 		{
-			MeshInstanceBuffer<T> resource;
-			if(_buffers.TryGetValue(id, out resource))
+			return CreateAndAdd(id, resource =>
 			{
-				resource.Dispose();
-				_buffers.Remove(id);
-			}
+				resource.SetData(instances);
+				resource.Initialize();
+			});
 		}
 
-		public void SetActive(string id)
+		public void SetData(string id, List<T> instances)
 		{
-			MeshInstanceBuffer<T> resource;
-			if(!_buffers.TryGetValue(id, out resource))
-				throw new ArgumentOutOfRangeException("id", "The specified mesh group was not found");
-
-			_activeBuffer = resource;
-			_deviceManager.Context.InputAssembler.SetVertexBuffers(1, resource.InstanceBufferBinding);
-		}
-
-		public void Dispose()
-		{
-			_activeBuffer = null;
-			foreach(var buffer in _buffers.Values)
-				buffer.Dispose();
-			_buffers.Clear();
+			this[id].SetData(instances);
 		}
 	}
 }

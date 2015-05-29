@@ -11,8 +11,6 @@ namespace Grasshopper.Graphics.Rendering
 
 		void Clear(Color color);
 		void SetDrawType(DrawType drawType);
-		void Draw(VertexBufferLocation bufferLocation);
-		void DrawInstanced(VertexBufferLocation bufferLocation, int instanceCount);
 		void UpdateRasterizerState();
 	}
 }
