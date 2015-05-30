@@ -21,7 +21,7 @@ namespace SimpleTexturedCube
 			using(var gfx = app.Graphics.CreateContext(enableDebugMode: true))
 			using(var renderer = gfx.RenderHostFactory.CreateWindowed())
 			{
-				renderer.Window.Title = "Simple Cube";
+				renderer.Window.Title = "Simple Textured Cube";
 				renderer.Window.ShowBordersAndTitle = true;
 				renderer.Window.Visible = true;
 				renderer.Window.Resizable = true;
@@ -57,7 +57,7 @@ namespace SimpleTexturedCube
 					// Create our initial world, view and projection matrices that will represent the cube
 					// and camera location and orientation
 					var world = Matrix4x4.Identity;
-					var view = Matrix4x4.CreateLookAt(new Vector3(0, 1.25f, -3f), new Vector3(0, 0, 0), Vector3.UnitY);
+					var view = Matrix4x4.CreateLookAt(new Vector3(0, 1.25f, 3f), new Vector3(0, 0, 0), Vector3.UnitY);
 					var proj = CreateProjectionMatrix(renderer.Window);
 					var viewproj = view * proj;
 

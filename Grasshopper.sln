@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grasshopper.GridWorld", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06. SimpleTexturedCube", "samples\Basic\06. SimpleTexturedCube\06. SimpleTexturedCube.csproj", "{E3B2DD70-4C7F-4E01-9DA3-8016CBBED06E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07. ManyTexturedCubes", "samples\Basic\07. ManyTexturedCubes\07. ManyTexturedCubes.csproj", "{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{E3B2DD70-4C7F-4E01-9DA3-8016CBBED06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3B2DD70-4C7F-4E01-9DA3-8016CBBED06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3B2DD70-4C7F-4E01-9DA3-8016CBBED06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,5 +126,6 @@ Global
 		{52EF737E-AEFB-485F-97DD-97E3FA4B9BA7} = {47241D7C-A809-46DE-9BCB-26A6A1151E96}
 		{8006A6CB-8F19-4EE1-B468-0C32FD77C8AF} = {4819E99C-7ED9-486A-A78C-A5F05D111E79}
 		{E3B2DD70-4C7F-4E01-9DA3-8016CBBED06E} = {E51B7083-5435-4AB8-9485-1B94DACB680F}
+		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4} = {E51B7083-5435-4AB8-9485-1B94DACB680F}
 	EndGlobalSection
 EndGlobal
