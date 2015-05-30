@@ -26,18 +26,20 @@ namespace SimpleTexturedCube
 				renderer.Window.Visible = true;
 				renderer.Window.Resizable = true;
 
+				// Prepare a texture and a sampler for use by the material below
+				gfx.TextureResourceManager.Create("rabbit", "Textures/rabbit.jpg");
+				gfx.TextureSamplerManager.Create("default", TextureSamplerSettings.Default());
+
 				// Prepare our default material which will simply render out using the vertex colour. We
 				// then set the material active, which sets the active shaders in GPU memory, ready for
 				// drawing with.
 				var material = new MaterialSpec("simple");
 				material.VertexShader = new VertexShaderSpec(Resources.VertexShader);
 				material.PixelShader = new PixelShaderSpec(Resources.PixelShader);
+				material.Textures.Add("rabbit");
+				material.Samplers.Add("default");
 				gfx.MaterialManager.Add(material);
 				gfx.MaterialManager.SetActive(material.Id);
-
-#warning this next bit of code is ugly and is just for testing. fold it into the material system.
-				gfx.TextureResourceManager.Create("rabbit", "Textures/rabbit.jpg").Activate(0);
-				gfx.TextureSamplerManager.Create("default", TextureSamplerSettings.Default()).Activate(0);
 
 				// Procedurally create a simple cube mesh (12 triangles, 36 vertices, 8 vertex colours).
 				// Add it to a new mesh group which we then pass to the buffer manager for initialization

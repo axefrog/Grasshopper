@@ -14,12 +14,13 @@ namespace Grasshopper.Graphics.Materials
 		{
 			Id = id;
 			Textures = new List<string>();
+			Samplers = new List<string>();
 		}
 
 		public string Id { get; private set; }
 		public bool IsTranslucent { get; set; }
 		public List<string> Textures { get; set; }
-		public List<TextureSamplerSettings> Samplers { get; set; }
+		public List<string> Samplers { get; set; }
 		public VertexShaderSpec VertexShader { get; set; }
 		public PixelShaderSpec PixelShader { get; set; }
 		

@@ -15,7 +15,7 @@ namespace Grasshopper.SharpDX.Graphics
 			RenderHostFactory = new RenderHostFactory(this);
 			TextureResourceManager = new TextureResourceManager(DeviceManager, files);
 			TextureSamplerManager = new TextureSamplerManager(DeviceManager);
-			MaterialManager = new MaterialManager(DeviceManager);
+			MaterialManager = new MaterialManager(this);
 			MeshGroupBufferManager = new MeshGroupBufferManager(DeviceManager);
 			MeshInstanceBufferManagerFactory = new MeshInstanceBufferManagerFactory(DeviceManager);
 			ConstantBufferManagerFactory = new ConstantBufferManagerFactory(DeviceManager);

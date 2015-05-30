@@ -7,7 +7,7 @@ using Grasshopper.Platform;
 
 namespace Grasshopper.SharpDX.Graphics.Materials
 {
-	public class TextureResourceManager : IndexActivatablePlatformResourceManager<ITextureResource>, ITextureResourceManager
+	class TextureResourceManager : IndexActivatablePlatformResourceManager<ITextureResource>, ITextureResourceManager
 	{
 		private readonly DeviceManager _deviceManager;
 		private readonly IFileStore _fileStore;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Grasshopper.Graphics.Materials;
 using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
@@ -8,14 +9,18 @@ using SharpDX.DXGI;
 
 namespace Grasshopper.SharpDX.Graphics.Materials
 {
-	public class MaterialManager : IMaterialManager
+	class MaterialManager : IMaterialManager
 	{
 		private readonly DeviceManager _deviceManager;
+		private ITextureResourceManager _textureResourceManager;
+		private ITextureSamplerManager _textureSamplerManager;
 		private readonly Dictionary<string, CompiledMaterial> _materials = new Dictionary<string, CompiledMaterial>();
 
-		public MaterialManager(DeviceManager deviceManager)
+		public MaterialManager(GraphicsContext gfx)
 		{
-			_deviceManager = deviceManager;
+			_deviceManager = gfx.DeviceManager;
+			_textureResourceManager = gfx.TextureResourceManager;
+			_textureSamplerManager = gfx.TextureSamplerManager;
 		}
 
 		public bool Exists(string id)
@@ -25,7 +30,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 
 		public void Add(MaterialSpec spec)
 		{
-			var material = new CompiledMaterial();
+			var material = new CompiledMaterial(spec);
 			PrepareVertexShader(spec.VertexShader, material);
 			PreparePixelShader(spec.PixelShader, material);
 			_materials.Add(spec.Id, material);
@@ -36,9 +41,16 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 			CompiledMaterial material;
 			if(!_materials.TryGetValue(id, out material))
 				throw new ArgumentException("The specified material id is not registered. Did you forget to add it?");
+			
 			_deviceManager.Context.InputAssembler.InputLayout = material.InputLayout;
 			_deviceManager.Context.VertexShader.Set(material.VertexShader);
 			_deviceManager.Context.PixelShader.Set(material.PixelShader);
+
+			if(material.Spec.Textures != null && material.Spec.Textures.Count > 0)
+				_textureResourceManager.Activate(0, material.Spec.Textures);
+
+			if(material.Spec.Samplers != null && material.Spec.Samplers.Count > 0)
+				_textureSamplerManager.Activate(0, material.Spec.Samplers);
 		}
 
 		public void Remove(string id)

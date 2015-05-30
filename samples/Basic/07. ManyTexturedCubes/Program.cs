@@ -28,6 +28,14 @@ namespace ManyTexturedCubes
 				renderer.Window.Visible = true;
 				renderer.Window.Resizable = true;
 
+				// Load some textures and a sampler into GPU memory for use by materials
+				gfx.TextureResourceManager.Create("rabbit", "Textures/rabbit.jpg");
+				gfx.TextureResourceManager.Create("fish", "Textures/fish.jpg");
+				gfx.TextureResourceManager.Create("dog", "Textures/dog.jpg");
+				gfx.TextureResourceManager.Create("cat", "Textures/cat.jpg");
+				gfx.TextureResourceManager.Create("snail", "Textures/snail.jpg");
+				gfx.TextureSamplerManager.Create("default", new TextureSamplerSettings(TextureWrapping.Clamp, TextureWrapping.Clamp, TextureWrapping.Clamp, TextureFiltering.Anisotropic));
+
 				// Prepare our default material which will simply render out using the vertex colour. We
 				// then set the material active, which sets the active shaders in GPU memory, ready for
 				// drawing with. Note the declaration of vertex shader input elements for each cube
@@ -42,18 +50,10 @@ namespace ManyTexturedCubes
 					new ShaderInputElementSpec(ShaderInputElementFormat.Float3, ShaderInputElementPurpose.Padding),
 				});
 				material.PixelShader = new PixelShaderSpec(Resources.PixelShader);
+				material.Textures.AddRange(new [] { "rabbit", "fish", "dog", "cat", "snail" });
+				material.Samplers.Add("default");
 				gfx.MaterialManager.Add(material);
 				gfx.MaterialManager.SetActive(material.Id);
-
-				// todo: use material system rather than doing it manually
-				gfx.TextureResourceManager.Create("rabbit", "Textures/rabbit.jpg").Activate(0);
-				gfx.TextureResourceManager.Create("fish", "Textures/fish.jpg").Activate(1);
-				gfx.TextureResourceManager.Create("dog", "Textures/dog.jpg").Activate(2);
-				gfx.TextureResourceManager.Create("cat", "Textures/cat.jpg").Activate(3);
-				gfx.TextureResourceManager.Create("snail", "Textures/snail.jpg").Activate(4);
-				gfx.TextureSamplerManager.Create("default",
-					new TextureSamplerSettings(TextureWrapping.Clamp, TextureWrapping.Clamp, TextureWrapping.Clamp, TextureFiltering.Anisotropic)
-				).Activate(0);
 
 				// Procedurally create a simple cube mesh (12 triangles, 36 vertices, 8 vertex colours).
 				// Add it to a new mesh group which we then pass to the buffer manager for initialization
