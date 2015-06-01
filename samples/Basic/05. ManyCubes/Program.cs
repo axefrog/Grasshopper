@@ -6,6 +6,7 @@ using Grasshopper;
 using Grasshopper.Graphics;
 using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Materials;
+using Grasshopper.Graphics.Primitives;
 using Grasshopper.Graphics.Rendering;
 using Grasshopper.Procedural.Graphics.Primitives;
 using Grasshopper.SharpDX;
@@ -30,16 +31,15 @@ namespace ManyCubes
 				// then set the material active, which sets the active shaders in GPU memory, ready for
 				// drawing with. Note the declaration of vertex shader input elements for each cube
 				// instance. See the matching CubeInstance struct at the bottom of this file.
-				var material = new MaterialSpec("simple");
-				material.VertexShader = new VertexShaderSpec(Resources.VertexShader, new []
+				var material = gfx.MaterialManager.Create("simple");
+				material.VertexShaderSpec = new VertexShaderSpec(Resources.VertexShader, new[]
 				{
 					new ShaderInputElementSpec(ShaderInputElementFormat.Float4),
 					new ShaderInputElementSpec(ShaderInputElementFormat.Float4),
 					new ShaderInputElementSpec(ShaderInputElementFormat.Float4),
 				});
-				material.PixelShader = new PixelShaderSpec(Resources.PixelShader);
-				gfx.MaterialManager.Add(material);
-				gfx.MaterialManager.SetActive(material.Id);
+				material.PixelShaderSpec = new PixelShaderSpec(Resources.PixelShader);
+				material.Activate();
 
 				// Procedurally create a simple cube mesh (12 triangles, 36 vertices, 8 vertex colours).
 				// Add it to a new mesh group which we then pass to the buffer manager for initialization

@@ -64,11 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\ITextureResource.cs" />
+    <Compile Include="Graphics\Materials\ITextureResource.cs" />
     <Compile Include="Graphics\Materials\ITextureSampler.cs" />
     <Compile Include="Graphics\Materials\ITextureSamplerManager.cs" />
     <Compile Include="Graphics\Rendering\IConstantBufferResource.cs" />
     <Compile Include="Graphics\Rendering\IMeshInstanceCollection.cs" />
+    <Compile Include="Graphics\SceneManagement\Camera.cs" />
+    <Compile Include="Input\IInputContext.cs" />
+    <Compile Include="Input\MouseEvent.cs" />
     <Compile Include="Platform\ActivatablePlatformResource.cs" />
     <Compile Include="Platform\ActivatablePlatformResourceManager.cs" />
     <Compile Include="Platform\IActivatablePlatformResource.cs" />
@@ -82,18 +85,18 @@
     <Compile Include="Platform\IFileSource.cs" />
     <Compile Include="Core\RateLimiter.cs" />
     <Compile Include="Core\TickCounter.cs" />
-    <Compile Include="Graphics\Color.cs" />
-    <Compile Include="Graphics\Color4.cs" />
+    <Compile Include="Graphics\Primitives\Color.cs" />
+    <Compile Include="Graphics\Primitives\Color4.cs" />
     <Compile Include="Graphics\Materials\PixelShaderSpec.cs" />
     <Compile Include="Graphics\Materials\TextureFiltering.cs" />
     <Compile Include="Graphics\Materials\TextureSamplerSettings.cs" />
     <Compile Include="Graphics\Materials\TextureWrapping.cs" />
     <Compile Include="Graphics\Rendering\DrawType.cs" />
-    <Compile Include="Graphics\Geometry\Primitives\Quad.cs" />
-    <Compile Include="Graphics\Geometry\Primitives\TextureCoordinate.cs" />
-    <Compile Include="Graphics\Geometry\Primitives\Triangle.cs" />
-    <Compile Include="Graphics\Geometry\Primitives\Vertex.cs" />
-    <Compile Include="Graphics\Geometry\MeshGroup.cs" />
+    <Compile Include="Graphics\Primitives\Quad.cs" />
+    <Compile Include="Graphics\Primitives\TextureCoordinate.cs" />
+    <Compile Include="Graphics\Primitives\Triangle.cs" />
+    <Compile Include="Graphics\Primitives\Vertex.cs" />
+    <Compile Include="Graphics\SceneManagement\IMeshGroup.cs" />
     <Compile Include="Graphics\Rendering\IConstantBufferManager.cs" />
     <Compile Include="Graphics\Rendering\IConstantBufferManagerFactory.cs" />
     <Compile Include="Graphics\Rendering\IMeshGroupBufferManager.cs" />
@@ -106,7 +109,7 @@
     <Compile Include="Graphics\Materials\ShaderSpec.cs" />
     <Compile Include="Graphics\Materials\VertexShaderSpec.cs" />
     <Compile Include="Graphics\Rendering\RenderManager.cs" />
-    <Compile Include="Graphics\MeshInstance.cs" />
+    <Compile Include="Graphics\SceneManagement\MeshInstance.cs" />
     <Compile Include="Graphics\Materials\ShaderInputElementFormat.cs" />
     <Compile Include="Graphics\Materials\ShaderInputElementPurpose.cs" />
     <Compile Include="Graphics\Materials\ShaderInputElementSpec.cs" />
@@ -116,19 +119,17 @@
     <Compile Include="Graphics\Rendering\IRenderHostFactory.cs" />
     <Compile Include="Graphics\Materials\ITexture.cs" />
     <Compile Include="Graphics\Materials\ITextureResourceManager.cs" />
-    <Compile Include="Graphics\Materials\MaterialSpec.cs" />
+    <Compile Include="Graphics\Materials\Material.cs" />
     <Compile Include="Graphics\Rendering\IWindowRenderHost.cs" />
     <Compile Include="Graphics\Rendering\IWindowRenderContext.cs" />
-    <Compile Include="Graphics\Model.cs" />
-    <Compile Include="Graphics\Geometry\Mesh.cs" />
+    <Compile Include="Graphics\SceneManagement\Model.cs" />
+    <Compile Include="Graphics\SceneManagement\Mesh.cs" />
     <Compile Include="GrasshopperApp.cs" />
     <Compile Include="Graphics\Rendering\IAppWindow.cs" />
     <Compile Include="Platform\IPlatformResourceManager.cs" />
     <Compile Include="Platform\PlatformResource.cs" />
     <Compile Include="Platform\PlatformResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StateManagement\IGameEvent.cs" />
-    <Compile Include="StateManagement\InstanceOfModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Grasshopper.nuspec" />

@@ -1,12 +1,10 @@
 ﻿using System;
+using Grasshopper.Platform;
 
 namespace Grasshopper.Graphics.Materials
 {
-	public interface IMaterialManager : IDisposable
+	public interface IMaterialManager : IPlatformResourceManager<Material>
 	{
-		void Add(MaterialSpec material);
-		void SetActive(string id);
-		void Remove(string id);
-		bool Exists(string id);
+		Material Create(string id);
 	}
 }

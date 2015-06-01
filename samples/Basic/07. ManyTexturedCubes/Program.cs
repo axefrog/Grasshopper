@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using Grasshopper;
 using Grasshopper.Graphics;
 using Grasshopper.Graphics.Materials;
+using Grasshopper.Graphics.Primitives;
 using Grasshopper.Graphics.Rendering;
 using Grasshopper.Procedural.Graphics.Primitives;
 using Grasshopper.SharpDX;
@@ -21,12 +22,12 @@ namespace ManyTexturedCubes
 				.UseSharpDX()
 				.UseWindowsFileSystem())
 			using(var gfx = app.Graphics.CreateContext(enableDebugMode: true))
-			using(var renderer = gfx.RenderHostFactory.CreateWindowed())
+			using(var renderHost = gfx.RenderHostFactory.CreateWindowed())
 			{
-				renderer.Window.Title = "50,000 Textured Cubes";
-				renderer.Window.ShowBordersAndTitle = true;
-				renderer.Window.Visible = true;
-				renderer.Window.Resizable = true;
+				renderHost.Window.Title = "50,000 Textured Cubes";
+				renderHost.Window.ShowBordersAndTitle = true;
+				renderHost.Window.Visible = true;
+				renderHost.Window.Resizable = true;
 
 				// Load some textures and a sampler into GPU memory for use by materials
 				gfx.TextureResourceManager.Create("rabbit", "Textures/rabbit.jpg");
@@ -40,8 +41,8 @@ namespace ManyTexturedCubes
 				// then set the material active, which sets the active shaders in GPU memory, ready for
 				// drawing with. Note the declaration of vertex shader input elements for each cube
 				// instance. See the matching CubeInstance struct at the bottom of this file.
-				var material = new MaterialSpec("simple");
-				material.VertexShader = new VertexShaderSpec(Resources.VertexShader, new[]
+				var material = gfx.MaterialManager.Create("simple");
+				material.VertexShaderSpec = new VertexShaderSpec(Resources.VertexShader, new[]
 				{
 					new ShaderInputElementSpec(ShaderInputElementFormat.Float4),
 					new ShaderInputElementSpec(ShaderInputElementFormat.Float4),
@@ -49,11 +50,10 @@ namespace ManyTexturedCubes
 					new ShaderInputElementSpec(ShaderInputElementFormat.Int32),
 					new ShaderInputElementSpec(ShaderInputElementFormat.Float3, ShaderInputElementPurpose.Padding),
 				});
-				material.PixelShader = new PixelShaderSpec(Resources.PixelShader);
+				material.PixelShaderSpec = new PixelShaderSpec(Resources.PixelShader);
 				material.Textures.AddRange(new [] { "rabbit", "fish", "dog", "cat", "snail" });
 				material.Samplers.Add("default");
-				gfx.MaterialManager.Add(material);
-				gfx.MaterialManager.SetActive(material.Id);
+				material.Activate();
 
 				// Procedurally create a simple cube mesh (12 triangles, 36 vertices, 8 vertex colours).
 				// Add it to a new mesh group which we then pass to the buffer manager for initialization
@@ -119,7 +119,7 @@ namespace ManyTexturedCubes
 
 					// The aspect ratio changes when the window is resized, so we need to reculate the
 					// projection matrix, or our scene will look squashed
-					renderer.Window.SizeChanged += win => hasWindowSizeChanged = true;
+					renderHost.Window.SizeChanged += win => hasWindowSizeChanged = true;
 
 					// We can now create and activate our constant buffer which will hold the scene data
 					// for use by the vertex shader
@@ -127,7 +127,7 @@ namespace ManyTexturedCubes
 					constantBufferManager.Activate(0, "scene");
 
 					// Let the looping begin!
-					app.Run(renderer, context =>
+					app.Run(renderHost, context =>
 					{
 						// This is always true the first time, so our projection matrix is created here.
 						// Each iteration of the render loop we'll update the constant buffer with the

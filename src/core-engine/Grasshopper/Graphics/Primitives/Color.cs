@@ -25,7 +25,7 @@ THE SOFTWARE.
 using System;
 using System.Runtime.InteropServices;
 
-namespace Grasshopper.Graphics
+namespace Grasshopper.Graphics.Primitives
 {
 	[StructLayout(LayoutKind.Sequential, Size = 4)]
 	public struct Color : IEquatable<Color>, IFormattable

@@ -1,12 +1,14 @@
 ﻿using Grasshopper.Graphics.Rendering;
+using Grasshopper.Input;
+using Grasshopper.SharpDX.Input;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	public class WindowRenderHost : RenderHost<IWindowRenderContext>, IWindowRenderHost
+	class WindowRenderHost : RenderHost<IWindowRenderContext>, IWindowRenderHost
 	{
 		private readonly WindowRenderContext _renderContext;
 
-		public WindowRenderHost(DeviceManager deviceManager) : this(new WindowRenderContext(deviceManager))
+		public WindowRenderHost(DeviceManager deviceManager, IInputContext input) : this(new WindowRenderContext(deviceManager, input))
 		{
 		}
 

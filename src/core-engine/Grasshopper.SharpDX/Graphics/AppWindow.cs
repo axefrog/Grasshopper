@@ -1,34 +1,115 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Input;
 using SharpDX.Windows;
+using ButtonState = Grasshopper.Input.ButtonState;
 
 namespace Grasshopper.SharpDX.Graphics
 {
-	public class AppWindow : IAppWindow
+	class AppWindow : IAppWindow
 	{
+		private readonly IInputContext _input;
 		private readonly RenderForm _form;
 		private bool _showBordersAndTitle;
 		private readonly RenderLoop _renderLoop;
 		private bool _resizable;
+		private int _lastX, _lastY;
+		private bool _lostFocus = true;
 
-		public AppWindow()
+		public AppWindow(IInputContext input)
 		{
+			_input = input;
 			_form = new RenderForm();
 			_renderLoop = new RenderLoop(Form);
 
-			_form.Resize += (sender, args) =>
-			{
-				var handler = SizeChanged;
-				if(handler != null)
-					handler(this);
-			};
+			_form.Resize += OnFormResize;
+			_form.Closed += OnFormClosed;
+			_form.LostFocus += OnLostFocus;
+			_form.MouseMove += OnMouseMove;
+			_form.MouseDown += OnMouseDown;
+			_form.MouseUp += OnMouseUp;
+			_form.MouseWheel += OnMouseWheel;
+		}
 
-			_form.Closed += (sender, args) =>
+		private void OnFormResize(object sender, EventArgs eventArgs)
+		{
+			var handler = SizeChanged;
+			if(handler != null)
+				handler(this);
+		}
+
+		private void OnFormClosed(object sender, EventArgs eventArgs)
+		{
+			var handler = Closed;
+			if(handler != null)
+				handler(this);
+		}
+
+		private void OnLostFocus(object sender, EventArgs eventArgs)
+		{
+			_lostFocus = true;
+		}
+
+		private void OnMouseMove(object sender, MouseEventArgs args)
+		{
+			int deltaX, deltaY;
+			if(_lostFocus)
 			{
-				var handler = Closed;
-				if(handler != null)
-					handler(this);
-			};
+				deltaX = 0;
+				deltaY = 0;
+				_lostFocus = false;
+			}
+			else
+			{
+				deltaX = args.X - _lastX;
+				deltaY = args.Y - _lastY;
+			}
+			_lastX = args.X;
+			_lastY = args.Y;
+			_input.PostMouseEvent(new MouseEvent(this, deltaX, deltaY, args.X, args.Y));
+		}
+
+		private bool TryGetMouseButton(MouseButtons button, out MouseButton result)
+		{
+			switch(button)
+			{
+				case MouseButtons.Left: result = MouseButton.Left; return true;
+				case MouseButtons.Middle: result = MouseButton.Middle; return true;
+				case MouseButtons.Right: result = MouseButton.Right; return true;
+				case MouseButtons.XButton1: result = MouseButton.Extra1; return true;
+				case MouseButtons.XButton2: result = MouseButton.Extra2; return true;
+			}
+			result = 0;
+			return false;
+		}
+
+		private void OnMouseDown(object sender, MouseEventArgs args)
+		{
+			MouseButton button;
+			if(!TryGetMouseButton(args.Button, out button))
+				return;
+			_lastX = args.X;
+			_lastY = args.Y;
+			_input.PostMouseEvent(new MouseEvent(this, button, ButtonState.Down, _lastX, _lastY));
+		}
+
+		private void OnMouseUp(object sender, MouseEventArgs args)
+		{
+			MouseButton button;
+			if(!TryGetMouseButton(args.Button, out button))
+				return;
+			_lastX = args.X;
+			_lastY = args.Y;
+			_input.PostMouseEvent(new MouseEvent(this, button, ButtonState.Up, _lastX, _lastY));
+		}
+
+		private void OnMouseWheel(object sender, MouseEventArgs args)
+		{
+			_lastX = args.X;
+			_lastY = args.Y;
+			_input.PostMouseEvent(new MouseEvent(this, args.Delta, _lastX, _lastY));
 		}
 
 		public event AppWindowSimpleEventHandler SizeChanged;

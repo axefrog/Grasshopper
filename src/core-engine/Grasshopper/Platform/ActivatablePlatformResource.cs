@@ -1,3 +1,5 @@
+using System;
+
 namespace Grasshopper.Platform
 {
 	public abstract class ActivatablePlatformResource : PlatformResource, IActivatablePlatformResource
@@ -10,6 +12,9 @@ namespace Grasshopper.Platform
 		
 		public void Activate()
 		{
+			if(!IsInitialized)
+				Initialize();
+
 			SetActive();
 			NotifyActivated();
 		}

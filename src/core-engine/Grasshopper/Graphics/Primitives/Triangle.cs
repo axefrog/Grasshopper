@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Grasshopper.Graphics.Geometry.Primitives
+namespace Grasshopper.Graphics.Primitives
 {
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Triangle : IEnumerable<Vertex>

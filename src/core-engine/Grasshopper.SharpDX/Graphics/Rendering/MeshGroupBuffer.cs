@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Grasshopper.Graphics.Geometry;
-using Grasshopper.Graphics.Geometry.Primitives;
+using Grasshopper.Graphics.Primitives;
 using SharpDX;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;

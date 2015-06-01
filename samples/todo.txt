@@ -1,10 +1,20 @@
-## Ideas for basic demos
+## Core Engine
 
-- textured cube
-- multiple textures in cube cloud
 - input
+- compositing of render targets (UI over main scene, picture-in-picture, etc.)
+- expose custom vertex formats
+- improve shader system by creating a modular (text-based) foundation for a blueprints-style system down the track
+- load meshes from disk (assimp.net -> custom grasshopper format)
+- scene management
+	- switchable cameras
+	- freelook component tied to a camera, using entity component system
 
-
-## Ideas for GridWorld demos
+## GridWorld
 
 - simple room scene with 
+
+
+## Meta
+
+- add XML comments to all code
+- create a Github pages site explaining all the code in depth, stepping through from absolute basics, and including private internals

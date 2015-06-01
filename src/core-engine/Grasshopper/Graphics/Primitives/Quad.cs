@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Grasshopper.Graphics.Geometry;
 
-namespace Grasshopper.Graphics.Geometry.Primitives
+namespace Grasshopper.Graphics.Primitives
 {
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Quad : IEnumerable<Triangle>

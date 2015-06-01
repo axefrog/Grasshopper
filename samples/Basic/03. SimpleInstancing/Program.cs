@@ -2,8 +2,8 @@
 using System.Numerics;
 using Grasshopper;
 using Grasshopper.Graphics;
-using Grasshopper.Graphics.Geometry.Primitives;
 using Grasshopper.Graphics.Materials;
+using Grasshopper.Graphics.Primitives;
 using Grasshopper.SharpDX;
 using SimpleInstancing.Properties;
 
@@ -24,17 +24,16 @@ namespace SimpleInstancing
 
 				// Prepare our default material which will simply render out using the vertex colour. We then set
 				// the material active, which sets the active shaders in GPU memory, ready for drawing with.
-				var material = new MaterialSpec("simple");
-				material.VertexShader = new VertexShaderSpec(Resources.VertexShader, new[]
+				var material = gfx.MaterialManager.Create("simple");
+				material.VertexShaderSpec = new VertexShaderSpec(Resources.VertexShader, new[]
 				{
 					// Specify the vertex shader input elements for each instance that we'll draw. We don't have
 					// to specify the layout for the base vertex itself because Grasshopper uses a standard vertex
 					// format which never changes, so we only have to indicate what is included in each instance.
 					new ShaderInputElementSpec(ShaderInputElementFormat.Matrix4x4),
 				});
-				material.PixelShader = new PixelShaderSpec(Resources.PixelShader);
-				gfx.MaterialManager.Add(material);
-				gfx.MaterialManager.SetActive(material.Id);
+				material.PixelShaderSpec = new PixelShaderSpec(Resources.PixelShader);
+				material.Activate();
 
 				// Create a mesh which is simply a quad (4 vertices, each of a different colour). Add it to a new
 				// mesh group which we then pass to the buffer manager for initialization and activation. Mesh buffers

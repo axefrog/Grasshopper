@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace Grasshopper.Graphics.Geometry.Primitives
+namespace Grasshopper.Graphics.Primitives
 {
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Vertex
@@ -29,12 +29,12 @@ namespace Grasshopper.Graphics.Geometry.Primitives
 
 		public static Vertex From(Vector4 pos)
 		{
-			return From(pos, Graphics.Color.White);
+			return From(pos, Primitives.Color.White);
 		}
 
 		public static Vertex From(Vector4 pos, TextureCoordinate coord)
 		{
-			return From(pos, Graphics.Color.White, coord);
+			return From(pos, Primitives.Color.White, coord);
 		}
 
 		public static Vertex From(Vector4 pos, Color color)

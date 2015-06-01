@@ -4,7 +4,7 @@ using Grasshopper.Graphics.Rendering;
 using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
-using Color = Grasshopper.Graphics.Color;
+using Color = Grasshopper.Graphics.Primitives.Color;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {

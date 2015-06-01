@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Grasshopper.Graphics.Geometry.Primitives;
+using Grasshopper.Graphics.Primitives;
 
 namespace Grasshopper.Graphics.Geometry
 {

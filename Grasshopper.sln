@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06. SimpleTexturedCube", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07. ManyTexturedCubes", "samples\Basic\07. ManyTexturedCubes\07. ManyTexturedCubes.csproj", "{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08. FreeLookCamera", "samples\Basic\08. FreeLookCamera\08. FreeLookCamera.csproj", "{9B1A93D3-9D6F-4798-9617-7229B2F99A93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B1A93D3-9D6F-4798-9617-7229B2F99A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B1A93D3-9D6F-4798-9617-7229B2F99A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B1A93D3-9D6F-4798-9617-7229B2F99A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B1A93D3-9D6F-4798-9617-7229B2F99A93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,5 +133,6 @@ Global
 		{8006A6CB-8F19-4EE1-B468-0C32FD77C8AF} = {4819E99C-7ED9-486A-A78C-A5F05D111E79}
 		{E3B2DD70-4C7F-4E01-9DA3-8016CBBED06E} = {E51B7083-5435-4AB8-9485-1B94DACB680F}
 		{A98021F6-DE8A-4EA6-AB81-488EFE9493A4} = {E51B7083-5435-4AB8-9485-1B94DACB680F}
+		{9B1A93D3-9D6F-4798-9617-7229B2F99A93} = {E51B7083-5435-4AB8-9485-1B94DACB680F}
 	EndGlobalSection
 EndGlobal

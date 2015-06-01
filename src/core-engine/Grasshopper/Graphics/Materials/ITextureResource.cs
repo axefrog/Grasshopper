@@ -1,6 +1,6 @@
 ﻿using Grasshopper.Platform;
 
-namespace Grasshopper.Graphics
+namespace Grasshopper.Graphics.Materials
 {
 	public interface ITextureResource : IIndexActivatablePlatformResource
 	{

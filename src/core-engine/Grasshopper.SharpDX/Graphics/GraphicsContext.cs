@@ -1,18 +1,21 @@
-﻿using Grasshopper.Graphics;
+﻿using System;
+using Grasshopper.Graphics;
 using Grasshopper.Graphics.Materials;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Input;
 using Grasshopper.Platform;
 using Grasshopper.SharpDX.Graphics.Materials;
 using Grasshopper.SharpDX.Graphics.Rendering;
+using Grasshopper.SharpDX.Input;
 
 namespace Grasshopper.SharpDX.Graphics
 {
-	public class GraphicsContext : IGraphicsContext
+	class GraphicsContext : IGraphicsContext
 	{
-		public GraphicsContext(IFileStore files, bool enableDebugMode = false)
+		public GraphicsContext(Lazy<IFileStore> files, IInputContext input, bool enableDebugMode = false)
 		{
 			DeviceManager = new DeviceManager(enableDebugMode);
-			RenderHostFactory = new RenderHostFactory(this);
+			RenderHostFactory = new RenderHostFactory(this, input);
 			TextureResourceManager = new TextureResourceManager(DeviceManager, files);
 			TextureSamplerManager = new TextureSamplerManager(DeviceManager);
 			MaterialManager = new MaterialManager(this);

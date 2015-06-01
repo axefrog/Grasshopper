@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Windows.Forms;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Input;
+using Grasshopper.SharpDX.Input;
 using SharpDX;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
@@ -8,15 +11,15 @@ using Resource = SharpDX.Direct3D11.Resource;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	public class WindowRenderContext : RenderContext, IWindowRenderContext
+	class WindowRenderContext : RenderContext, IWindowRenderContext
 	{
 		private readonly AppWindow _window;
 		private readonly DeviceManager _deviceManager;
 
-		public WindowRenderContext(DeviceManager deviceManager) : base(deviceManager)
+		public WindowRenderContext(DeviceManager deviceManager, IInputContext input) : base(deviceManager)
 		{
 			_deviceManager = deviceManager;
-			_window = new AppWindow();
+			_window = new AppWindow(input);
 
 			_window.SizeChanged += win => Initialize();
 			_window.Closed += win => Exit();
@@ -31,7 +34,11 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 
 		public void Initialize()
 		{
-			if(!_deviceManager.IsInitialized) throw new InvalidOperationException("Device manager is not initialized");
+			if(_window.Form.WindowState == FormWindowState.Minimized)
+				return;
+
+			if(!_deviceManager.IsInitialized)
+				throw new InvalidOperationException("Device manager is not initialized");
 
 			DestroyResources();
 			var sampleDescription = new SampleDescription(4, 4);

@@ -1,4 +1,5 @@
 using System;
+using Grasshopper.Graphics.Primitives;
 
 namespace Grasshopper.Graphics.Rendering
 {

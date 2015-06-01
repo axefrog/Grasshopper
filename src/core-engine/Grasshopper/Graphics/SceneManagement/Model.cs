@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Grasshopper.Math;
 
-namespace Grasshopper.Graphics
+namespace Grasshopper.Graphics.Geometry
 {
 	public class Model : IEnumerable<ModelMeshInstance>
 	{

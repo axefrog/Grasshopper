@@ -1,30 +1,25 @@
 ﻿using System;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Threading;
 using Grasshopper.Core;
 using Grasshopper.Graphics;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Input;
 using Grasshopper.Platform;
-using Grasshopper.StateManagement;
 
 namespace Grasshopper
 {
 	public class GrasshopperApp : IDisposable
 	{
-		private readonly Subject<IGameEvent> _gameEvents;
 		private DateTime _startTime;
 
 		public GrasshopperApp()
 		{
-			_gameEvents = new Subject<IGameEvent>();
-			GameEvents = _gameEvents.AsObservable();
 		}
 
 		public IFileStore Files { get; set; }
 		public IGraphicsContextFactory Graphics { get; set; }
+		public IInputContext Input { get; set; }
 		public TickCounter TickCounter { get; private set; }
-		public IObservable<IGameEvent> GameEvents { get; private set; }
 		public TimeSpan Elapsed { get { return DateTime.UtcNow - _startTime; } }
 		public float ElapsedSeconds { get { return (float)(DateTime.UtcNow - _startTime).TotalSeconds; } }
 
@@ -40,7 +35,7 @@ namespace Grasshopper
 				}
 		}
 
-		public void Run(Func<bool> main)
+		public virtual void Run(Func<bool> main)
 		{
 			_startTime = DateTime.UtcNow;
 			TickCounter = new TickCounter();
@@ -48,12 +43,7 @@ namespace Grasshopper
 				TickCounter.Tick();
 		}
 
-		public void PostGameEvent(IGameEvent gameEvent)
-		{
-			_gameEvents.OnNext(gameEvent);
-		}
-
-		public void Dispose()
+		public virtual void Dispose()
 		{
 		}
 	}

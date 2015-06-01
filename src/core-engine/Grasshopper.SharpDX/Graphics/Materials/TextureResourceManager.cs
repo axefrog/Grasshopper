@@ -10,9 +10,9 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 	class TextureResourceManager : IndexActivatablePlatformResourceManager<ITextureResource>, ITextureResourceManager
 	{
 		private readonly DeviceManager _deviceManager;
-		private readonly IFileStore _fileStore;
+		private readonly Lazy<IFileStore> _fileStore;
 
-		public TextureResourceManager(DeviceManager deviceManager, IFileStore fileStore)
+		public TextureResourceManager(DeviceManager deviceManager, Lazy<IFileStore> fileStore)
 		{
 			_deviceManager = deviceManager;
 			_fileStore = fileStore;
@@ -35,7 +35,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 
 		public ITextureResource Create(string id, string path)
 		{
-			var assetSource = _fileStore.GetFile(path);
+			var assetSource = _fileStore.Value.GetFile(path);
 			return Create(id, assetSource);
 		}
 

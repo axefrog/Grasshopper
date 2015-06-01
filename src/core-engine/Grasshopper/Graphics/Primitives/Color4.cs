@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Grasshopper.Graphics
+namespace Grasshopper.Graphics.Primitives
 {
 	/// <summary>
 	/// Represents a color in the form of rgba.

@@ -2,6 +2,7 @@
 using Grasshopper;
 using Grasshopper.Core;
 using Grasshopper.Graphics;
+using Grasshopper.Graphics.Primitives;
 using Grasshopper.SharpDX;
 
 namespace HelloWorld

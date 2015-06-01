@@ -13,7 +13,8 @@ namespace Grasshopper.Platform
 		public void Activate(int index)
 		{
 			if(!IsInitialized)
-				throw new InvalidOperationException("Cannot ");
+				Initialize();
+
 			ActivateAtIndex(index);
 			NotifyAssigned(index);
 		}
