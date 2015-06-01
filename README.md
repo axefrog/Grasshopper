@@ -13,7 +13,7 @@ licensing costs, so it is not my aim to make any money from this, but rather I a
   comfortable with and productive in.
 * I want to learn, and get extremely good at, 3D game programming. The engine is
   named as such because I "have much to learn, grasshopper", in this regard. I
-  will be applying my years of general software engineering experience to build
+  will be applying my general software engineering experience to build
   the best architecture I can, employing good software engineering principles.
 * I want to to approach game development from a minimal, code-first perspective.
   Just a few lines of code should be all I need to start making things happen.
