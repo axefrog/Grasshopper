@@ -1,5 +1,4 @@
 ﻿using Grasshopper;
-using Grasshopper.Graphics;
 using Grasshopper.Graphics.Materials;
 using Grasshopper.Graphics.Primitives;
 using Grasshopper.SharpDX;

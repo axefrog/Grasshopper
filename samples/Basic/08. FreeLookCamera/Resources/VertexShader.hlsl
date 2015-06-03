@@ -47,7 +47,11 @@ VOut VSMain(VIn input)
 	float4x4 rotation = calculateRotationMatrix(input.cubeRotation);
 
 	VOut output;
-	output.position = mul(vertexPosition, rotation) + input.cubePosition;
+	
+	// switch between the following two lines to enable or disable cube rotation
+	output.position = vertexPosition + input.cubePosition;
+	//output.position = mul(vertexPosition, rotation) + input.cubePosition;
+	
 	output.position = mul(mul(output.position, view), projection);
 	output.texcoord = input.texcoord;
 	output.tex = input.tex;

@@ -17,6 +17,10 @@ namespace Grasshopper.Graphics.Rendering
 		bool Visible { get; set; }
 		void SetSize(int width, int height);
 		void SetFullScreen(bool enabled = true, bool windowed = false);
+		bool ShowCursor { get; set; }
+		bool LockCursor { get; set; }
+		void SetCursorPosition(int x, int y);
+		void SetCursorPositionToCenter();
 
 		event AppWindowSimpleEventHandler SizeChanged;
 		bool NextFrame(AppWindowFrameExecutionHandler run);

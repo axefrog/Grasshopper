@@ -71,7 +71,9 @@
     <Compile Include="Graphics\Rendering\IMeshInstanceCollection.cs" />
     <Compile Include="Graphics\SceneManagement\Camera.cs" />
     <Compile Include="Input\IInputContext.cs" />
+    <Compile Include="Input\KeyboardEvent.cs" />
     <Compile Include="Input\MouseEvent.cs" />
+    <Compile Include="Math\Calc.cs" />
     <Compile Include="Platform\ActivatablePlatformResource.cs" />
     <Compile Include="Platform\ActivatablePlatformResourceManager.cs" />
     <Compile Include="Platform\IActivatablePlatformResource.cs" />

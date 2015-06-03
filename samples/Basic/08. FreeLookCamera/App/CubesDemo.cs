@@ -25,12 +25,17 @@ namespace FreeLookCamera.App
 		public CubesDemo(int totalCubes)
 		{
 			_totalCubes = totalCubes;
-			_camera = new Camera(0, 0, -275);
+			_camera = new Camera();
 		}
 
 		public Camera Camera
 		{
 			get { return _camera; }
+		}
+
+		public IAppWindow Window
+		{
+			get { return _renderHost.Window; }
 		}
 
 		public void InitializeResources()
@@ -110,9 +115,9 @@ namespace FreeLookCamera.App
 					// rotation speed
 					var rotS = (rand.Next(190) + 10) / 100.0f;
 					// cube offset from the origin
-					var posX = (rand.Next(10000) - 5000) / 100.0f;
-					var posY = (rand.Next(10000) - 5000) / 100.0f;
-					var posZ = (rand.Next(10000) - 5000) / 100.0f;
+					var posX = (rand.Next(20000) - 10000) / 100.0f;
+					var posY = (rand.Next(20000) - 10000) / 100.0f;
+					var posZ = (rand.Next(20000) - 10000) / 100.0f;
 					// cube size variation
 					var scale = (rand.Next(8) == 0 ? (rand.Next(1500) + 100.0f) : rand.Next(200) + 50.0f) / 100.0f;
 					return new CubeInstance

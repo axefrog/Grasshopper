@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using Grasshopper.Graphics.Rendering;
 using Grasshopper.Input;
@@ -17,6 +18,7 @@ namespace Grasshopper.SharpDX.Graphics
 		private bool _resizable;
 		private int _lastX, _lastY;
 		private bool _lostFocus = true;
+		private bool _ignoreNextMouseMoveEvent;
 
 		public AppWindow(IInputContext input)
 		{
@@ -54,6 +56,12 @@ namespace Grasshopper.SharpDX.Graphics
 
 		private void OnMouseMove(object sender, MouseEventArgs args)
 		{
+			if(_ignoreNextMouseMoveEvent)
+			{
+				_ignoreNextMouseMoveEvent = false;
+				return;
+			}
+
 			int deltaX, deltaY;
 			if(_lostFocus)
 			{
@@ -69,6 +77,9 @@ namespace Grasshopper.SharpDX.Graphics
 			_lastX = args.X;
 			_lastY = args.Y;
 			_input.PostMouseEvent(new MouseEvent(this, deltaX, deltaY, args.X, args.Y));
+			
+			if(LockCursor)
+				SetCursorPositionToCenter();
 		}
 
 		private bool TryGetMouseButton(MouseButtons button, out MouseButton result)
@@ -110,6 +121,19 @@ namespace Grasshopper.SharpDX.Graphics
 			_lastX = args.X;
 			_lastY = args.Y;
 			_input.PostMouseEvent(new MouseEvent(this, args.Delta, _lastX, _lastY));
+		}
+
+		public void SetCursorPosition(int x, int y)
+		{
+			_ignoreNextMouseMoveEvent = true;
+			Cursor.Position = new Point(x, y);
+		}
+
+		public void SetCursorPositionToCenter()
+		{
+			_ignoreNextMouseMoveEvent = true;
+			var loc = _form.PointToScreen(new Point(0, 0));
+			Cursor.Position = new Point(loc.X + ClientWidth / 2, loc.Y + ClientHeight / 2);
 		}
 
 		public event AppWindowSimpleEventHandler SizeChanged;
@@ -199,6 +223,20 @@ namespace Grasshopper.SharpDX.Graphics
 		{
 
 		}
+
+		public bool ShowCursor
+		{
+			get { return Cursor.Current != null; }
+			set
+			{
+				if(value)
+					Cursor.Show();
+				else
+					Cursor.Hide();
+			}
+		}
+
+		public bool LockCursor { get; set; }
 
 		public bool NextFrame()
 		{
