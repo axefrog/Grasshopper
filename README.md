@@ -1,5 +1,8 @@
 # Grasshopper :: Game Engine
 
+* Public Trello board for [features and ongoing development](https://trello.com/b/7Nd9pp9O/grasshopper)
+* Github issues for [reporting bugs and asking questions]
+
 **THIS IS A WORK IN PROGRESS. SERIOUSLY. PRE-PRE-PRE-ALPHA.**
 
 Grasshopper is a code-first game engine written entirely in C# and .Net. There
