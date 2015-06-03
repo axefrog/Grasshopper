@@ -1,7 +1,7 @@
 # Grasshopper :: Game Engine
 
 * Public Trello board for [features and ongoing development](https://trello.com/b/7Nd9pp9O/grasshopper)
-* Github issues for [reporting bugs and asking questions]
+* Github issues for [reporting bugs and asking questions](https://github.com/axefrog/Grasshopper/issues)
 
 **THIS IS A WORK IN PROGRESS. SERIOUSLY. PRE-PRE-PRE-ALPHA.**
 
