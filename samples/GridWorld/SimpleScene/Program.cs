@@ -15,7 +15,7 @@ namespace SimpleScene
 				.UseWindowsFileSystem())
 
 			using(var gfx = app.Graphics.CreateContext())
-			using(var renderer = gfx.RenderHostFactory.CreateWindowed())
+			using(var renderer = gfx.RenderTargetFactory.CreateWindow())
 			{
 				//renderer.Window.Visible = true;
 				//renderer.Window.Title = "Grasshopper Samples / GridWorld / Simple Scene";

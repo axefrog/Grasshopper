@@ -29,6 +29,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="artemis">
       <HintPath>..\..\..\packages\Artemis.1.3.1\lib\net40\artemis.dll</HintPath>
@@ -67,8 +85,23 @@
     <Compile Include="Graphics\Materials\ITextureResource.cs" />
     <Compile Include="Graphics\Materials\ITextureSampler.cs" />
     <Compile Include="Graphics\Materials\ITextureSamplerManager.cs" />
-    <Compile Include="Graphics\Rendering\IConstantBufferResource.cs" />
-    <Compile Include="Graphics\Rendering\IMeshInstanceCollection.cs" />
+    <Compile Include="Graphics\Rendering\Blending\BlendEquation.cs" />
+    <Compile Include="Graphics\Rendering\Blending\BlendSettings.cs" />
+    <Compile Include="Graphics\Rendering\Blending\ColorComponents.cs" />
+    <Compile Include="Graphics\Rendering\Blending\IBlendSettings.cs" />
+    <Compile Include="Graphics\Rendering\Blending\IBlendState.cs" />
+    <Compile Include="Graphics\Rendering\Blending\IBlendStateManager.cs" />
+    <Compile Include="Graphics\Rendering\Blending\PreBlend.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IConstantBufferResource.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceCollection.cs" />
+    <Compile Include="Graphics\Rendering\Rasterization\Antialiasing.cs" />
+    <Compile Include="Graphics\Rendering\Rasterization\IRasterizerSettings.cs" />
+    <Compile Include="Graphics\Rendering\Rasterization\IRasterizerState.cs" />
+    <Compile Include="Graphics\Rendering\Rasterization\IRasterizerStateManager.cs" />
+    <Compile Include="Graphics\Rendering\ITextureDrawingContext.cs" />
+    <Compile Include="Graphics\Rendering\ITextureRenderTarget.cs" />
+    <Compile Include="Graphics\Rendering\Rasterization\TriangleCulling.cs" />
+    <Compile Include="Graphics\Rendering\Rasterization\WindingOrder.cs" />
     <Compile Include="Graphics\SceneManagement\Camera.cs" />
     <Compile Include="Input\IInputContext.cs" />
     <Compile Include="Input\KeyboardEvent.cs" />
@@ -99,12 +132,12 @@
     <Compile Include="Graphics\Primitives\Triangle.cs" />
     <Compile Include="Graphics\Primitives\Vertex.cs" />
     <Compile Include="Graphics\SceneManagement\IMeshGroup.cs" />
-    <Compile Include="Graphics\Rendering\IConstantBufferManager.cs" />
-    <Compile Include="Graphics\Rendering\IConstantBufferManagerFactory.cs" />
-    <Compile Include="Graphics\Rendering\IMeshGroupBufferManager.cs" />
-    <Compile Include="Graphics\Rendering\IMeshInstanceBufferManager.cs" />
-    <Compile Include="Graphics\Rendering\IMeshInstanceBufferManagerFactory.cs" />
-    <Compile Include="Graphics\Rendering\RasterizerSettings.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IConstantBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IConstantBufferManagerFactory.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IMeshGroupBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceBufferManagerFactory.cs" />
+    <Compile Include="Graphics\Rendering\Rasterization\RasterizerSettings.cs" />
     <Compile Include="Graphics\IGraphicsContext.cs" />
     <Compile Include="Graphics\IGraphicsContextFactory.cs" />
     <Compile Include="Graphics\Materials\IMaterialManager.cs" />
@@ -116,14 +149,14 @@
     <Compile Include="Graphics\Materials\ShaderInputElementPurpose.cs" />
     <Compile Include="Graphics\Materials\ShaderInputElementSpec.cs" />
     <Compile Include="Math\Transformation.cs" />
-    <Compile Include="Graphics\Rendering\IRenderHost.cs" />
-    <Compile Include="Graphics\Rendering\IRenderContext.cs" />
-    <Compile Include="Graphics\Rendering\IRenderHostFactory.cs" />
+    <Compile Include="Graphics\Rendering\IRenderTarget.cs" />
+    <Compile Include="Graphics\Rendering\IDrawingContext.cs" />
+    <Compile Include="Graphics\Rendering\IRenderTargetFactory.cs" />
     <Compile Include="Graphics\Materials\ITexture.cs" />
     <Compile Include="Graphics\Materials\ITextureResourceManager.cs" />
     <Compile Include="Graphics\Materials\Material.cs" />
-    <Compile Include="Graphics\Rendering\IWindowRenderHost.cs" />
-    <Compile Include="Graphics\Rendering\IWindowRenderContext.cs" />
+    <Compile Include="Graphics\Rendering\IWindowRenderTarget.cs" />
+    <Compile Include="Graphics\Rendering\IWindowDrawingContext.cs" />
     <Compile Include="Graphics\SceneManagement\Model.cs" />
     <Compile Include="Graphics\SceneManagement\Mesh.cs" />
     <Compile Include="GrasshopperApp.cs" />

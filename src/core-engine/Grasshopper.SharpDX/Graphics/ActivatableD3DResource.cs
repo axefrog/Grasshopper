@@ -7,7 +7,7 @@ using Grasshopper.Platform;
 
 namespace Grasshopper.SharpDX.Graphics
 {
-	abstract class ActivatableD3DResource : ActivatablePlatformResource
+	internal abstract class ActivatableD3DResource : ActivatablePlatformResource
 	{
 		protected DeviceManager DeviceManager { get; private set; }
 

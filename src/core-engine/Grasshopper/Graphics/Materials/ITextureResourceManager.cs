@@ -8,5 +8,6 @@ namespace Grasshopper.Graphics.Materials
 	{
 		ITextureResource Create(string id, string path);
 		ITextureResource Create(string id, IFileSource fileSource);
+		ITextureResource CreateArray(string textureArrayId, params string[] sourceTextureIds);
 	}
 }

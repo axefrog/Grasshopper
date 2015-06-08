@@ -1,6 +1,9 @@
 ﻿using System;
 using Grasshopper.Graphics.Materials;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Graphics.Rendering.Blending;
+using Grasshopper.Graphics.Rendering.Buffers;
+using Grasshopper.Graphics.Rendering.Rasterization;
 
 namespace Grasshopper.Graphics
 {
@@ -12,11 +15,14 @@ namespace Grasshopper.Graphics
 	public interface IGraphicsContext : IDisposable
 	{
 		void Initialize();
-		IRenderHostFactory RenderHostFactory { get; }
 		ITextureResourceManager TextureResourceManager { get; }
 		ITextureSamplerManager TextureSamplerManager { get; }
 		IMaterialManager MaterialManager { get; }
 		IMeshGroupBufferManager MeshGroupBufferManager { get; }
+		IBlendStateManager BlendStateManager { get; }
+		IRasterizerStateManager RasterizerStateManager { get; }
+
+		IRenderTargetFactory RenderTargetFactory { get; }
 		IMeshInstanceBufferManagerFactory MeshInstanceBufferManagerFactory { get; }
 		IConstantBufferManagerFactory ConstantBufferManagerFactory { get; }
 	}

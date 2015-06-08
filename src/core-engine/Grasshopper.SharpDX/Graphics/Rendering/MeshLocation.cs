@@ -1,15 +1,18 @@
-﻿namespace Grasshopper.SharpDX.Graphics.Rendering
+﻿using Grasshopper.Graphics.Rendering;
+
+namespace Grasshopper.SharpDX.Graphics.Rendering
 {
 	/// <summary>
 	/// Represents location information required to draw a specific mesh stored within a packed vertex buffer
 	/// </summary>
 	public class MeshLocation
 	{
-		public MeshLocation(int indexCount, int vertexBufferOffset, int indexBufferOffset)
+		public MeshLocation(int indexCount, int vertexBufferOffset, int indexBufferOffset, DrawType drawType)
 		{
 			IndexCount = indexCount;
 			VertexBufferOffset = vertexBufferOffset;
 			IndexBufferOffset = indexBufferOffset;
+			DrawType = drawType;
 		}
 
 		/// <summary>
@@ -24,5 +27,9 @@
 		/// The position of the vertex index representing this mesh's triangles in the buffer
 		/// </summary>
 		public int IndexBufferOffset { get; private set; }
+		/// <summary>
+		/// The type of graphics primitives to draw
+		/// </summary>
+		public DrawType DrawType { get; set; }
 	}
 }

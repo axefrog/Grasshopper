@@ -47,6 +47,10 @@ namespace Grasshopper.SharpDX.Graphics
 				handler();
 		}
 
+		public void GetDeviceCapabilities()
+		{
+		}
+
 		private void DestroyResources()
 		{
 			IsInitialized = false;

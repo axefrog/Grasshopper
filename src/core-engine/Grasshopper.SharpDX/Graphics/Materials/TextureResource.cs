@@ -1,15 +1,11 @@
-﻿using Grasshopper.Graphics;
-using Grasshopper.Graphics.Materials;
-using Grasshopper.Platform;
+﻿using Grasshopper.Platform;
 using SharpDX.Direct3D11;
 
 namespace Grasshopper.SharpDX.Graphics.Materials
 {
-	class TextureResource : IndexActivatableD3DResource, ITextureResource
+	class TextureResource : D3DTextureResource
 	{
 		private IFileSource _fileSource;
-
-		public ShaderResourceView ShaderResourceView { get; private set; }
 
 		public TextureResource(DeviceManager deviceManager, string id) : base(deviceManager, id)
 		{

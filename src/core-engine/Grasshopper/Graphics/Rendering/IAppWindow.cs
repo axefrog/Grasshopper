@@ -13,10 +13,9 @@ namespace Grasshopper.Graphics.Rendering
 		string Title { get; set; }
 		bool Resizable { get; set; }
 		bool ShowBordersAndTitle { get; set; }
-		bool PreferWindowedFullScreen { get; set; }
 		bool Visible { get; set; }
 		void SetSize(int width, int height);
-		void SetFullScreen(bool enabled = true, bool windowed = false);
+		void SetFullScreen(bool enabled = true);
 		bool ShowCursor { get; set; }
 		bool LockCursor { get; set; }
 		void SetCursorPosition(int x, int y);
@@ -25,6 +24,9 @@ namespace Grasshopper.Graphics.Rendering
 		event AppWindowSimpleEventHandler SizeChanged;
 		bool NextFrame(AppWindowFrameExecutionHandler run);
 		bool NextFrame();
+		void SetWindowMaximized();
+		void SetWindowNormalSize();
+		void SetWindowMinimized();
 	}
 
 	public delegate void AppWindowSimpleEventHandler(IAppWindow win);

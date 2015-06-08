@@ -1,4 +1,5 @@
 ﻿using Grasshopper.Graphics.Rendering;
+using Grasshopper.Graphics.Rendering.Buffers;
 using SharpDX.D3DCompiler;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering

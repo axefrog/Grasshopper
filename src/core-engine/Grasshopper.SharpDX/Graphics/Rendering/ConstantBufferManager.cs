@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Graphics.Rendering.Buffers;
 using Grasshopper.Platform;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering

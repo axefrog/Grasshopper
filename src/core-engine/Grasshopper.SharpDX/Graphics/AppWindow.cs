@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Grasshopper.Graphics.Rendering;
@@ -199,8 +198,7 @@ namespace Grasshopper.SharpDX.Graphics
 			}
 		}
 
-		// todo: implement fullscreen rendering (will require alt-enter handling)
-		public bool PreferWindowedFullScreen { get; set; }
+		public bool IsFullScreen { get; private set; }
 
 		public bool Visible
 		{
@@ -219,9 +217,19 @@ namespace Grasshopper.SharpDX.Graphics
 			Height = height;
 		}
 
-		public void SetFullScreen(bool enabled = true, bool windowed = false)
+		public void SetFullScreen(bool enabled = true)
 		{
-
+			if(enabled)
+			{
+				Form.WindowState = FormWindowState.Normal;
+				ShowBordersAndTitle = false;
+				Form.WindowState = FormWindowState.Maximized;
+			}
+			else
+			{
+				Form.WindowState = FormWindowState.Normal;
+				ShowBordersAndTitle = true;
+			}
 		}
 
 		public bool ShowCursor
@@ -241,6 +249,21 @@ namespace Grasshopper.SharpDX.Graphics
 		public bool NextFrame()
 		{
 			return _renderLoop.NextFrame();
+		}
+
+		public void SetWindowMaximized()
+		{
+			_form.WindowState = FormWindowState.Maximized;
+		}
+
+		public void SetWindowMinimized()
+		{
+			_form.WindowState = FormWindowState.Minimized;
+		}
+
+		public void SetWindowNormalSize()
+		{
+			_form.WindowState = FormWindowState.Normal;
 		}
 
 		public bool NextFrame(AppWindowFrameExecutionHandler run)

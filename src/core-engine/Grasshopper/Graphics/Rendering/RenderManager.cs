@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Materials;
+using Grasshopper.Graphics.SceneManagement;
 
 namespace Grasshopper.Graphics.Rendering
 {

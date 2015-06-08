@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Primitives;
+using Grasshopper.Graphics.Rendering;
+using Grasshopper.Graphics.SceneManagement;
 using SharpDX;
+using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
 using Buffer = SharpDX.Direct3D11.Buffer;
@@ -72,7 +74,7 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 				int vbOffset = 0, ibOffset = 0;
 				foreach(var mesh in this)
 				{
-					_locations.Add(mesh.Id, new MeshLocation(mesh.Indices.Length, vbOffset, ibOffset));
+					_locations.Add(mesh.Id, new MeshLocation(mesh.Indices.Length, vbOffset, ibOffset, mesh.DrawType));
 					foreach(var vertex in mesh.Vertices)
 						vertexBufferStream.Write(vertex);
 					foreach(var index in mesh.Indices)
@@ -123,15 +125,41 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 			DeviceManager.Context.InputAssembler.SetIndexBuffer(IndexBuffer, Format.R32_UInt, 0);
 		}
 
+		private void SetDrawType(DrawType drawType)
+		{
+			switch(drawType)
+			{
+				case DrawType.Points:
+					DeviceManager.Context.InputAssembler.PrimitiveTopology = PrimitiveTopology.PointList;
+					break;
+				case DrawType.LineList:
+					DeviceManager.Context.InputAssembler.PrimitiveTopology = PrimitiveTopology.LineList;
+					break;
+				case DrawType.LineStrip:
+					DeviceManager.Context.InputAssembler.PrimitiveTopology = PrimitiveTopology.LineStrip;
+					break;
+				case DrawType.Triangles:
+					DeviceManager.Context.InputAssembler.PrimitiveTopology = PrimitiveTopology.TriangleList;
+					break;
+				case DrawType.TriangleStrip:
+					DeviceManager.Context.InputAssembler.PrimitiveTopology = PrimitiveTopology.TriangleStrip;
+					break;
+				default:
+					throw new NotSupportedException("Unexpected draw type: " + drawType);
+			}
+		}
+
 		public void Draw(string id)
 		{
 			var loc = this[id];
+			SetDrawType(loc.DrawType);
 			DeviceManager.Context.DrawIndexed(loc.IndexCount, loc.IndexBufferOffset, loc.VertexBufferOffset);
 		}
 
 		public void DrawInstanced(string id, int count)
 		{
 			var loc = this[id];
+			SetDrawType(loc.DrawType);
 			DeviceManager.Context.DrawIndexedInstanced(loc.IndexCount, count, loc.IndexBufferOffset, loc.VertexBufferOffset, 0);
 		}
 	}

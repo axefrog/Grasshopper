@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using Grasshopper.Graphics;
 using Grasshopper.Graphics.Materials;
 using Grasshopper.Platform;
+using SharpDX.Direct3D11;
 
 namespace Grasshopper.SharpDX.Graphics.Materials
 {
@@ -27,7 +29,7 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 		{
 			_deviceManager.Context.PixelShader.SetShaderResources(firstIndex, resources.Select((r, i) =>
 			{
-				var texture = (TextureResource)r;
+				var texture = (D3DTextureResource)r;
 				texture.SetActivatedExternally(firstIndex + i);
 				return texture.ShaderResourceView;
 			}).ToArray());
@@ -41,11 +43,28 @@ namespace Grasshopper.SharpDX.Graphics.Materials
 
 		public ITextureResource Create(string id, IFileSource fileSource)
 		{
-			return CreateAndAdd(id, texture =>
+			return CreateAndAdd(id, resource =>
 			{
+				var texture = (TextureResource)resource;
 				texture.SetFileSource(fileSource);
 				texture.Initialize();
 			});
+		}
+
+		public ITextureResource CreateArray(string textureArrayId, params string[] sourceTextureIds)
+		{
+			var textureArrayResource = (TextureArrayResource)CreateAndAttachEventHandlers(textureArrayId, resid => new TextureArrayResource(_deviceManager, resid));
+			var textures = sourceTextureIds.Select(id =>
+			{
+				var sourceTexture = this[id] as TextureResource;
+				if(sourceTexture == null)
+					throw new InvalidOperationException(string.Format("Texture resource '{0}' cannot be used in a texture array as it is of type {1}", textureArrayId, this[id].GetType().FullName));
+				return sourceTexture;
+			});
+			textureArrayResource.SetTextures(textures);
+			textureArrayResource.Initialize();
+			AddAndNotifySubscribers(textureArrayResource);
+			return textureArrayResource;
 		}
 	}
 }

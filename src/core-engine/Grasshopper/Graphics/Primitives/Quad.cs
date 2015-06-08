@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Grasshopper.Graphics.Geometry;
+using Grasshopper.Graphics.SceneManagement;
 
 namespace Grasshopper.Graphics.Primitives
 {

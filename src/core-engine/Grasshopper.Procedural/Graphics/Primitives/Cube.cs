@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Grasshopper.Graphics;
-using Grasshopper.Graphics.Geometry;
 using Grasshopper.Graphics.Primitives;
+using Grasshopper.Graphics.SceneManagement;
 
 namespace Grasshopper.Procedural.Graphics.Primitives
 {
@@ -26,7 +26,7 @@ namespace Grasshopper.Procedural.Graphics.Primitives
 			var right  = Quad.YZ(-0.5f,  0.5f,  0.5f, -0.5f,  0.5f, b, e, h, c);
 			
 			var top    = Quad.XZ(-0.5f,  0.5f,  0.5f, -0.5f,  0.5f, f, e, b, a);
-			var bottom = Quad.XZ( 0.5f, -0.5f,  0.5f, -0.5f, -0.5f, d, c, e, f);
+			var bottom = Quad.XZ(-0.5f,  0.5f, -0.5f,  0.5f, -0.5f, d, c, e, f);
 
 			return new Mesh(id, new[] { front, back, left, right, top, bottom }.SelectMany(m => m));
 		}

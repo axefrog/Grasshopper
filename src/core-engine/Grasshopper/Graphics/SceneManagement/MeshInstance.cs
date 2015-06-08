@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Artemis.Interface;
 using Grasshopper.Math;
 
-namespace Grasshopper.Graphics.Geometry
+namespace Grasshopper.Graphics.SceneManagement
 {
 	public class MeshInstance : IComponent
 	{

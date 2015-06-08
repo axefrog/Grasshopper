@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Grasshopper.Graphics.Rendering;
+﻿using System.Collections.Generic;
 using Grasshopper.Platform;
 
-namespace Grasshopper.Graphics.Geometry
+namespace Grasshopper.Graphics.SceneManagement
 {
 	public interface IMeshGroup : IActivatablePlatformResource, IEnumerable<Mesh>
 	{

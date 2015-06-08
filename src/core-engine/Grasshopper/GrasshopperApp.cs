@@ -11,6 +11,7 @@ namespace Grasshopper
 	public class GrasshopperApp : IDisposable
 	{
 		private DateTime _startTime;
+		private bool _exiting;
 
 		public GrasshopperApp()
 		{
@@ -23,14 +24,14 @@ namespace Grasshopper
 		public TimeSpan Elapsed { get { return DateTime.UtcNow - _startTime; } }
 		public float ElapsedSeconds { get { return (float)(DateTime.UtcNow - _startTime).TotalSeconds; } }
 
-		public void Run<TRendererContext>(IRenderHost<TRendererContext> renderHost, RenderFrameHandler<TRendererContext> main)
-			where TRendererContext : IRenderContext
+		public void Run<TRendererContext>(IRenderTarget<TRendererContext> renderTarget, RenderFrameHandler<TRendererContext> main)
+			where TRendererContext : IDrawingContext
 		{
 			_startTime = DateTime.UtcNow;
 			using(var ev = new AutoResetEvent(false))
-				while(!renderHost.ExitRequested)
+				while(!renderTarget.Terminated && !_exiting)
 				{
-					renderHost.Render(main);
+					renderTarget.Render(main);
 					ev.WaitOne(1);
 				}
 		}
@@ -39,8 +40,13 @@ namespace Grasshopper
 		{
 			_startTime = DateTime.UtcNow;
 			TickCounter = new TickCounter();
-			while(main())
+			while(main() && !_exiting)
 				TickCounter.Tick();
+		}
+
+		public void Exit()
+		{
+			_exiting = true;
 		}
 
 		public virtual void Dispose()

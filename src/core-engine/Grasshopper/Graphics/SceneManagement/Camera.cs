@@ -28,7 +28,7 @@ namespace Grasshopper.Graphics.SceneManagement
 			_farPlane = farPlane;
 		}
 
-		public Camera() : this(Vector3.Zero, Vector3.UnitZ, Vector3.UnitY)
+		public Camera() : this(Vector3.UnitZ, -Vector3.UnitZ, Vector3.UnitY)
 		{
 		}
 

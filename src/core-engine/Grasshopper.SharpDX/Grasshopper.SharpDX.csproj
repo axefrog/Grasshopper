@@ -32,6 +32,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <SharpDXDirectXVersion>DirectX11_2</SharpDXDirectXVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpDX">
       <HintPath>$(SharpDXPackageBinDir)\SharpDX.dll</HintPath>
@@ -76,6 +96,10 @@
   <ItemGroup>
     <Compile Include="Graphics\ActivatableD3DResource.cs" />
     <Compile Include="Graphics\AppWindow.cs" />
+    <Compile Include="Graphics\Materials\D3DTextureResource.cs" />
+    <Compile Include="Graphics\Materials\TextureArrayResource.cs" />
+    <Compile Include="Graphics\Rendering\BlendStateManager.cs" />
+    <Compile Include="Graphics\Rendering\BlendState.cs" />
     <Compile Include="Graphics\IndexActivatableD3DResource.cs" />
     <Compile Include="Graphics\Materials\D3DMaterial.cs" />
     <Compile Include="Graphics\Materials\TextureSampler.cs" />
@@ -89,18 +113,25 @@
     <Compile Include="Graphics\Rendering\MeshInstanceBufferManager.cs" />
     <Compile Include="Graphics\Rendering\MeshInstanceBufferManagerFactory.cs" />
     <Compile Include="Graphics\Rendering\MeshLocation.cs" />
+    <Compile Include="Graphics\Rendering\RasterizerState.cs" />
+    <Compile Include="Graphics\Rendering\RasterizerStateManager.cs" />
     <Compile Include="Graphics\Rendering\RenderManager.cs" />
     <Compile Include="Graphics\GraphicsContext.cs" />
     <Compile Include="Graphics\DeviceManager.cs" />
     <Compile Include="Graphics\GraphicsContextFactory.cs" />
     <Compile Include="Graphics\Materials\MaterialManager.cs" />
-    <Compile Include="Graphics\Rendering\RenderHost.cs" />
-    <Compile Include="Graphics\Rendering\RenderContext.cs" />
-    <Compile Include="Graphics\Rendering\RenderHostFactory.cs" />
+    <Compile Include="Graphics\Rendering\RenderTarget.cs" />
+    <Compile Include="Graphics\Rendering\DrawingContext.cs" />
+    <Compile Include="Graphics\Rendering\RenderTargetFactory.cs" />
     <Compile Include="Graphics\Materials\TextureResource.cs" />
     <Compile Include="Graphics\Materials\TextureResourceManager.cs" />
-    <Compile Include="Graphics\Rendering\WindowRenderHost.cs" />
-    <Compile Include="Graphics\Rendering\WindowRenderContext.cs" />
+    <Compile Include="Graphics\Rendering\Internal\TextureBuffer.cs" />
+    <Compile Include="Graphics\Rendering\WindowRenderTarget.cs" />
+    <Compile Include="Graphics\Rendering\WindowDrawingContext.cs" />
+    <Compile Include="Graphics\Rendering\Internal\DepthBuffer.cs" />
+    <Compile Include="Graphics\Rendering\Internal\WindowTextureBuffer.cs" />
+    <Compile Include="Graphics\TextureDrawingContext.cs" />
+    <Compile Include="Graphics\TextureRenderTarget.cs" />
     <Compile Include="Input\InputContext.cs" />
     <Compile Include="SharpDXBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

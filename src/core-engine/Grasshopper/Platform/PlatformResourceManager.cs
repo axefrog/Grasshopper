@@ -33,12 +33,14 @@ namespace Grasshopper.Platform
 
 		protected abstract T CreateResource(string id);
 
-		protected T CreateAndAttachEventHandlers(string id)
+		protected T CreateAndAttachEventHandlers(string id, Func<string, T> createResource = null)
 		{
 			if(_resources.ContainsKey(id))
 				throw new ArgumentException("A resource with the id '" + id + "' has already been added");
 
-			var resource = CreateResource(id);
+			if(createResource == null)
+				createResource = CreateResource;
+			var resource = createResource(id);
 
 			resource.Initialized += OnResourceInitialized;
 			resource.Uninitialized += OnResourceUninitialized;

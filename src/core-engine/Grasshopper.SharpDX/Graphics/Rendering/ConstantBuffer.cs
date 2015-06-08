@@ -1,4 +1,5 @@
 ﻿using Grasshopper.Graphics.Rendering;
+using Grasshopper.Graphics.Rendering.Buffers;
 using SharpDX;
 using SharpDX.Direct3D11;
 using Buffer = SharpDX.Direct3D11.Buffer;
