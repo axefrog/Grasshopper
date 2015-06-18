@@ -10,6 +10,14 @@ are various commercial game engines out there that have extremely negligible
 licensing costs, so it is not my aim to make any money from this, but rather I am
 "scratching my own itch", so to speak. My motivations for doing this are below.
 
+### Animated gifs of some of the samples
+
+![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cube-rainbow.gif)
+![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cube.gif)
+![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cubes-rainbow.gif)
+![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cubes.gif)
+![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cubes-freelook.gif)
+
 ### Goals
 
 * I want to work on my various game ideas in a coding environment I am both
