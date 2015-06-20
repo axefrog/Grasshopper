@@ -84,8 +84,9 @@
   <ItemGroup>
     <Compile Include="Graphics\IDeviceManager.cs" />
     <Compile Include="Graphics\Rendering\Buffers\IndexBufferInterfaces.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\MeshGroupBufferManager.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\ResourceUsage.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\MeshBuffer.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\MeshBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\MeshLocation.cs" />
     <Compile Include="Graphics\Rendering\Buffers\VertexBufferInterfaces.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Graphics\Materials\ITextureResource.cs" />
@@ -99,7 +100,6 @@
     <Compile Include="Graphics\Rendering\Blending\IBlendStateManager.cs" />
     <Compile Include="Graphics\Rendering\Blending\PreBlend.cs" />
     <Compile Include="Graphics\Rendering\Buffers\ConstantBufferInterfaces.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceCollection.cs" />
     <Compile Include="Graphics\Rendering\Rasterization\Antialiasing.cs" />
     <Compile Include="Graphics\Rendering\Rasterization\IRasterizerSettings.cs" />
     <Compile Include="Graphics\Rendering\Rasterization\IRasterizerState.cs" />
@@ -137,10 +137,6 @@
     <Compile Include="Graphics\Primitives\TextureCoordinate.cs" />
     <Compile Include="Graphics\Primitives\Triangle.cs" />
     <Compile Include="Graphics\Primitives\VertexPosColTex.cs" />
-    <Compile Include="Graphics\SceneManagement\IMeshGroup.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\IMeshGroupBufferManager.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceBufferManager.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceBufferManagerFactory.cs" />
     <Compile Include="Graphics\Rendering\Rasterization\RasterizerSettings.cs" />
     <Compile Include="Graphics\IGraphicsContext.cs" />
     <Compile Include="Graphics\IGraphicsContextFactory.cs" />

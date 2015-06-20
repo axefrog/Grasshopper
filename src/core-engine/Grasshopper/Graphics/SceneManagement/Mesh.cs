@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using Grasshopper.Graphics.Primitives;
 using Grasshopper.Graphics.Rendering;
-using Grasshopper.Graphics.Rendering.Buffers;
 
 namespace Grasshopper.Graphics.SceneManagement
 {
-	public class Mesh<T> : IMesh<T> where T : struct
+	public class Mesh<T> where T : struct
 	{
 		public string Id { get; private set; }
 		public T[] Vertices { get; private set; }
