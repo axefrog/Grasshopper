@@ -4,7 +4,7 @@ using System.Linq;
 namespace Grasshopper.Platform
 {
 	public abstract class ActivatablePlatformResourceManager<T> : PlatformResourceManager<T>, IActivatablePlatformResourceManager<T>
-		where T : class, IActivatablePlatformResource
+		where T : IActivatablePlatformResource
 	{
 		protected ActivatablePlatformResourceManager()
 		{
@@ -27,9 +27,11 @@ namespace Grasshopper.Platform
 
 		public event ActivatablePlatformResourceEventHandler<T> ResourceActivated;
 
-		public void Activate(string id)
+		public T Activate(string id)
 		{
-			this[id].Activate();
+			var resource = this[id];
+			resource.Activate();
+			return resource;
 		}
 
 		public void Activate(params string[] ids)

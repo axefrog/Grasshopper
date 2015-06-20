@@ -11,7 +11,11 @@ namespace Grasshopper.Graphics.Rendering
 	public interface IDrawingContext : IDisposable
 	{
 		void Activate();
-
+		void SetDrawType(DrawType drawType);
+		void DrawIndexed(int indexCount, int indexStartLocation, int vertexStartLocation);
+		void DrawIndexedInstanced(int indexCountPerInstance, int instanceCount, int indexStartLocation, int vertexStartLocation, int instanceStartLocation);
 		void Clear(Color color);
+		void Draw(int vertexCount, int vertexStartLocation);
+		void DrawInstanced(int vertexCount, int instanceCount, int vertexStartLocation, int instanceStartLocation);
 	}
 }

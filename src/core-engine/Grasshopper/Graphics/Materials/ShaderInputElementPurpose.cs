@@ -14,7 +14,7 @@ namespace Grasshopper.Graphics.Materials
 
 	public static class ShaderInputElementPurposeExtensions
 	{
-		public static ShaderInputElementSpec Spec(this ShaderInputElementPurpose purpose)
+		public static ShaderInputElementSpec CreateSpec(this ShaderInputElementPurpose purpose)
 		{
 			switch(purpose)
 			{

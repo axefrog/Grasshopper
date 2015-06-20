@@ -15,8 +15,6 @@ struct VIn
 {
 	float4 position: POSITION;
 	float4 color: COLOR;
-	float2 texcoord: TEXCOORD;
-	float2 pad: PADDING0;
 
 	// instance data
 	float4 cubePosition: CUSTOM0;

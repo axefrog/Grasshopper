@@ -31,6 +31,11 @@ namespace Grasshopper.Graphics.Primitives
 		/// </summary>
 		public float Alpha;
 
+		public static implicit operator Color4(Color color)
+		{
+			return color.ToColor4();
+		}
+
 		public bool Equals(Color4 other)
 		{
 			return Red.Equals(other.Red) && Green.Equals(other.Green) && Blue.Equals(other.Blue) && Alpha.Equals(other.Alpha);

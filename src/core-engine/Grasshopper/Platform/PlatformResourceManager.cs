@@ -6,7 +6,7 @@ using System.Linq;
 namespace Grasshopper.Platform
 {
 	public abstract class PlatformResourceManager<T> : IPlatformResourceManager<T>
-		where T : class, IPlatformResource
+		where T : IPlatformResource
 	{
 		private readonly Dictionary<string, T> _resources = new Dictionary<string, T>();
 
@@ -69,7 +69,7 @@ namespace Grasshopper.Platform
 		public T Remove(string id)
 		{
 			if(!_resources.ContainsKey(id))
-				return null;
+				return default(T);
 
 			var resource = _resources[id];
 			_resources.Remove(id);
@@ -117,6 +117,8 @@ namespace Grasshopper.Platform
 		public event PlatformResourceEventHandler<T> ResourceInitialized;
 		public event PlatformResourceEventHandler<T> ResourceUninitialized;
 		public event PlatformResourceEventHandler<T> ResourceDisposed;
+		public event Action Disposing;
+		public event Action Disposed;
 
 		private void OnResourceInitialized(IPlatformResource resource)
 		{
@@ -142,9 +144,17 @@ namespace Grasshopper.Platform
 
 		public virtual void Dispose()
 		{
+			var handler = Disposing;
+			if(handler != null)
+				handler();
+			
 			foreach(var resource in _resources.Values.ToArray())
 				resource.Dispose();
 			_resources.Clear();
+			
+			handler = Disposed;
+			if(handler != null)
+				handler();
 		}
 	}
 }

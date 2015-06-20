@@ -94,17 +94,17 @@
       <Project>{52ef737e-aefb-485f-97dd-97e3fa4b9ba7}</Project>
       <Name>Grasshopper.Procedural</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
-      <Project>{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}</Project>
-      <Name>Grasshopper.SharpDX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\core-engine\Grasshopper.WindowsFileSystem\Grasshopper.WindowsFileSystem.csproj">
-      <Project>{3ADEE464-3DFB-49F7-B8F5-D0B4CFB2A4D2}</Project>
-      <Name>Grasshopper.WindowsFileSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\src\core-engine\Grasshopper\Grasshopper.csproj">
       <Project>{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}</Project>
       <Name>Grasshopper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\platform\Grasshopper.SharpDX\Grasshopper.SharpDX.csproj">
+      <Project>{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A}</Project>
+      <Name>Grasshopper.SharpDX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\platform\Grasshopper.WindowsFileSystem\Grasshopper.WindowsFileSystem.csproj">
+      <Project>{3ADEE464-3DFB-49F7-B8F5-D0B4CFB2A4D2}</Project>
+      <Name>Grasshopper.WindowsFileSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

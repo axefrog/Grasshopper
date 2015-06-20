@@ -2,13 +2,30 @@
 using System.Collections.Generic;
 using Grasshopper.Graphics.Primitives;
 using Grasshopper.Graphics.Rendering;
+using Grasshopper.Graphics.Rendering.Buffers;
 
 namespace Grasshopper.Graphics.SceneManagement
 {
+	public class Mesh<T> : IMesh<T> where T : struct
+	{
+		public string Id { get; private set; }
+		public T[] Vertices { get; private set; }
+		public uint[] Indices { get; private set; }
+		public DrawType DrawType { get; private set; }
+
+		public Mesh(string id, T[] vertices, uint[] indices, DrawType drawType)
+		{
+			Id = id;
+			Vertices = vertices;
+			Indices = indices;
+			DrawType = drawType;
+		}
+	}
+
 	public class Mesh
 	{
 		public string Id { get; private set; }
-		public Vertex[] Vertices { get; private set; }
+		public VertexPosColTex[] Vertices { get; private set; }
 		public uint[] Indices { get; private set; }
 		public DrawType DrawType { get; private set; }
 
@@ -36,8 +53,8 @@ namespace Grasshopper.Graphics.SceneManagement
 
 		private Mesh ReadTriangles(IEnumerable<Triangle> triangles)
 		{
-			var map = new Dictionary<Vertex, uint>();
-			var vertices = new List<Vertex>();
+			var map = new Dictionary<VertexPosColTex, uint>();
+			var vertices = new List<VertexPosColTex>();
 			var indices = new List<uint>();
 
 			foreach(var triangle in triangles)

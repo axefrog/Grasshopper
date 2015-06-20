@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Grasshopper.Platform
 {
 	public interface IIndexActivatablePlatformResourceManager<T> : IPlatformResourceManager<T>
-		where T : class, IIndexActivatablePlatformResource
+		where T : IIndexActivatablePlatformResource
 	{
 		event AssignablePlatformResourceEventHandler<T> ResourceAssigned;
 		void Activate(int index, string id);

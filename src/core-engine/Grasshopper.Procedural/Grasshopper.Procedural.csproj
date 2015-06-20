@@ -63,6 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graphics\Primitives\Cube.cs" />
+    <Compile Include="Graphics\Primitives\CubeBuilder.cs" />
+    <Compile Include="Graphics\Primitives\QuadBuilder.cs" />
+    <Compile Include="Graphics\Primitives\TriangleBuilder.cs" />
+    <Compile Include="Graphics\Primitives\VertexMetadata.cs" />
+    <Compile Include="Graphics\Primitives\VertexMetadataExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +78,9 @@
       <Project>{58C365BD-0CB3-45C5-96D8-8DDFBFFA3E0A}</Project>
       <Name>Grasshopper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -16,10 +16,10 @@ namespace Grasshopper.Platform
 				Initialize();
 
 			ActivateAtIndex(index);
-			NotifyAssigned(index);
+			NotifyActivated(index);
 		}
 
-		protected void NotifyAssigned(int index)
+		protected void NotifyActivated(int index)
 		{
 			var handler = Activated;
 			if(handler != null)
@@ -30,7 +30,7 @@ namespace Grasshopper.Platform
 		
 		public void SetActivatedExternally(int index)
 		{
-			NotifyAssigned(index);
+			NotifyActivated(index);
 		}
 	}
 }

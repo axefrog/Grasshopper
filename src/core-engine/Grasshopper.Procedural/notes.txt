@@ -1,0 +1,9 @@
+﻿## Note about procedural generation and custom vertex formats
+
+When generating procedural meshes, we could be using any combination of
+different vertex elements depending on our needs. A generic procedural
+generator can't know in advance what our vertex requirements are, and must
+therefore generate an intermediate object which we can convert to our custom
+vertex format. The intermediate object will contain all the information that
+we might want about each vertex, and we can select the elements we want when
+we perform the conversion to our preferred vertex format.

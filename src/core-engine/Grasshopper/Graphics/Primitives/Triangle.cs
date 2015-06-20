@@ -5,25 +5,33 @@ using System.Runtime.InteropServices;
 namespace Grasshopper.Graphics.Primitives
 {
 	[StructLayout(LayoutKind.Sequential)]
-	public struct Triangle : IEnumerable<Vertex>
+	public struct Triangle<T> where T : struct
 	{
-		public readonly Vertex A;
-		public readonly Vertex B;
-		public readonly Vertex C;
+		public readonly T A;
+		public readonly T B;
+		public readonly T C;
+	}
 
-		public Triangle(Vertex a, Vertex b, Vertex c)
+	[StructLayout(LayoutKind.Sequential)]
+	public struct Triangle : IEnumerable<VertexPosColTex>
+	{
+		public readonly VertexPosColTex A;
+		public readonly VertexPosColTex B;
+		public readonly VertexPosColTex C;
+
+		public Triangle(VertexPosColTex a, VertexPosColTex b, VertexPosColTex c)
 		{
 			A = a;
 			B = b;
 			C = c;
 		}
 
-		public static Triangle From(Vertex a, Vertex b, Vertex c)
+		public static Triangle From(VertexPosColTex a, VertexPosColTex b, VertexPosColTex c)
 		{
 			return new Triangle(a, b, c);
 		}
 
-		public IEnumerator<Vertex> GetEnumerator()
+		public IEnumerator<VertexPosColTex> GetEnumerator()
 		{
 			yield return A;
 			yield return B;

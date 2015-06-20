@@ -4,7 +4,7 @@ using System.Linq;
 namespace Grasshopper.Platform
 {
 	public abstract class IndexActivatablePlatformResourceManager<T> : PlatformResourceManager<T>, IIndexActivatablePlatformResourceManager<T>
-		where T : class, IIndexActivatablePlatformResource
+		where T : IIndexActivatablePlatformResource
 	{
 		public event AssignablePlatformResourceEventHandler<T> ResourceAssigned;
 

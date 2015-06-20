@@ -6,11 +6,8 @@ struct VOut
 
 struct VIn
 {
-	// Standard vertex layout specified internally by Grasshopper engine
-	float4 position: POSITION0;
-	float4 color: COLOR0;
-	float2 texcoord: TEXCOORD0;
-	float2 _pad: PADDING0;
+	float4 position: POSITION;
+	float4 color: COLOR;
 };
 
 VOut VSMain(VIn input)

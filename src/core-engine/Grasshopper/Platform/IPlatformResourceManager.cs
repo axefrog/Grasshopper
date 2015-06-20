@@ -7,7 +7,7 @@ namespace Grasshopper.Platform
 	/// Represents a library of IPlatformResources of a given type
 	/// </summary>
 	public interface IPlatformResourceManager<T> : IEnumerable<T>, IDisposable
-		where T : class, IPlatformResource
+		where T : IPlatformResource
 	{
 		/// <summary>
 		/// Removes the resource from control by the resource manager, but does not uninitialize or dispose it.
@@ -30,6 +30,8 @@ namespace Grasshopper.Platform
 		event PlatformResourceEventHandler<T> ResourceInitialized;
 		event PlatformResourceEventHandler<T> ResourceUninitialized;
 		event PlatformResourceEventHandler<T> ResourceDisposed;
+		event Action Disposing;
+		event Action Disposed;
 	}
 
 	public delegate void PlatformResourceEventHandler<T>(T resource) where T : IPlatformResource;

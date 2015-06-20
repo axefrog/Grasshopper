@@ -15,15 +15,16 @@ namespace Grasshopper.Graphics
 	public interface IGraphicsContext : IDisposable
 	{
 		void Initialize();
+		IDeviceManager DeviceManager { get; }
 		ITextureResourceManager TextureResourceManager { get; }
 		ITextureSamplerManager TextureSamplerManager { get; }
 		IMaterialManager MaterialManager { get; }
-		IMeshGroupBufferManager MeshGroupBufferManager { get; }
 		IBlendStateManager BlendStateManager { get; }
 		IRasterizerStateManager RasterizerStateManager { get; }
 
 		IRenderTargetFactory RenderTargetFactory { get; }
-		IMeshInstanceBufferManagerFactory MeshInstanceBufferManagerFactory { get; }
+		IVertexBufferManagerFactory VertexBufferManagerFactory { get; }
+		IIndexBufferManagerFactory IndexBufferManagerFactory { get; }
 		IConstantBufferManagerFactory ConstantBufferManagerFactory { get; }
 	}
 }

@@ -115,10 +115,8 @@ namespace Grasshopper.Graphics.SceneManagement
 		{
 			get
 			{
-				if(!_view.HasValue || !_world.HasValue)
-				{
+				if(!_view.HasValue)
 					_view = Matrix4x4.CreateLookAt(_position, _position + _direction, _up);
-				}
 				return _view.Value;
 			}
 		}
@@ -158,7 +156,7 @@ namespace Grasshopper.Graphics.SceneManagement
 			get
 			{
 				if(!_worldViewProj.HasValue)
-					_worldViewProj = WorldMatrix * WorldViewProjectionMatrix;
+					_worldViewProj = WorldMatrix * ViewProjectionMatrix;
 				return _worldViewProj.Value;
 			}
 		}

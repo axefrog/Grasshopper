@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphics\IDeviceManager.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\IndexBufferInterfaces.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\MeshGroupBufferManager.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\ResourceUsage.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\VertexBufferInterfaces.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Graphics\Materials\ITextureResource.cs" />
     <Compile Include="Graphics\Materials\ITextureSampler.cs" />
     <Compile Include="Graphics\Materials\ITextureSamplerManager.cs" />
@@ -92,7 +98,7 @@
     <Compile Include="Graphics\Rendering\Blending\IBlendState.cs" />
     <Compile Include="Graphics\Rendering\Blending\IBlendStateManager.cs" />
     <Compile Include="Graphics\Rendering\Blending\PreBlend.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\IConstantBufferResource.cs" />
+    <Compile Include="Graphics\Rendering\Buffers\ConstantBufferInterfaces.cs" />
     <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceCollection.cs" />
     <Compile Include="Graphics\Rendering\Rasterization\Antialiasing.cs" />
     <Compile Include="Graphics\Rendering\Rasterization\IRasterizerSettings.cs" />
@@ -130,10 +136,8 @@
     <Compile Include="Graphics\Primitives\Quad.cs" />
     <Compile Include="Graphics\Primitives\TextureCoordinate.cs" />
     <Compile Include="Graphics\Primitives\Triangle.cs" />
-    <Compile Include="Graphics\Primitives\Vertex.cs" />
+    <Compile Include="Graphics\Primitives\VertexPosColTex.cs" />
     <Compile Include="Graphics\SceneManagement\IMeshGroup.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\IConstantBufferManager.cs" />
-    <Compile Include="Graphics\Rendering\Buffers\IConstantBufferManagerFactory.cs" />
     <Compile Include="Graphics\Rendering\Buffers\IMeshGroupBufferManager.cs" />
     <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceBufferManager.cs" />
     <Compile Include="Graphics\Rendering\Buffers\IMeshInstanceBufferManagerFactory.cs" />
