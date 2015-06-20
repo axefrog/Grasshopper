@@ -17,7 +17,7 @@ licensing costs, so it is not my aim to make any money from this, but rather I a
 ![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cubes-rainbow.gif)
 ![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cubes.gif)
 ![](https://raw.github.com/axefrog/Grasshopper/next/samples/Images/cubes-freelook.gif)
-![](https://raw.github.com/axefrog/Grasshopper/master/samples/Images/cubes-multitexture.gif)
+![](https://raw.github.com/axefrog/Grasshopper/master/samples/Images/cube-multitexture.gif)
 
 ### Goals
 
