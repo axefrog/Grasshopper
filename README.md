@@ -1,16 +1,9 @@
 # Grasshopper :: Game Engine
 
-* Public Trello board for [features and ongoing development](https://trello.com/b/7Nd9pp9O/grasshopper)
-* Github issues for [reporting bugs and asking questions](https://github.com/axefrog/Grasshopper/issues)
-
-**THIS IS A WORK IN PROGRESS. SERIOUSLY. PRE-PRE-PRE-ALPHA.**
-
 Grasshopper is a code-first game engine written entirely in C# and .Net. There
 are various commercial game engines out there that have extremely negligible
 licensing costs, so it is not my aim to make any money from this, but rather I am
 "scratching my own itch", so to speak. My motivations for doing this are below.
-
-### Animated gifs of some of the samples
 
 ![](https://raw.github.com/axefrog/Grasshopper/master/samples/Images/cube-rainbow.gif)
 ![](https://raw.github.com/axefrog/Grasshopper/master/samples/Images/cube.gif)
@@ -18,6 +11,12 @@ licensing costs, so it is not my aim to make any money from this, but rather I a
 ![](https://raw.github.com/axefrog/Grasshopper/master/samples/Images/cubes.gif)
 ![](https://raw.github.com/axefrog/Grasshopper/master/samples/Images/cubes-freelook.gif)
 ![](https://raw.github.com/axefrog/Grasshopper/master/samples/Images/cube-multitexture.gif)
+
+**THIS IS A WORK IN PROGRESS! The engine's current capabilities extend about as far as what was
+required to produce the animated gif files above.**
+
+* Public Trello board for [features and ongoing development](https://trello.com/b/7Nd9pp9O/grasshopper)
+* Github issues for [reporting bugs and asking questions](https://github.com/axefrog/Grasshopper/issues)
 
 ### Goals
 
