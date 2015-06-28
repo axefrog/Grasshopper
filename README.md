@@ -1,9 +1,9 @@
 # Grasshopper :: Game Engine
 
-Grasshopper is a free, BSD-licensed **code-first** game engine written entirely in **C# and .Net**.  
-*Scroll down for some pretty animations!*
+Grasshopper is a free, BSD-licensed, **code-first** game engine written entirely in **C# and .Net**.  
+[Scroll down for some pretty animations!](#capabilities-and-samples)
 
-### Modular and Unopiniated
+### Modular and Somewhat Unopiniated
 
 The engine is built as a set of modular layers over a raw, basic set of platform abstractions. This
 means that you can use as much or as little of it as you want, and most things should be relatively
@@ -13,11 +13,16 @@ A common problem with the claim of a given engine or framework being modular and
 you have to spend huge amounts of time and effort deep diving to try and figure out the implications
 of swapping out or changing anything, and how and where it is even practical to do so. Grasshopper
 gets around this two ways: (1) a lot of thought is being put into separating concerns in clear,
-logical ways so that you really can just pick and choose the abstractions you're interested in, and
+logical ways so that you really can just pick and choose the abstractions you're interested in without
+having to worry too much about what subsystems may be affected by your choice of abstractions, and
 (2) it is a core value for the engine that there should be a highly comprehensive set of well-commented sample projects
 that teach you how to use the engine from first principles, only introducing higher-level abstractions
 on an as-needed basis. Where an abstraction is used in a sample, there will usually be a prior sample that
 makes use of lower-level components instead.
+
+It should be noted that if a feature is missing from an abstraction, it's probably just because I haven't
+had a need for it yet, or haven't known enough to include it. Pull requests are welcome! (Though subject
+to review first - the codebase must still meet a minimum standard of quality and design, in my view).
 
 ### Who is this for?
 
@@ -70,12 +75,12 @@ required to produce the animated sample images below.*
   extend and improve as much as I like, and which doesn't stand in my way when
   I have an idea I'd like to implement.
 * I want an engine which is designed in such a way that it facilitates, rather
-  than hinders, procedural content generation. Techniques and algorithms that
-  favour pre-baked content are likely to be deprioritised in this regard.
+  than hinders, procedural content generation and consumption at run-time. Techniques and algorithms that
+  favour pre-baked content will be deprioritised in this regard unless absolutely needed.
   I would like almost all relevant engine components, from materials, to animations,
-  to 3D models, to textures, to be able to be constructed and made use of at run-
-  time if desired. I want the process of generating, streaming, loading and unloading
-  content to be extremely easy and work without interrupting the user experience.
+  to 3D models, to textures, to be able to be dynamically/procedurally constructed/generated at run-
+  time without any tooling-related preprocessing required. I also want the process of generating, streaming, loading and unloading
+  content and assets to be extremely easy and able to work without interrupting the user experience.
 * Even though the engine is first and foremost for my own needs, I'd like it to
   be well-documented with a full set of XML code comments, and extensive samples
   that demonstrate how to use the engine from absolute first principles, without
