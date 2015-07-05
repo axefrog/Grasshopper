@@ -22,7 +22,7 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
             renderFrame(frame, _targetContext);
         }
 
-        public void Render(RenderFrameHandler<T> renderFrame)
+        public virtual void Render(RenderFrameHandler<T> renderFrame)
         {
             if(Terminated) return;
             _targetContext.Activate();

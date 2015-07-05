@@ -47,6 +47,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grasshopper.WindowsFileSyst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10. DynamicTexture", "samples\Core\10. DynamicTexture\10. DynamicTexture.csproj", "{2C26471A-1E75-4746-8529-666A49DCB26F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DBCA0876-5655-4823-A6AA-A02FD3B9B7FE}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -244,5 +249,8 @@ Global
 		{16D068BC-44CC-44D2-AF94-B99C6DB0CE0A} = {AE47F7AE-EAEB-4C08-A65E-AC61F991A202}
 		{3ADEE464-3DFB-49F7-B8F5-D0B4CFB2A4D2} = {AE47F7AE-EAEB-4C08-A65E-AC61F991A202}
 		{2C26471A-1E75-4746-8529-666A49DCB26F} = {C4355DD8-EC62-4A73-8FCD-1EFB8F23D9A3}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

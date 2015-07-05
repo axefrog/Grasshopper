@@ -34,7 +34,7 @@ namespace HelloWorld
                     // per second (of which only 60 per second will include the redraws below)
                     main.Render(context =>
                     {
-                        context.Window.Title = "Hello, window #1! Current ticks per second: " + app.TickCounter.TicksPerSecond.ToString("0");
+                        context.Window.Title = "Hello, window #1! Current ticks per second: " + frame.FramesPerSecond.ToString("0");
                         context.Clear(Color.CornflowerBlue);
                         context.Present();
                     });

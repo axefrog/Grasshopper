@@ -18,15 +18,26 @@ namespace Grasshopper.SharpDX.Graphics.Rendering
 
         public IAppWindow Window { get { return _drawingContext.Window; } }
 
-        public override void Render(FrameContext frame, RenderFrameHandlerEx<IWindowDrawingContext> renderFrame)
+        private bool CheckWindowStatus()
         {
             if(Window != null && !Window.NextFrame())
             {
                 Terminated = true;
-                return;
+                return false;
             }
+            return true;
+        }
 
+        public override void Render(FrameContext frame, RenderFrameHandlerEx<IWindowDrawingContext> renderFrame)
+        {
+            if(!CheckWindowStatus()) return;
             base.Render(frame, renderFrame);
+        }
+
+        public override void Render(RenderFrameHandler<IWindowDrawingContext> renderFrame)
+        {
+            if(!CheckWindowStatus()) return;
+            base.Render(renderFrame);
         }
 
         public void Initialize()
