@@ -1,6 +1,6 @@
 ﻿namespace Grasshopper.Graphics.Rendering
 {
-	public interface ITextureDrawingContext : IDrawingContext
-	{
-	}
+    public interface ITextureDrawingContext : IDrawingContext
+    {
+    }
 }

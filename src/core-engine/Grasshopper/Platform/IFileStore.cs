@@ -1,7 +1,7 @@
 ﻿namespace Grasshopper.Platform
 {
-	public interface IFileStore
-	{
-		IFileSource GetFile(string path);
-	}
+    public interface IFileStore
+    {
+        IFileSource GetFile(string path);
+    }
 }

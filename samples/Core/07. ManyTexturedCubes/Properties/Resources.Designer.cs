@@ -63,7 +63,7 @@ namespace ManyTexturedCubes.Properties {
         /// <summary>
         ///   Looks up a localized string similar to float4 PSMain(float4 position : SV_POSITION, float4 color : COLOR) : SV_Target
         ///{
-        ///	return color;
+        ///    return color;
         ///}.
         /// </summary>
         internal static string PixelShader {
@@ -75,28 +75,28 @@ namespace ManyTexturedCubes.Properties {
         /// <summary>
         ///   Looks up a localized string similar to cbuffer ViewData : register(b0)
         ///{
-        ///	float4x4 view;
-        ///	float4x4 projection;
-        ///	float secondsElapsed;
+        ///    float4x4 view;
+        ///    float4x4 projection;
+        ///    float secondsElapsed;
         ///}
         ///
         ///struct VOut
         ///{
-        ///	float4 position : SV_POSITION;
-        ///	float4 color : COLOR;
+        ///    float4 position : SV_POSITION;
+        ///    float4 color : COLOR;
         ///};
         ///
         ///struct VIn
         ///{
-        ///	float4 position: POSITION;
-        ///	float4 color: COLOR;
-        ///	float2 texcoord: TEXCOORD;
-        ///	float2 pad: PADDING0;
+        ///    float4 position: POSITION;
+        ///    float4 color: COLOR;
+        ///    float2 texcoord: TEXCOORD;
+        ///    float2 pad: PADDING0;
         ///
-        ///	// instance data
-        ///	float4 cubePosition: CUSTOM0;
-        ///	float4 cubeRotation: CUSTOM1;
-        ///	float4 cubeScale: CUSTOM2;
+        ///    // instance data
+        ///    float4 cubePosition: CUSTOM0;
+        ///    float4 cubeRotation: CUSTOM1;
+        ///    float4 cubeScale: CUSTOM2;
         ///};
         ///
         ///static float PI = 3.1415926535897932384626433832795;

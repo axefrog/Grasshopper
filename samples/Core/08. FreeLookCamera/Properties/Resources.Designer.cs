@@ -71,19 +71,19 @@ namespace FreeLookCamera.Properties {
         ///
         ///struct VOut
         ///{
-        ///	float4 position : SV_POSITION;
-        ///	float2 texcoord: TEXCOORD;
-        ///	int tex: CUSTOM;
+        ///    float4 position : SV_POSITION;
+        ///    float2 texcoord: TEXCOORD;
+        ///    int tex: CUSTOM;
         ///};
         ///
         ///float4 PSMain(VOut input) : SV_Target
         ///{
-        ///	float4 color;
-        ///	[flatten]
-        ///	switch (input.tex)
-        ///	{
-        ///	case 1:
-        ///		color = ShaderTexture1.Sample(Sampler, input.texco [rest of string was truncated]&quot;;.
+        ///    float4 color;
+        ///    [flatten]
+        ///    switch (input.tex)
+        ///    {
+        ///    case 1:
+        ///        color = ShaderTexture1.Sample(Sampler, input.texco [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PixelShader {
             get {
@@ -94,31 +94,31 @@ namespace FreeLookCamera.Properties {
         /// <summary>
         ///   Looks up a localized string similar to cbuffer ViewData : register(b0)
         ///{
-        ///	float4x4 view;
-        ///	float4x4 projection;
-        ///	float secondsElapsed;
+        ///    float4x4 view;
+        ///    float4x4 projection;
+        ///    float secondsElapsed;
         ///}
         ///
         ///struct VOut
         ///{
-        ///	float4 position : SV_POSITION;
-        ///	float2 texcoord: TEXCOORD;
-        ///	int tex : CUSTOM;
+        ///    float4 position : SV_POSITION;
+        ///    float2 texcoord: TEXCOORD;
+        ///    int tex : CUSTOM;
         ///};
         ///
         ///struct VIn
         ///{
-        ///	float4 position: POSITION;
-        ///	float4 color: COLOR;
-        ///	float2 texcoord: TEXCOORD;
-        ///	float2 pad0: PADDING0;
+        ///    float4 position: POSITION;
+        ///    float4 color: COLOR;
+        ///    float2 texcoord: TEXCOORD;
+        ///    float2 pad0: PADDING0;
         ///
-        ///	// instance data
-        ///	float4 cubePosition: CUSTOM0;
-        ///	float4 cubeRotation: CUSTOM1;
-        ///	float4 cubeScale: CUSTOM2;
-        ///	int tex: CUSTOM3;
-        ///	float3 pad1: PADDING1;
+        ///    // instance data
+        ///    float4 cubePosition: CUSTOM0;
+        ///    float4 cubeRotation: CUSTOM1;
+        ///    float4 cubeScale: CUSTOM2;
+        ///    int tex: CUSTOM3;
+        ///    float3 pad1: PADDING1;
         ///};
         ///
         ///static float PI = [rest of string was truncated]&quot;;.

@@ -1,7 +1,7 @@
 ﻿namespace Grasshopper.Graphics.Rendering
 {
-	public interface IRenderTargetFactory
-	{
-		IWindowRenderTarget CreateWindow();
-	}
+    public interface IRenderTargetFactory
+    {
+        IWindowRenderTarget CreateWindow();
+    }
 }

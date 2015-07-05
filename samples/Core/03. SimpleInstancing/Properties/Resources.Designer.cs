@@ -63,7 +63,7 @@ namespace SimpleInstancing.Properties {
         /// <summary>
         ///   Looks up a localized string similar to float4 PSMain(float4 position : SV_POSITION, float4 color : COLOR) : SV_Target
         ///{
-        ///	return color;
+        ///    return color;
         ///}.
         /// </summary>
         internal static string PixelShader {
@@ -75,23 +75,23 @@ namespace SimpleInstancing.Properties {
         /// <summary>
         ///   Looks up a localized string similar to struct VOut
         ///{
-        ///	float4 position : SV_POSITION;
-        ///	float4 color : COLOR;
+        ///    float4 position : SV_POSITION;
+        ///    float4 color : COLOR;
         ///};
         ///
         ///struct VIn
         ///{
-        ///	float4 position: POSITION0;
-        ///	float4 color: COLOR0;
-        ///	float2 texcoord: TEXCOORD0;
+        ///    float4 position: POSITION0;
+        ///    float4 color: COLOR0;
+        ///    float2 texcoord: TEXCOORD0;
         ///};
         ///
         ///VOut VSMain(VIn input)
         ///{
-        ///	VOut output;
-        ///	output.position = input.position;
-        ///	output.color = input.color;
-        ///	return output;
+        ///    VOut output;
+        ///    output.position = input.position;
+        ///    output.color = input.color;
+        ///    return output;
         ///}
         ///.
         /// </summary>

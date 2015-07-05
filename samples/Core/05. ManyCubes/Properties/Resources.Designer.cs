@@ -63,7 +63,7 @@ namespace ManyCubes.Properties {
         /// <summary>
         ///   Looks up a localized string similar to float4 PSMain(float4 position : SV_POSITION, float4 color : COLOR) : SV_Target
         ///{
-        ///	return color;
+        ///    return color;
         ///}.
         /// </summary>
         internal static string PixelShader {
@@ -75,29 +75,29 @@ namespace ManyCubes.Properties {
         /// <summary>
         ///   Looks up a localized string similar to cbuffer ViewData : register(b0)
         ///{
-        ///	float4x4 worldViewProjection;
+        ///    float4x4 worldViewProjection;
         ///}
         ///
         ///struct VOut
         ///{
-        ///	float4 position : SV_POSITION;
-        ///	float4 color : COLOR;
+        ///    float4 position : SV_POSITION;
+        ///    float4 color : COLOR;
         ///};
         ///
         ///struct VIn
         ///{
-        ///	float4 position: POSITION;
-        ///	float4 color: COLOR;
-        ///	float2 texcoord: TEXCOORD;
-        ///	float2 pad: PADDING0;
+        ///    float4 position: POSITION;
+        ///    float4 color: COLOR;
+        ///    float2 texcoord: TEXCOORD;
+        ///    float2 pad: PADDING0;
         ///};
         ///
         ///VOut VSMain(VIn input)
         ///{
-        ///	VOut output;
-        ///	output.position = mul(input.position, worldViewProjection);
-        ///	output.color = input.color;
-        ///	return output;
+        ///    VOut output;
+        ///    output.position = mul(input.position, worldViewProjection);
+        ///    output.color = input.color;
+        ///    return output;
         ///}
         ///.
         /// </summary>

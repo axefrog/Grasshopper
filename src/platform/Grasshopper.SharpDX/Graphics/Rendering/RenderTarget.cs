@@ -3,35 +3,42 @@ using Grasshopper.Graphics.Rendering;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	public class RenderTarget<T> : IRenderTarget<T>
-		where T : IDrawingContext
-	{
-		private T _targetContext;
-		
-		public bool Terminated { get; protected set; }
+    public class RenderTarget<T> : IRenderTarget<T>
+        where T : IDrawingContext
+    {
+        private T _targetContext;
 
-		public RenderTarget(T drawingContext)
-		{
-			_targetContext = drawingContext;
-		}
+        public bool Terminated { get; protected set; }
 
-		public virtual void Render(RenderFrameHandler<T> frame)
-		{
-			if(Terminated) return;
-			_targetContext.Activate();
-			frame(_targetContext);
-		}
+        public RenderTarget(T drawingContext)
+        {
+            _targetContext = drawingContext;
+        }
 
-		protected event Action Disposing;
+        public virtual void Render(FrameContext frame, RenderFrameHandlerEx<T> renderFrame)
+        {
+            if(Terminated) return;
+            _targetContext.Activate();
+            renderFrame(frame, _targetContext);
+        }
 
-		public void Dispose()
-		{
-			var handler = Disposing;
-			if(handler != null)
-				handler();
+        public void Render(RenderFrameHandler<T> renderFrame)
+        {
+            if(Terminated) return;
+            _targetContext.Activate();
+            renderFrame(_targetContext);
+        }
 
-			_targetContext.Dispose();
-			_targetContext = default(T);
-		}
-	}
+        protected event Action Disposing;
+
+        public void Dispose()
+        {
+            var handler = Disposing;
+            if(handler != null)
+                handler();
+
+            _targetContext.Dispose();
+            _targetContext = default(T);
+        }
+    }
 }

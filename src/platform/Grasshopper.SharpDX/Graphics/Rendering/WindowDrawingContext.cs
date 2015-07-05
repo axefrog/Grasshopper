@@ -12,79 +12,82 @@ using ResultCode = SharpDX.DXGI.ResultCode;
 
 namespace Grasshopper.SharpDX.Graphics.Rendering
 {
-	class WindowDrawingContext : DrawingContext, IWindowDrawingContext
-	{
-		private readonly AppWindow _window;
-		private readonly DepthBuffer _depthBuffer;
-		private readonly WindowTextureBuffer _windowTextureBuffer;
+    class WindowDrawingContext : DrawingContext, IWindowDrawingContext
+    {
+        private readonly AppWindow _window;
+        private readonly DepthBuffer _depthBuffer;
+        private readonly WindowTextureBuffer _windowTextureBuffer;
 
-		public WindowDrawingContext(GraphicsContext graphics, IInputContext input) : base(graphics.DeviceManager)
-		{
-			Graphics = graphics;
+        public WindowDrawingContext(GraphicsContext graphics, IInputContext input) : base(graphics.DeviceManager)
+        {
+            if(graphics == null) throw new ArgumentNullException("graphics");
+            if(input == null) throw new ArgumentNullException("input");
 
-			_window = new AppWindow(input);
-			_window.SizeChanged += win => Initialize();
+            Graphics = graphics;
 
-			_depthBuffer = new DepthBuffer(DeviceManager, _window.ClientWidth, _window.ClientHeight);
-			_windowTextureBuffer = new WindowTextureBuffer(DeviceManager, _window.Form.Handle, _window.ClientWidth, _window.ClientHeight);
-		}
+            _window = new AppWindow(input);
+            _window.SizeChanged += win => Initialize();
 
-		public IGraphicsContext Graphics { get; private set; }
-		public IAppWindow Window { get { return _window; } }
+            _depthBuffer = new DepthBuffer(DeviceManager, _window.ClientWidth, _window.ClientHeight);
+            _windowTextureBuffer = new WindowTextureBuffer(DeviceManager, _window.Form.Handle, _window.ClientWidth, _window.ClientHeight);
+        }
 
-		public void Initialize()
-		{
-			if(_window.Form.WindowState == FormWindowState.Minimized)
-				return;
+        public IGraphicsContext Graphics { get; private set; }
+        public IAppWindow Window { get { return _window; } }
 
-			if(!DeviceManager.IsInitialized)
-				throw new InvalidOperationException("Device manager is not initialized");
+        public void Initialize()
+        {
+            if(_window.Form.WindowState == FormWindowState.Minimized)
+                return;
 
-			DestroyResources();
+            if(!DeviceManager.IsInitialized)
+                throw new InvalidOperationException("Device manager is not initialized");
 
-			_depthBuffer.Resize(Window.ClientWidth, Window.ClientHeight);
-			_windowTextureBuffer.Resize(Window.ClientWidth, Window.ClientHeight);
-			
-			_depthBuffer.Initialize();
-			_windowTextureBuffer.Initialize();
+            DestroyResources();
 
-			var viewport = new ViewportF(0, 0, Window.ClientWidth, Window.ClientHeight);
-			DeviceManager.Context.Rasterizer.SetViewport(viewport);
-		}
+            _depthBuffer.Resize(Window.ClientWidth, Window.ClientHeight);
+            _windowTextureBuffer.Resize(Window.ClientWidth, Window.ClientHeight);
+            
+            _depthBuffer.Initialize();
+            _windowTextureBuffer.Initialize();
 
-		protected override void DestroyResources()
-		{
-			_depthBuffer.Uninitialize();
-			_windowTextureBuffer.Uninitialize();
-		}
+            var viewport = new ViewportF(0, 0, Window.ClientWidth, Window.ClientHeight);
+            DeviceManager.Context.Rasterizer.SetViewport(viewport);
+        }
 
-		public void Present()
-		{
-			try
-			{
-				_windowTextureBuffer.SwapChain.Present(1, PresentFlags.None);
-			}
-			catch(SharpDXException ex)
-			{
-				if(ex.ResultCode == ResultCode.DeviceRemoved || ex.ResultCode == ResultCode.DeviceReset)
-					DeviceManager.Initialize();
-				else
-					throw;
-			}
-		}
+        protected override void DestroyResources()
+        {
+            _depthBuffer.Uninitialize();
+            _windowTextureBuffer.Uninitialize();
+        }
 
-		protected override void MakeTargetsActive()
-		{
-			DeviceManager.Context.OutputMerger.SetTargets(_depthBuffer.DepthStencilView, _windowTextureBuffer.RenderTargetView);
-		}
+        public void Present()
+        {
+            try
+            {
+                _windowTextureBuffer.SwapChain.Present(1, PresentFlags.None);
+            }
+            catch(SharpDXException ex)
+            {
+                if(ex.ResultCode == ResultCode.DeviceRemoved || ex.ResultCode == ResultCode.DeviceReset)
+                    DeviceManager.Initialize();
+                else
+                    throw;
+            }
+        }
 
-		public override void Clear(Color color)
-		{
-			if(_depthBuffer.DepthStencilView != null)
-				DeviceManager.Context.ClearDepthStencilView(_depthBuffer.DepthStencilView, DepthStencilClearFlags.Depth, 1f, 0);
+        protected override void MakeTargetsActive()
+        {
+            DeviceManager.Context.OutputMerger.SetTargets(_depthBuffer.DepthStencilView, _windowTextureBuffer.RenderTargetView);
+        }
 
-			if(_windowTextureBuffer.RenderTargetView != null)
-				DeviceManager.Context.ClearRenderTargetView(_windowTextureBuffer.RenderTargetView, new Color4(color.ToRgba()));
-		}
-	}
+        public override void Clear(Color color)
+        {
+            if(_depthBuffer.DepthStencilView != null)
+                DeviceManager.Context.ClearDepthStencilView(_depthBuffer.DepthStencilView, DepthStencilClearFlags.Depth, 1f, 0);
+
+            if(_windowTextureBuffer.RenderTargetView != null)
+                DeviceManager.Context.ClearRenderTargetView(_windowTextureBuffer.RenderTargetView, new Color4(color.ToRgba()));
+        }
+    }
 }

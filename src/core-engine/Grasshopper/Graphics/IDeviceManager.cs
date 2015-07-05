@@ -2,9 +2,9 @@
 
 namespace Grasshopper.Graphics
 {
-	public interface IDeviceManager : IDisposable
-	{
-		event Action Initialized;
-		void Initialize();
-	}
+    public interface IDeviceManager : IDisposable
+    {
+        event Action Initialized;
+        void Initialize();
+    }
 }

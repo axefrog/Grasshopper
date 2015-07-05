@@ -5,25 +5,25 @@ using Grasshopper.Math;
 
 namespace Grasshopper.Graphics.SceneManagement
 {
-	public class MeshInstance : IComponent
-	{
-		public MeshInstance()
-		{
-		}
+    public class MeshInstance : IComponent
+    {
+        public MeshInstance()
+        {
+        }
 
-		public MeshInstance(string meshId, string materialId)
-		{
-			MeshId = meshId;
-			MaterialId = materialId;
-		}
+        public MeshInstance(string meshId, string materialId)
+        {
+            MeshId = meshId;
+            MaterialId = materialId;
+        }
 
-		public Guid InstanceId { get; set; }
-		public string MeshId { get; set; }
-		public string MaterialId { get; set; }
-		public Transformation Transformation { get; set; }
-	}
+        public Guid InstanceId { get; set; }
+        public string MeshId { get; set; }
+        public string MaterialId { get; set; }
+        public Transformation Transformation { get; set; }
+    }
 
-	public interface IRenderable : IEnumerable<MeshInstance>
-	{
-	}
+    public interface IRenderable : IEnumerable<MeshInstance>
+    {
+    }
 }

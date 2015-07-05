@@ -82,7 +82,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrameContext.cs" />
     <Compile Include="Graphics\IDeviceManager.cs" />
+    <Compile Include="Graphics\Materials\PixelFormat.cs" />
     <Compile Include="Graphics\Rendering\Buffers\IndexBufferInterfaces.cs" />
     <Compile Include="Graphics\Rendering\Buffers\MeshBuffer.cs" />
     <Compile Include="Graphics\Rendering\Buffers\MeshBufferManager.cs" />
@@ -152,7 +154,6 @@
     <Compile Include="Graphics\Rendering\IRenderTarget.cs" />
     <Compile Include="Graphics\Rendering\IDrawingContext.cs" />
     <Compile Include="Graphics\Rendering\IRenderTargetFactory.cs" />
-    <Compile Include="Graphics\Materials\ITexture.cs" />
     <Compile Include="Graphics\Materials\ITextureResourceManager.cs" />
     <Compile Include="Graphics\Materials\Material.cs" />
     <Compile Include="Graphics\Rendering\IWindowRenderTarget.cs" />

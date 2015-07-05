@@ -8,8 +8,8 @@ Developer notes only. Please ignore.
 - improve shader system by creating a modular (text-based) foundation for a blueprints-style system down the track
 - load meshes from disk (assimp.net -> custom grasshopper format)
 - scene management
-	- switchable cameras
-	- freelook component tied to a camera, using entity component system
+    - switchable cameras
+    - freelook component tied to a camera, using entity component system
 
 ## GridWorld
 

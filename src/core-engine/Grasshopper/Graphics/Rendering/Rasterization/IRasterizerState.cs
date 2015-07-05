@@ -2,8 +2,8 @@
 
 namespace Grasshopper.Graphics.Rendering.Rasterization
 {
-	public interface IRasterizerState : IActivatablePlatformResource
-	{
-		IRasterizerSettings Settings { get; }
-	}
+    public interface IRasterizerState : IActivatablePlatformResource
+    {
+        IRasterizerSettings Settings { get; }
+    }
 }

@@ -1,14 +1,14 @@
 ﻿namespace Grasshopper.Graphics.Rendering
 {
-	/// <summary>
-	/// Indicates the type of drawing that should occur, given a set of vertices and vertex indices
-	/// </summary>
-	public enum DrawType
-	{
-		Points,
-		LineStrip,
-		LineList,
-		Triangles,
-		TriangleStrip
-	}
+    /// <summary>
+    /// Indicates the type of drawing that should occur, given a set of vertices and vertex indices
+    /// </summary>
+    public enum DrawType
+    {
+        Points,
+        LineStrip,
+        LineList,
+        Triangles,
+        TriangleStrip
+    }
 }
