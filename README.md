@@ -1,7 +1,5 @@
 # Grasshopper :: Game Engine
 
-[![Join the chat at https://gitter.im/axefrog/Grasshopper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/axefrog/Grasshopper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 Grasshopper is a free, BSD-licensed, **code-first** game engine written entirely in **C# and .Net**.  
 [Scroll down for some pretty animations!](#capabilities-and-samples)
 
