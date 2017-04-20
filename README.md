@@ -1,5 +1,12 @@
 # Grasshopper :: Game Engine
 
+> **Note**: Please consider this project abandoned. I moved on from it in the face of other work I needed
+> to do, and in that time, my ideas about how I'd approach a game engine changed significantly, not from
+> the perspective that I was unhappy with what I'd done here, but because I have a lot of experimental ideas
+> that fall outside of the usual techniques that you see here.
+>
+> I'm leaving this here for reference. Please feel to fork it, modify it, or whatever.
+
 Grasshopper is a free, BSD-licensed, **code-first** game engine written entirely in **C# and .Net**.  
 [Scroll down for some pretty animations!](#capabilities-and-samples)
 
